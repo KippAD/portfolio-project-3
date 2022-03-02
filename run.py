@@ -17,4 +17,14 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('python_voting_system')
 
+def display_main_menu():
+    """
+    Displays main menu with options to move to other areas.
+    """
+    cprint(figlet_format("The Voting Station!", font='big'), "green", attrs=["bold"])
+    print("Welcome to the Voting Station, this is where votes are cast for the upcoming election!... \n")
+    print(f"{Fore.BLUE}Please select your portal:\n")
+    print("1. Voter Portal\n2. Admin Portal")
 
+
+display_main_menu()

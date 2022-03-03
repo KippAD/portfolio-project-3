@@ -1,8 +1,8 @@
+import os
 from termcolor import cprint
 from pyfiglet import figlet_format
 from colorama import Fore, Back, Style
 from google.oauth2.service_account import Credentials
-import os
 import gspread
 import colorama
 colorama.init(autoreset=True)
@@ -23,8 +23,9 @@ def display_main_menu():
     """
     Displays main menu with options to move to other areas.
     """
-    cprint(figlet_format("The Voting Station!", font='big'), "green", attrs=["bold"])
-    print("Welcome to the Voting Station, this is where votes are cast for the upcoming election!... \n")
+    reset_terminal()
+    print("Welcome to the Voting Station!")
+    print("Cast your vote for the upcoming election!... \n")
     print(f"{Fore.BLUE}Please select your portal:\n")
     print("1. Voter Portal\n2. Admin Portal\n")
 
@@ -39,25 +40,41 @@ def select_portal():
         except ValueError:
             print(f"{Fore.RED}Incorrect Input: Please press 1 for Voter Portal or 2 for Admin Portal")
             continue
-        
+
         if selection == 1 or selection == 2:
             break
-        else: 
+        else:
             print(f"{Fore.RED}Incorrect Input: Please press 1 for Voter Portal or 2 for Admin Portal")
-    
-    display_portal(selection)
+
+    if selection == 1:
+        load_voter_portal()
+    else:
+        load_admin_portal()
 
 
-def display_portal(portal):
-    clear_terminal()
-    print("Hello World")
-        
+def load_admin_portal():
+    """
+    Loads admin portal menu if chosen by user.
+    """
+    reset_terminal()
+    print(f"{Fore.CYAN}Welcome Admin! Please login in to access the admin portal.\n")
+    input(f"{Fore.BLUE}Please enter the username:")
 
-def clear_terminal():
+
+def load_voter_portal():
+    """
+    Loads voter portal menu if chosen by user.
+    """
+    reset_terminal()
+    print("You have chosen the voter portal")
+
+
+def reset_terminal():
     """
     Clears the terminal.
     """
     os.system('clear')
+    cprint(figlet_format("The Voting Station!", font='big'), "green", attrs=["bold"])
 
 
 def main():
@@ -69,4 +86,3 @@ def main():
 
 
 main()
-

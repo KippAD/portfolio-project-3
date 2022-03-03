@@ -52,15 +52,6 @@ def select_portal():
         load_admin_portal()
 
 
-def load_admin_portal():
-    """
-    Loads admin portal menu if chosen by user.
-    """
-    reset_terminal()
-    print(f"{Fore.CYAN}Welcome Admin! Please login in to access the admin portal.\n")
-    input(f"{Fore.BLUE}Please enter the username:")
-
-
 def load_voter_portal():
     """
     Loads voter portal menu if chosen by user.
@@ -68,6 +59,34 @@ def load_voter_portal():
     reset_terminal()
     print("You have chosen the voter portal")
 
+
+def load_admin_portal():
+    """
+    Loads admin portal menu if chosen by user.
+    """
+    reset_terminal()
+    print(f"{Fore.CYAN}Welcome Admin! Please login in to access the admin portal.\n")
+    validate_admin_login()
+
+
+def validate_admin_login():
+    """
+    Validates the username and password entered by the user
+    in order to access the admin portal.
+    """
+    username = "admin"
+    password = "password"
+
+    while True:
+        username_attempt = input(f"{Fore.BLUE}Please enter the username:\n")
+        password_attempt = input(f"{Fore.BLUE}Please enter the password:\n")
+      
+        if username_attempt == username and password_attempt == password:
+            print(f"{Fore.GREEN}Login Correct")
+            break
+        else:
+            print(f"{Fore.RED}Login Incorrect")
+              
 
 def reset_terminal():
     """

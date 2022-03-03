@@ -68,6 +68,9 @@ def load_admin_portal():
     print(f"{Fore.CYAN}Welcome Admin! Please login in to access the admin portal.\n")
     validate_admin_login()
 
+    print(f"{Fore.BLUE}Welcome to the Admin Portal!\n")
+    print("1. Voter Portal\n2. Admin Portal\n")
+
 
 def validate_admin_login():
     """
@@ -80,13 +83,16 @@ def validate_admin_login():
     while True:
         username_attempt = input(f"{Fore.BLUE}Please enter the username:\n")
         password_attempt = input(f"{Fore.BLUE}Please enter the password:\n")
-      
+
         if username_attempt == username and password_attempt == password:
-            print(f"{Fore.GREEN}Login Correct")
+            print(f"{Fore.GREEN}Login detail correct")
+            print(f"{Fore.CYAN}Loading Admin Portal...")
             break
         else:
-            print(f"{Fore.RED}Login Incorrect")
-              
+            print(f"{Fore.RED}Incorrect login")
+    
+    reset_terminal()
+
 
 def reset_terminal():
     """

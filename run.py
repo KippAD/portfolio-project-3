@@ -34,19 +34,9 @@ def select_portal():
     """
     Validates user input and directs them to selected portal.
     """
-    while True:
-        try:
-            selection = int(input(f"{Fore.CYAN}Press 1 for Voter Portal or 2 for Admin Portal:\n"))
-        except ValueError:
-            print(f"{Fore.RED}Incorrect Input: Please press 1 for Voter Portal or 2 for Admin Portal")
-            continue
+    chosen_portal = validate_menu_selection("Voter Portal", "Admin Portal")
 
-        if selection == 1 or selection == 2:
-            break
-        else:
-            print(f"{Fore.RED}Incorrect Input: Please press 1 for Voter Portal or 2 for Admin Portal")
-
-    if selection == 1:
+    if chosen_portal == 1:
         load_voter_portal()
     else:
         load_admin_portal()
@@ -62,14 +52,42 @@ def load_voter_portal():
 
 def load_admin_portal():
     """
-    Loads admin portal menu if chosen by user.
+    Loads admin men if login is correctly input by the user. 
+    Displays options to view vote results and voting insights.
     """
     reset_terminal()
     print(f"{Fore.CYAN}Welcome Admin! Please login in to access the admin portal.\n")
     validate_admin_login()
 
     print(f"{Fore.BLUE}Welcome to the Admin Portal!\n")
-    print("1. Voter Portal\n2. Admin Portal\n")
+    print("1. Vote Results\n2. Voting Insights\n")
+
+    admin_menu = validate_menu_selection("Vote Results", "Voting Insights")
+    
+    if admin_menu == 1:
+        print("Loading results...")
+    else:
+        print("Loading insights...")
+
+
+def validate_menu_selection(choice1, choice2):
+    """
+    Ensures that the correct input is given by the user in 
+    multiple choice menu (main menu and admin menu).
+    """
+    while True:
+        try:
+            selection = int(input(f"{Fore.CYAN}Press 1 for {choice1} or 2 for {choice2}:\n"))
+        except ValueError:
+            print(f"{Fore.RED}Incorrect Input: Please press 1 for {choice1} or 2 for {choice2}")
+            continue
+
+        if selection == 1 or selection == 2:
+            break
+        else:
+            print(f"{Fore.RED}Incorrect Input: Please press 1 for {choice1} or 2 for {choice2}")
+ 
+    return selection
 
 
 def validate_admin_login():

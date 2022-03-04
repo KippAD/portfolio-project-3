@@ -35,6 +35,7 @@ def select_portal():
     Validates user input and directs them to selected portal.
     """
     chosen_portal = validate_menu_selection("Voter Portal", "Admin Portal")
+    reset_terminal()
 
     if chosen_portal == 1:
         load_voter_portal()
@@ -44,10 +45,18 @@ def select_portal():
 
 def load_voter_portal():
     """
-    Loads voter portal menu if chosen by user.
+    Loads voter portal menu displays possible options for user
+    to select next.
     """
-    reset_terminal()
-    print("You have chosen the voter portal")
+    print(f"{Fore.BLUE}Welcome to the Voter Portal!\n")
+    print("1. Cast Vote\n2. View Results\n")
+
+    voter_menu = validate_menu_selection("Cast Vote", "View Result")
+    
+    if voter_menu == 1:
+        print("Loading the voting station...")
+    else:
+        print("Loading voting results...")
 
 
 def load_admin_portal():
@@ -55,7 +64,6 @@ def load_admin_portal():
     Loads admin men if login is correctly input by the user. 
     Displays options to view vote results and voting insights.
     """
-    reset_terminal()
     print(f"{Fore.CYAN}Welcome Admin! Please login in to access the admin portal.\n")
     validate_admin_login()
 

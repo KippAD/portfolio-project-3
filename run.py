@@ -54,9 +54,10 @@ def load_voter_portal():
     voter_menu = validate_menu_selection("Cast Vote", "View Result")
     
     if voter_menu == 1:
-        print("Loading the voting station...")
+        print("Loading the voting station...\n")
+        cast_user_vote()
     else:
-        print("Loading voting results...")
+        print("Loading voting results...\n")
 
 
 def load_admin_portal():
@@ -71,12 +72,59 @@ def load_admin_portal():
     print("1. Vote Results\n2. Voting Insights\n")
 
     admin_menu = validate_menu_selection("Vote Results", "Voting Insights")
-    
+
     if admin_menu == 1:
         print("Loading results...")
     else:
         print("Loading insights...")
 
+
+def cast_user_vote():
+    """
+    Takes validated user inputs to build list that is
+    will be submitted as a vote to the external google spreadsheet.
+    """
+    reset_terminal()
+    print(f"{Fore.BLUE}Welcome to the Voting Station!\n")
+    print(f"{Fore.CYAN}In order to cast your vote, please fill out the form below\n")
+
+    name_input = get_voter_name()
+
+
+def get_voter_name():
+    """
+    Concatenates the two strings passed through the validate_vote_name 
+    function and returns them as a single string.
+    """
+    fname = validate_vote_name("first")
+    lname = validate_vote_name("last")
+    full_name = fname + " " + lname
+
+    return full_name
+
+
+def validate_vote_name(name_type):
+    """
+    Ensures that data submitted when user cast votes is correct
+    before data is submitted to spreadsheet.
+    """
+    while True:
+        try:
+            name = str(input(f"{Fore.CYAN}Please enter your {name_type} name:\n"))
+            name = name.title()
+        except ValueError:
+            print(f"{Fore.RED}\nYour name can only contain letters.\n")
+            print(f"{Fore.CYAN}Please exclude any numbers, spaces, or characters...")
+            continue
+
+        if name.isalpha():
+            break
+        else:
+            print(f"{Fore.RED}\nYour name can only contain letters.\n")
+            print(f"{Fore.RED}Please exclude any numbers, spaces, or characters...\n")
+
+    return name
+    
 
 def validate_menu_selection(choice1, choice2):
     """
@@ -94,7 +142,7 @@ def validate_menu_selection(choice1, choice2):
             break
         else:
             print(f"{Fore.RED}Incorrect Input: Please press 1 for {choice1} or 2 for {choice2}")
- 
+
     return selection
 
 
@@ -116,7 +164,7 @@ def validate_admin_login():
             break
         else:
             print(f"{Fore.RED}Incorrect login")
-    
+
     reset_terminal()
 
 

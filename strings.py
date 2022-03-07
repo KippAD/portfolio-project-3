@@ -11,21 +11,20 @@ main_menu_text = (
     f"{Fore.WHITE}Cast your vote in the upcoming election between\n"
     f"{Fore.WHITE}the {Fore.RED}Red, {Fore.GREEN}Green, "
     f"{Fore.WHITE}and {Fore.BLUE}Blue {Fore.WHITE}parties.\n\n"
-    f"{Fore.CYAN}Please select your portal:\n\n"
-    f"{Fore.WHITE}1. Voter Portal\n2. Admin Portal\n"
+    f"{Fore.CYAN}Please select an option from the menu below:\n\n"
+    f"{Fore.WHITE}1. Voter Portal\n2. Admin Portal\n3. Information\n"
     )
 
 # The text displayed when the voter portal is loaded
 voter_portal_text = (
     f"{Fore.MAGENTA}Welcome to the Voter Portal!\n\n"
-    f"{Fore.WHITE}Selecting 1 will begin the voting process, \n"
-    f"selecting 2 will allow you to view the current\n"
-    f"vote count election.\n\n"
+    f"{Fore.WHITE}This menu will allow you to cast a vote in the election\n"
+    f"or to view the current vote count.\n\n"
     f"{Fore.CYAN}Please select an option from the menu below:\n\n"
-    f"{Fore.WHITE}1. Cast Vote\n2. View Results\n"
+    f"{Fore.WHITE}1. Cast Vote\n2. View Results\n3. Main Menu\n"
 )
 
 admin_portal_text = (
     f"{Fore.MAGENTA}Welcome to the Admin Portal!\n\n"
-    "1. Vote Results\n2. Voting Insights\n"
+    f"{Fore.WHITE}1. Vote Results\n2. Voting Insights\n"
 )

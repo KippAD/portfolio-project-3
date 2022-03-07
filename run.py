@@ -33,7 +33,7 @@ def select_portal():
     """
     Validates user input and directs them to selected portal.
     """
-    chosen_portal = validate_menu_selection("Voter Portal", "Admin Portal")
+    chosen_portal = validate_menu_selection("Voter Portal", "Admin Portal", "Information")
     reset_terminal()
 
     if chosen_portal == 1:
@@ -48,7 +48,7 @@ def load_voter_portal():
     to select next.
     """
     print(strings.voter_portal_text)
-    voter_menu = validate_menu_selection("Cast Vote", "View Result")
+    voter_menu = validate_menu_selection("Cast Vote", "View Result", "Main Menu")
 
     if voter_menu == 1:
         print("Loading the voting station...\n")
@@ -64,7 +64,7 @@ def load_admin_portal():
     """
     validate_admin_login()
     print(strings.admin_portal_text)
-    admin_menu = validate_menu_selection("Vote Results", "Voting Insights")
+    admin_menu = validate_menu_selection("Vote Results", "Voting Insights", "Main Menu")
 
     if admin_menu == 1:
         print("Loading results...")
@@ -140,7 +140,8 @@ def get_voter_age():
     
     return age
 
-def validate_menu_selection(choice1, choice2):
+
+def validate_menu_selection(choice1, choice2, choice3):
     """
     Ensures that the correct input is given by the user in
     the multiple choice menu that appears throughout the
@@ -148,15 +149,24 @@ def validate_menu_selection(choice1, choice2):
     """
     while True:
         try:
-            selection = int(input(f"{Fore.CYAN}Press 1 for {choice1} or 2 for {choice2}:\n"))
+            selection = int(input(
+                f"{Fore.CYAN}Press 1 for {choice1}, 2 for {choice2}, "
+                f"or 3 for {choice3}\n"
+                ))
         except ValueError:
-            print(f"{Fore.RED}Incorrect Input: Please press 1 for {choice1} or 2 for {choice2}\n")
+            print(
+                f"{Fore.RED}Incorrect Input: Please press 1 for {choice1} "
+                f", 2 for {choice2}, or 3 for {choice3}:\n"
+                )
             continue
 
-        if selection == 1 or selection == 2:
+        if selection >= 1 and selection <= 3:
             break
         else:
-            print(f"{Fore.RED}Incorrect Input: Please press 1 for {choice1} or 2 for {choice2}\n")
+            print(
+                f"{Fore.RED}Incorrect Input: Please press 1 for {choice1} "
+                f", 2 for {choice2}, or 3 for {choice3}:\n"
+                )
 
     return selection
 

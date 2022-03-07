@@ -89,6 +89,7 @@ def cast_user_vote():
     print(f"{Fore.CYAN}In order to cast your vote, please fill out the form below\n")
 
     name_input = get_voter_name()
+    age_input = get_voter_age()
 
 
 def get_voter_name():
@@ -124,7 +125,27 @@ def validate_vote_name(name_type):
             print(f"{Fore.RED}Please exclude any numbers, spaces, or characters...\n")
 
     return name
+
+
+def get_voter_age():
+    """
+    Gets voters age from an input, validates that the value is
+    an integer between 18 and 120 and returns the value.
+    """
+    while True:
+        try:
+            age = int(input(f"{Fore.CYAN}Please enter your age:\n"))
+        except ValueError:
+            print(f"{Fore.RED}You age can only contain numbers!\n")
+            continue
+        else:
+            if age >= 18 and age <= 120:
+                print(f"{Fore.GREEN}Age entered...")
+                break
+            else:
+                print(f"{Fore.RED}Please enter an age between 18 and 120:\n")
     
+    return age
 
 def validate_menu_selection(choice1, choice2):
     """

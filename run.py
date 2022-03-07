@@ -3,9 +3,11 @@ from termcolor import cprint
 from pyfiglet import figlet_format
 from colorama import Fore, Back, Style
 from google.oauth2.service_account import Credentials
+import strings
 import gspread
 import colorama
 colorama.init(autoreset=True)
+
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -24,10 +26,7 @@ def display_main_menu():
     Displays main menu with options to move to other areas.
     """
     reset_terminal()
-    print("Welcome to the Voting Station!")
-    print("Cast your vote for the upcoming election!... \n")
-    print(f"{Fore.BLUE}Please select your portal:\n")
-    print("1. Voter Portal\n2. Admin Portal\n")
+    print(strings.main_menu_text)
 
 
 def select_portal():
@@ -48,11 +47,9 @@ def load_voter_portal():
     Loads voter portal menu displays possible options for user
     to select next.
     """
-    print(f"{Fore.BLUE}Welcome to the Voter Portal!\n")
-    print("1. Cast Vote\n2. View Results\n")
-
+    print(strings.voter_portal_text)
     voter_menu = validate_menu_selection("Cast Vote", "View Result")
-    
+
     if voter_menu == 1:
         print("Loading the voting station...\n")
         cast_user_vote()
@@ -65,12 +62,8 @@ def load_admin_portal():
     Loads admin men if login is correctly input by the user. 
     Displays options to view vote results and voting insights.
     """
-    print(f"{Fore.CYAN}Welcome Admin! Please login in to access the admin portal.\n")
     validate_admin_login()
-
-    print(f"{Fore.BLUE}Welcome to the Admin Portal!\n")
-    print("1. Vote Results\n2. Voting Insights\n")
-
+    print(strings.admin_portal_text)
     admin_menu = validate_menu_selection("Vote Results", "Voting Insights")
 
     if admin_menu == 1:
@@ -85,7 +78,7 @@ def cast_user_vote():
     will be submitted as a vote to the external google spreadsheet.
     """
     reset_terminal()
-    print(f"{Fore.BLUE}Welcome to the Voting Station!\n")
+    print(f"{Fore.MAGENTA}Welcome to the Voting Station!\n")
     print(f"{Fore.CYAN}In order to cast your vote, please fill out the form below\n")
 
     name_input = get_voter_name()
@@ -149,39 +142,42 @@ def get_voter_age():
 
 def validate_menu_selection(choice1, choice2):
     """
-    Ensures that the correct input is given by the user in 
-    multiple choice menu (main menu and admin menu).
+    Ensures that the correct input is given by the user in
+    the multiple choice menu that appears throughout the
+    application.
     """
     while True:
         try:
             selection = int(input(f"{Fore.CYAN}Press 1 for {choice1} or 2 for {choice2}:\n"))
         except ValueError:
-            print(f"{Fore.RED}Incorrect Input: Please press 1 for {choice1} or 2 for {choice2}")
+            print(f"{Fore.RED}Incorrect Input: Please press 1 for {choice1} or 2 for {choice2}\n")
             continue
 
         if selection == 1 or selection == 2:
             break
         else:
-            print(f"{Fore.RED}Incorrect Input: Please press 1 for {choice1} or 2 for {choice2}")
+            print(f"{Fore.RED}Incorrect Input: Please press 1 for {choice1} or 2 for {choice2}\n")
 
     return selection
 
 
 def validate_admin_login():
     """
-    Validates the username and password entered by the user
-    in order to access the admin portal.
+    Asks the user to enter the admin and password required to access
+    the admin portal and ensures that the login details are correct
+    before allowing access.
     """
+    print(f"{Fore.CYAN}Welcome Admin! Please login in to access the admin portal.\n")
     username = "admin"
     password = "password"
 
     while True:
-        username_attempt = input(f"{Fore.BLUE}Please enter the username:\n")
-        password_attempt = input(f"{Fore.BLUE}Please enter the password:\n")
+        username_attempt = input(f"{Fore.CYAN}Please enter the username:\n")
+        password_attempt = input(f"{Fore.CYAN}Please enter the password:\n")
 
         if username_attempt == username and password_attempt == password:
             print(f"{Fore.GREEN}Login detail correct")
-            print(f"{Fore.CYAN}Loading Admin Portal...")
+            print(f"{Fore.MAGENTA}Loading Admin Portal...")
             break
         else:
             print(f"{Fore.RED}Incorrect login")
@@ -195,7 +191,6 @@ def reset_terminal():
     """
     os.system('clear')
     cprint(figlet_format("The Voting Station!", font='big'), "green", attrs=["bold"])
-
 
 def main():
     """

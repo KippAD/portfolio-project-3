@@ -94,11 +94,11 @@ def cast_user_vote():
     """
     reset_terminal()
     print(f"{Fore.MAGENTA}Welcome to the Voting Station!\n")
-    print(f"{Fore.CYAN}In order to cast your vote, please fill out the form below\n")
+    print(f"{Fore.WHITE}To cast your vote, please fill out the form below\n")
 
     name_input = get_voter_name()
     age_input = get_voter_age()
-
+    region_input = get_voter_region()
 
 def get_voter_name():
     """
@@ -108,7 +108,7 @@ def get_voter_name():
     fname = validate_vote_name("first")
     lname = validate_vote_name("last")
     full_name = fname + " " + lname
-
+    print(f"\n{Fore.GREEN}Name Entered: {full_name}\n")
     return full_name
 
 
@@ -148,13 +148,32 @@ def get_voter_age():
             continue
         else:
             if age >= 18 and age <= 120:
-                print(f"{Fore.GREEN}Age entered...")
+                print(f"\n{Fore.GREEN}Age entered: {age}\n")
                 break
             else:
                 print(f"{Fore.RED}Please enter an age between 18 and 120:\n")
     
     return age
 
+
+def get_voter_region():
+    """
+    Returns the region selected by the user in vote casting after
+    input has been validated in validate_menu_selection function.
+    """
+    print(f"{Fore.CYAN}Please select the region you are voting from:\n")
+    print(f"{Fore.WHITE}1. Eastbourne\n2. Hastings\n3. Lewes\n")
+    region = validate_menu_selection("Eastbourne", "Hastings", "Lewes")
+
+    if region == 1:
+        region_selection = "Eastbourne"
+    elif region == 2:
+        region_selection = "Hastings"
+    else:
+        region_selection = "Lewes"
+
+    print(f"\n{Fore.GREEN}Region selected: {region_selection}\n")
+    return region_selection
 
 def validate_menu_selection(choice1, choice2, choice3):
     """

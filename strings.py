@@ -24,7 +24,22 @@ voter_portal_text = (
     f"{Fore.WHITE}1. Cast Vote\n2. View Results\n3. Main Menu\n"
 )
 
+# The text displayed when the admin portal is loaded
 admin_portal_text = (
     f"{Fore.MAGENTA}Welcome to the Admin Portal!\n\n"
     f"{Fore.WHITE}1. Vote Results\n2. Voting Insights\n"
+)
+
+# The information displayed when the user selects information on the main menu
+information_text = (
+    f"{Fore.MAGENTA}Welcome to the Sussex Voting Station\n\n"
+    f"{Fore.WHITE}This application is the official method of casting\n"
+    f"your vote in the ongoing Sussex regional elections.\n\n"
+    f"{Fore.BLUE}Candidates:\n\n"
+    f"{Fore.RED}The Red Party\n"
+    f"{Fore.GREEN}The Green Party\n"
+    f"{Fore.BLUE}The Blue Party\n\n"
+    f"{Fore.WHITE}To cast your vote, simply head to the Voter Portal from\n"
+    f"the main menu. The current vote count can also be viewed there.\n\n"
+    f"{Fore.CYAN}Enter any key to return to the main menu:"
 )

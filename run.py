@@ -38,8 +38,10 @@ def select_portal():
 
     if chosen_portal == 1:
         load_voter_portal()
-    else:
+    elif chosen_portal == 2:
         load_admin_portal()
+    else:
+        load_information()
 
 
 def load_voter_portal():
@@ -53,8 +55,10 @@ def load_voter_portal():
     if voter_menu == 1:
         print("Loading the voting station...\n")
         cast_user_vote()
-    else:
+    elif voter_menu == 2:
         print("Loading voting results...\n")
+    else:
+        main()
 
 
 def load_admin_portal():
@@ -68,8 +72,19 @@ def load_admin_portal():
 
     if admin_menu == 1:
         print("Loading results...")
-    else:
+    elif admin_menu == 2:
         print("Loading insights...")
+    else:
+        main()
+
+
+def load_information():
+    """
+    Displays information about the application when chosen
+    by the user on the main menu.
+    """
+    reset_terminal()
+    print(strings.information_text)
 
 
 def cast_user_vote():

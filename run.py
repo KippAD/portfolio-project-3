@@ -96,27 +96,17 @@ def cast_user_vote():
     print(f"{Fore.MAGENTA}Welcome to the Voting Station!\n")
     print(f"{Fore.WHITE}To cast your vote, please fill out the form below\n")
 
-    name_input = get_voter_name()
+    fname_input = get_voter_name("first")
+    lname_input = get_voter_name("last")
     age_input = get_voter_age()
     region_input = get_voter_region()
     vote_input = get_voter_vote()
 
-def get_voter_name():
-    """
-    Concatenates the two strings passed through the validate_vote_name 
-    function and returns them as a single string.
-    """
-    fname = validate_vote_name("first")
-    lname = validate_vote_name("last")
-    full_name = fname + " " + lname
-    print(f"\n{Fore.GREEN}Name Entered: {full_name}\n")
-    return full_name
 
-
-def validate_vote_name(name_type):
+def get_voter_name(name_type):
     """
     Ensures that data submitted when user cast votes is correct
-    before data is submitted to spreadsheet.
+    and returns correct value before data is submitted to spreadsheet.
     """
     while True:
         try:
@@ -133,6 +123,8 @@ def validate_vote_name(name_type):
             print(f"{Fore.RED}\nYour name can only contain letters.\n")
             print(f"{Fore.RED}Please exclude any numbers, spaces, or characters...\n")
 
+    name_type = name_type.capitalize()
+    print(f"\n{Fore.GREEN}{name_type} Name Entered: {name}\n")
     return name
 
 

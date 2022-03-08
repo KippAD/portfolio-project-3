@@ -5,6 +5,13 @@ colorama.init(autoreset=True)
 # This file stores the larger strings that make up the applications
 # display and can be accessed in the main run.py file.
 
+# The list of parties that appears multiple times in application
+party_list = (
+    f"{Fore.WHITE}1. {Fore.RED}The Red Party\n"
+    f"{Fore.WHITE}2. {Fore.GREEN}The Green Party\n"
+    f"{Fore.WHITE}3. {Fore.BLUE}The Blue Party\n"
+)
+
 # The text displayed when the main menu is loaded
 main_menu_text = (
     f"{Fore.MAGENTA}Welcome to the Sussex Voting Station!\n\n"
@@ -36,9 +43,7 @@ information_text = (
     f"{Fore.WHITE}This application is the official method of casting\n"
     f"your vote in the ongoing Sussex regional elections.\n\n"
     f"{Fore.BLUE}Candidates:\n\n"
-    f"{Fore.RED}The Red Party\n"
-    f"{Fore.GREEN}The Green Party\n"
-    f"{Fore.BLUE}The Blue Party\n\n"
+    f"{party_list}\n"
     f"{Fore.WHITE}To cast your vote, simply head to the Voter Portal from\n"
     f"the main menu. The current vote count can also be viewed there.\n\n"
     f"{Fore.CYAN}Enter any key to return to the main menu:"

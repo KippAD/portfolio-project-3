@@ -99,7 +99,7 @@ def cast_user_vote():
     name_input = get_voter_name()
     age_input = get_voter_age()
     region_input = get_voter_region()
-    vote_input = get_voter_vote
+    vote_input = get_voter_vote()
 
 def get_voter_name():
     """
@@ -149,7 +149,7 @@ def get_voter_age():
             continue
         else:
             if age >= 18 and age <= 120:
-                print(f"\n{Fore.GREEN}Age entered: {age}\n")
+                print(f"\n{Fore.GREEN}Age Entered: {age}\n")
                 break
             else:
                 print(f"{Fore.RED}Please enter an age between 18 and 120:\n")
@@ -173,8 +173,30 @@ def get_voter_region():
     else:
         region_selection = "Lewes"
 
-    print(f"\n{Fore.GREEN}Region selected: {region_selection}\n")
+    print(f"\n{Fore.GREEN}Region Selected: {region_selection}\n")
     return region_selection
+
+
+def get_voter_vote():
+    """
+    Returns the party vote selected by the user after
+    input has been validated in validate_menu_selection function.
+    """
+    print(f"{Fore.CYAN}Please select the party that you are voting for:\n")
+    print(strings.party_list)
+    
+    vote = validate_menu_selection("the Red Party", "the Green Party", "the Blue Party")
+
+    if vote == 1:
+        vote_selection = "Red"
+    elif vote == 2:
+        vote_selection = "Green"
+    else:
+        vote_selection = "Blue"
+
+    print(f"\n{Fore.GREEN}Vote Chosen: The {vote_selection} Party\n")
+    return vote_selection
+
 
 def validate_menu_selection(ch1, ch2, ch3):
     """

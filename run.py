@@ -99,6 +99,7 @@ def cast_user_vote():
     name_input = get_voter_name()
     age_input = get_voter_age()
     region_input = get_voter_region()
+    vote_input = get_voter_vote
 
 def get_voter_name():
     """
@@ -175,32 +176,24 @@ def get_voter_region():
     print(f"\n{Fore.GREEN}Region selected: {region_selection}\n")
     return region_selection
 
-def validate_menu_selection(choice1, choice2, choice3):
+def validate_menu_selection(ch1, ch2, ch3):
     """
     Ensures that the correct input is given by the user in
     the multiple choice menu that appears throughout the
     application.
     """
+    prompt = f"Press 1 for {ch1}, 2 for {ch2}, or 3 for {ch3}\n"
     while True:
         try:
-            selection = int(input(
-                f"{Fore.CYAN}Press 1 for {choice1}, 2 for {choice2}, "
-                f"or 3 for {choice3}\n"
-                ))
+            selection = int(input(f"{Fore.CYAN}{prompt}"))
         except ValueError:
-            print(
-                f"{Fore.RED}Incorrect Input: Please press 1 for {choice1} "
-                f", 2 for {choice2}, or 3 for {choice3}:\n"
-                )
+            print(f"{Fore.RED}Incorrect Input: {prompt}")
             continue
 
         if selection >= 1 and selection <= 3:
             break
         else:
-            print(
-                f"{Fore.RED}Incorrect Input: Please press 1 for {choice1} "
-                f", 2 for {choice2}, or 3 for {choice3}:\n"
-                )
+            print(f"{Fore.RED}Incorrect Input: {prompt}")
 
     return selection
 
@@ -220,7 +213,7 @@ def validate_admin_login():
         password_attempt = input(f"{Fore.CYAN}Please enter the password:\n")
 
         if username_attempt == username and password_attempt == password:
-            print(f"{Fore.GREEN}Login detail correct")
+            print(f"{Fore.GREEN}Login details correct")
             print(f"{Fore.MAGENTA}Loading Admin Portal...")
             break
         else:

@@ -4,6 +4,7 @@ from pyfiglet import figlet_format
 from colorama import Fore, Back, Style
 from google.oauth2.service_account import Credentials
 import plotext as plt
+import collections
 import strings
 import gspread
 import colorama
@@ -59,6 +60,7 @@ def load_voter_portal():
         cast_user_vote()
     elif voter_menu == 2:
         print("Loading voting results...\n")
+        count_votes()
     else:
         main()
 
@@ -228,6 +230,35 @@ def submit_vote(answer, vote_list):
     else:
         main()
 
+
+def count_votes():
+    """
+    Counts the votes from the google sheet and returns the vote count
+    in integers as well as a percentage.
+    """
+    party_votes = SHEET.worksheet("votes").col_values(5)
+    party_votes.pop(0)
+    total_count = len(party_votes)
+    # Counts occurences of each vote in party_votes list
+    occurences = collections.Counter(party_votes)
+    red_votes = occurences["Red"]
+    green_votes = occurences["Green"]
+    blue_votes = occurences["Blue"]
+    # Vote counts as a percentage
+    red_percent = calculate_percentage(total_count, red_votes)
+    green_percent = calculate_percentage(total_count, green_votes)
+    blue_percent = calculate_percentage(total_count, blue_votes)
+    print(red_percent)
+
+
+def calculate_percentage(total, count):
+    """
+    Calculates the percentage of a value
+    """
+    percentage = count / total * 100
+    percentage = round(percentage, 2)
+    return percentage
+    
 
 def validate_menu_selection(ch1, ch2, ch3):
     """

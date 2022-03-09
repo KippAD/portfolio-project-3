@@ -102,6 +102,10 @@ def cast_user_vote():
     region_input = get_voter_region()
     vote_input = get_voter_vote()
 
+    full_vote = [fname_input, lname_input, age_input, region_input, vote_input]
+    confirm_vote(full_vote)
+
+
 
 def get_voter_name(name_type):
     """
@@ -188,6 +192,23 @@ def get_voter_vote():
 
     print(f"\n{Fore.GREEN}Vote Chosen: The {vote_selection} Party\n")
     return vote_selection
+
+
+def confirm_vote(vote):
+    """
+    Confirms the data input by the user when casting vote before
+    submitting to the google sheet.
+    """
+    reset_terminal()
+    print(f"{Fore.CYAN}Your information:\n")
+    print(f"{Fore.BLUE}Name: {Fore.WHITE}{vote[0]} {vote[1]}")
+    print(f"{Fore.BLUE}Age: {Fore.WHITE}{vote[2]}")
+    print(f"{Fore.BLUE}Region: {Fore.WHITE}{vote[3]}")
+    print(f"{Fore.BLUE}Vote: {Fore.WHITE}{vote[4]}\n")
+    print(f"{Fore.CYAN}Are you happy with the details that you have entered?")
+    
+    full_vote = [fname_input, lname_input, age_input, region_input, vote_input]
+    
 
 
 def validate_menu_selection(ch1, ch2, ch3):

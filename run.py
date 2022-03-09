@@ -49,6 +49,7 @@ def load_voter_portal():
     Loads voter portal menu displays possible options for user
     to select next.
     """
+    reset_terminal()
     print(strings.voter_portal_text)
     voter_menu = validate_menu_selection("Cast Vote", "View Result", "Main Menu")
 
@@ -101,9 +102,11 @@ def cast_user_vote():
     age_input = get_voter_age()
     region_input = get_voter_region()
     vote_input = get_voter_vote()
-
     full_vote = [fname_input, lname_input, age_input, region_input, vote_input]
+    
     confirm_vote(full_vote)
+    confirmation = validate_menu_selection("submit vote", "re-enter vote", "exit")
+    submit_vote(confirmation, full_vote)
 
 
 
@@ -200,15 +203,29 @@ def confirm_vote(vote):
     submitting to the google sheet.
     """
     reset_terminal()
-    print(f"{Fore.CYAN}Your information:\n")
+    print(f"{Fore.CYAN}Are you happy with the details that you have entered?\n")
     print(f"{Fore.BLUE}Name: {Fore.WHITE}{vote[0]} {vote[1]}")
     print(f"{Fore.BLUE}Age: {Fore.WHITE}{vote[2]}")
     print(f"{Fore.BLUE}Region: {Fore.WHITE}{vote[3]}")
     print(f"{Fore.BLUE}Vote: {Fore.WHITE}{vote[4]}\n")
-    print(f"{Fore.CYAN}Are you happy with the details that you have entered?")
-    
-    full_vote = [fname_input, lname_input, age_input, region_input, vote_input]
-    
+1    
+
+
+def submit_vote(answer, vote_list):
+    """
+    Takes the input from the validate_vote_confirm function and submits vote
+    if y is selected and restarts voting process if n is selected.
+    """
+    if answer == 1:
+        print(f"{Fore.GREEN}Vote submitted...")
+        vote_sheet = SHEET.worksheet("votes")
+        vote_sheet.append_row(vote_list)
+        print(f"{Fore.GREEN}Loading Voter Portal...")
+        load_voter_portal()
+    elif answer == 2:
+        cast_user_vote()
+    else:
+        main()
 
 
 def validate_menu_selection(ch1, ch2, ch3):

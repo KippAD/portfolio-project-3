@@ -3,6 +3,7 @@ from termcolor import cprint
 from pyfiglet import figlet_format
 from colorama import Fore, Back, Style
 from google.oauth2.service_account import Credentials
+import plotext as plt
 import strings
 import gspread
 import colorama

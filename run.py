@@ -244,21 +244,38 @@ def count_votes():
     red_votes = occurences["Red"]
     green_votes = occurences["Green"]
     blue_votes = occurences["Blue"]
-    # Vote counts as a percentage
-    red_percent = calculate_percentage(total_count, red_votes)
-    green_percent = calculate_percentage(total_count, green_votes)
-    blue_percent = calculate_percentage(total_count, blue_votes)
-    print(red_percent)
+
+    display_vote_percent(total_count, red_votes, green_votes, blue_votes)
 
 
 def calculate_percentage(total, count):
     """
-    Calculates the percentage of a value
+    Calculates the percentage of a value to two decimal places
     """
     percentage = count / total * 100
     percentage = round(percentage, 2)
     return percentage
     
+def display_vote_percent(count, red, green, blue):
+    """
+    Displays the percentage of the votes in bar chart format in the terminal
+    using plotext module.
+    """
+    # Vote counts as a percentage
+    red_percent = calculate_percentage(count, red)
+    green_percent = calculate_percentage(count, green)
+    blue_percent = calculate_percentage(count, blue)
+
+    parties = ["Red Party", "Green Party", "Blue Party"]
+    percentage = [red_percent, green_percent, blue_percent]
+
+    plt.bar(parties, percentage, orientation="h")
+    plt.xlim(0, 100)
+    plt.plot_size(100, 20)
+    plt.title("Current Vote Count Percentage")
+    plt.cls()
+    plt.show()
+
 
 def validate_menu_selection(ch1, ch2, ch3):
     """

@@ -48,3 +48,11 @@ information_text = (
     f"the main menu. The current vote count can also be viewed there.\n\n"
     f"{Fore.CYAN}Enter any key to return to the main menu:"
 )
+
+vote_results_text = (
+    f"{Fore.MAGENTA}Welcome to the Voting Results menu\n\n"
+    f"{Fore.WHITE}You can view the current vote count as well as\n"
+    f"insights about the demographics of the vote by \n"
+    f"selecting an option the menu below\n\n"
+    f"1. Current Vote Count\n2. Voting Insights\n3. Return to Voter Portal\n"
+)

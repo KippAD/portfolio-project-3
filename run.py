@@ -60,7 +60,7 @@ def load_voter_portal():
         cast_user_vote()
     elif voter_menu == 2:
         print("Loading voting results...\n")
-        count_votes()
+        vote_results_menu()
     else:
         main()
 
@@ -231,6 +231,18 @@ def submit_vote(answer, vote_list):
         main()
 
 
+def vote_results_menu():
+    """
+    Displays the menu with options to view different insights about the
+    voting results (Vote count, vote percentage by region, vote by age)
+    """
+    reset_terminal()
+    print(strings.vote_results_text)
+    choice = validate_menu_selection("Vote Results", "Voting Insights", "Voter Portal")
+
+    if choice == 1:
+        count_votes()
+
 def count_votes():
     """
     Counts the votes from the google sheet and returns the vote count
@@ -255,13 +267,15 @@ def calculate_percentage(total, count):
     percentage = count / total * 100
     percentage = round(percentage, 2)
     return percentage
-    
+
+
 def display_vote_percent(count, red, green, blue):
     """
     Displays the percentage of the votes in bar chart format in the terminal
     using plotext module.
     """
     # Vote counts as a percentage
+    reset_terminal()
     red_percent = calculate_percentage(count, red)
     green_percent = calculate_percentage(count, green)
     blue_percent = calculate_percentage(count, blue)

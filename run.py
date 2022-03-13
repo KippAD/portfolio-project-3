@@ -327,7 +327,8 @@ def display_age_percent(age_data):
 
     age_bar_chart = ["18-30", "31-50", "51-70", "70+"]
     plt.multiple_bar(age_bar_chart, [blue_percentages, green_percentages, red_percentages], label = ["Blue", "Green", "Red"])
-    plt.title("Votes by Age Bracket")
+    plt.title("Votes by Age Bracket(Percentage)")
+    plt.plot_size(100, 25)
     plt.show()
 
 def validate_menu_selection(ch1, ch2, ch3):

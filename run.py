@@ -241,44 +241,38 @@ def vote_results_menu():
     choice = validate_menu_selection("Vote Results", "Voting Insights", "Voter Portal")
 
     if choice == 1:
-        count_votes()
+        display_vote_percent()
+    if choice == 2:
+        count_age_votes()
 
-def count_votes():
+
+def count_votes(total_votes):
     """
     Counts the votes from the google sheet and returns the vote count
     in integers as well as a percentage.
     """
-    party_votes = SHEET.worksheet("votes").col_values(5)
-    party_votes.pop(0)
-    total_count = len(party_votes)
+    total_count = len(total_votes)
     # Counts occurences of each vote in party_votes list
-    occurences = collections.Counter(party_votes)
-    red_votes = occurences["Red"]
-    green_votes = occurences["Green"]
-    blue_votes = occurences["Blue"]
+    occurences = collections.Counter(total_votes)
+    votes_list = [total_count, occurences["Red"], occurences["Green"], occurences["Blue"]]
 
-    display_vote_percent(total_count, red_votes, green_votes, blue_votes)
+    return votes_list
+    
 
-
-def calculate_percentage(total, count):
-    """
-    Calculates the percentage of a value to two decimal places
-    """
-    percentage = count / total * 100
-    percentage = round(percentage, 2)
-    return percentage
-
-
-def display_vote_percent(count, red, green, blue):
+def display_vote_percent():
     """
     Displays the percentage of the votes in bar chart format in the terminal
     using plotext module.
     """
     # Vote counts as a percentage
     reset_terminal()
-    red_percent = calculate_percentage(count, red)
-    green_percent = calculate_percentage(count, green)
-    blue_percent = calculate_percentage(count, blue)
+    party_votes = SHEET.worksheet("votes").col_values(5)
+    party_votes.pop(0)
+    v = count_votes(party_votes)
+
+    red_percent = calculate_percentage(v[0], v[1])
+    green_percent = calculate_percentage(v[0], v[2])
+    blue_percent = calculate_percentage(v[0], v[3])
 
     parties = ["Red Party", "Green Party", "Blue Party"]
     percentage = [red_percent, green_percent, blue_percent]
@@ -290,6 +284,51 @@ def display_vote_percent(count, red, green, blue):
     plt.cls()
     plt.show()
 
+
+def count_age_votes():
+    """
+    Displays a multiple bar chart of voting popularity by age,
+    allowing user to see the demographics of party supporters.
+    """
+    # Converts ages from google sheet into integer
+    ages_str = SHEET.worksheet("votes").col_values(3)
+    ages_str.pop(0)
+    ages = [int(a) for a in ages_str]
+
+    votes = SHEET.worksheet("votes").col_values(5)
+    votes.pop(0)
+    votes_by_age = {ages[i]: votes[i] for i in range(len(ages))}
+
+    below_30 = [vote for (age, vote) in votes_by_age.items() if age < 30]
+    below_50 = [vote for (age, vote) in votes_by_age.items() if age in range(31, 51)]
+    below_70 = [vote for (age, vote) in votes_by_age.items() if age in range(51, 71)]
+    above_70 = [vote for (age, vote) in votes_by_age.items() if age > 70]
+
+    age_brackets = [below_30, below_50, below_70, above_70]
+    display_age_percent(age_brackets)
+
+
+def display_age_percent(age_data):
+    """
+    Calculates percentages of each age bracket and prints multiple bar
+    chart in the voting insights area. 
+    """
+    # Iterates through the list of lists and organizes data for
+    # bar chart to be able to understand
+    red_percentages = []
+    green_percentages = []
+    blue_percentages = []
+
+    for ind in age_data:
+        counted = count_votes(ind)
+        red_percentages.append(calculate_percentage(counted[0], counted[1]))
+        green_percentages.append(calculate_percentage(counted[0], counted[2]))
+        blue_percentages.append(calculate_percentage(counted[0], counted[3]))
+
+    age_bar_chart = ["18-30", "31-50", "51-70", "70+"]
+    plt.multiple_bar(age_bar_chart, [blue_percentages, green_percentages, red_percentages], label = ["Blue", "Green", "Red"])
+    plt.title("Votes by Age Bracket")
+    plt.show()
 
 def validate_menu_selection(ch1, ch2, ch3):
     """
@@ -335,6 +374,15 @@ def validate_admin_login():
             print(f"{Fore.RED}Incorrect login")
 
     reset_terminal()
+
+
+def calculate_percentage(total, count):
+    """
+    Calculates the percentage of a value to two decimal places
+    """
+    percentage = count / total * 100
+    percentage = round(percentage, 2)
+    return percentage
 
 
 def reset_terminal():

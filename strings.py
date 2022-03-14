@@ -46,7 +46,6 @@ information_text = (
     f"{party_list}\n"
     f"{Fore.WHITE}To cast your vote, simply head to the Voter Portal from\n"
     f"the main menu. The current vote count can also be viewed there.\n\n"
-    f"{Fore.CYAN}Enter any key to return to the main menu:"
 )
 
 vote_results_text = (

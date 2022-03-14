@@ -48,8 +48,7 @@ def select_portal():
 
 def load_voter_portal():
     """
-    Loads voter portal menu displays possible options for user
-    to select next.
+    Loads voter portal menu displays possible options for user to select next.
     """
     reset_terminal()
     print(strings.voter_portal_text)
@@ -67,8 +66,8 @@ def load_voter_portal():
 
 def load_admin_portal():
     """
-    Loads admin men if login is correctly input by the user. 
-    Displays options to view vote results and voting insights.
+    Loads admin men if login is correctly input by the user. Displays options
+    to view vote results and voting insights.
     """
     validate_admin_login()
     print(strings.admin_portal_text)
@@ -89,6 +88,7 @@ def load_information():
     """
     reset_terminal()
     print(strings.information_text)
+    load_main_menu()
 
 
 def cast_user_vote():
@@ -140,8 +140,8 @@ def get_voter_name(name_type):
 
 def get_voter_age():
     """
-    Gets voters age from an input, validates that the value is
-    an integer between 18 and 120 and returns the value.
+    Gets voters age from an input, validates that the value is an integer
+    between 18 and 120 and returns the value.
     """
     while True:
         try:
@@ -161,8 +161,8 @@ def get_voter_age():
 
 def get_voter_region():
     """
-    Returns the region selected by the user in vote casting after
-    input has been validated in validate_menu_selection function.
+    Returns the region selected by the user in vote casting after input has
+    been validated in validate_menu_selection function.
     """
     print(f"{Fore.CYAN}Please select the region you are voting from:\n")
     print(f"{Fore.WHITE}1. Eastbourne\n2. Hastings\n3. Lewes\n")
@@ -181,8 +181,8 @@ def get_voter_region():
 
 def get_voter_vote():
     """
-    Returns the party vote selected by the user after
-    input has been validated in validate_menu_selection function.
+    Returns the party vote selected by the user after input has been validated
+    in validate_menu_selection function.
     """
     print(f"{Fore.CYAN}Please select the party that you are voting for:\n")
     print(strings.party_list)
@@ -244,12 +244,14 @@ def vote_results_menu():
         display_vote_percent()
     if choice == 2:
         load_voting_insights()
+    else:
+        load_voter_portal()
 
 
 def count_votes(total_votes):
     """
-    Counts the votes from the google sheet and returns the vote count
-    in integers as well as a percentage.
+    Counts the votes from the google sheet and returns the vote count in
+    integers as well as a percentage.
     """
     total_count = len(total_votes)
     # Counts occurences of each vote in party_votes list
@@ -287,8 +289,8 @@ def display_vote_percent():
 
 def load_voting_insights():
     """
-    Displays bar charts of voting popularity by age and region,
-    allowing user to see the demographics of party supporters.
+    Displays bar charts of voting popularity by age and region, allowing user
+    to see the demographics of party supporters.
     """
     # Converts ages in google sheet from string into integer
     ages_str = SHEET.worksheet("votes").col_values(3)
@@ -307,6 +309,7 @@ def load_voting_insights():
     count_age_votes(votes_list, ages_list)
     print(f"{strings.insights_region_figure}")
     count_region_votes(votes_list, regions_list)
+    load_main_menu()
 
 
 def count_age_votes(votes, ages):
@@ -393,9 +396,8 @@ def validate_menu_selection(ch1, ch2, ch3):
 
 def validate_admin_login():
     """
-    Asks the user to enter the admin and password required to access
-    the admin portal and ensures that the login details are correct
-    before allowing access.
+    Asks the user to enter the admin and password required to access the admin
+    portal and ensures that login details are correct before allowing access.
     """
     print(f"{Fore.CYAN}Welcome Admin! Please login in to access the admin portal.\n")
     username = "admin"
@@ -424,6 +426,13 @@ def calculate_percentage(total, count):
     return percentage
 
 
+def load_main_menu():
+    """
+    Allows user to enter any input to be redirected to main menu.
+    """
+    input(f"{Fore.CYAN}Enter any key to return to the main menu:\n")
+    main()
+
 def reset_terminal():
     """
     Clears the terminal.
@@ -435,6 +444,7 @@ def main():
     """
     The main function where all application functions run.
     """
+    reset_terminal()
     display_main_menu()
     select_portal()
 

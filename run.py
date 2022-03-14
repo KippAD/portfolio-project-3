@@ -243,7 +243,7 @@ def vote_results_menu():
     if choice == 1:
         display_vote_percent()
     if choice == 2:
-        count_age_votes()
+        load_voting_insights()
 
 
 def count_votes(total_votes):
@@ -285,33 +285,62 @@ def display_vote_percent():
     plt.show()
 
 
-def count_age_votes():
+def load_voting_insights():
     """
-    Displays a multiple bar chart of voting popularity by age,
+    Displays bar charts of voting popularity by age and region,
     allowing user to see the demographics of party supporters.
     """
-    # Converts ages from google sheet into integer
+    # Converts ages in google sheet from string into integer
     ages_str = SHEET.worksheet("votes").col_values(3)
     ages_str.pop(0)
-    ages = [int(a) for a in ages_str]
-
-    votes = SHEET.worksheet("votes").col_values(5)
-    votes.pop(0)
-    votes_by_age = {ages[i]: votes[i] for i in range(len(ages))}
-
-    below_30 = [vote for (age, vote) in votes_by_age.items() if age < 30]
-    below_50 = [vote for (age, vote) in votes_by_age.items() if age in range(31, 51)]
-    below_70 = [vote for (age, vote) in votes_by_age.items() if age in range(51, 71)]
-    above_70 = [vote for (age, vote) in votes_by_age.items() if age > 70]
-
-    age_brackets = [below_30, below_50, below_70, above_70]
-    display_age_percent(age_brackets)
+    ages_list = [int(a) for a in ages_str]
+    # Collects regions from google sheet
+    regions_list = SHEET.worksheet("votes").col_values(4)
+    regions_list.pop(0)
+    # Collects votes from google sheet
+    votes_list = SHEET.worksheet("votes").col_values(5)
+    votes_list.pop(0)
+    # Passes lists into unique counting functions
+    count_age_votes(votes_list, ages_list)
+    count_region_votes(votes_list, regions_list)
 
 
-def display_age_percent(age_data):
+def count_age_votes(votes, ages):
+    """
+    Categorizes votes into age groups voted from to display second
+    bar chart on the insights menu.
+    """
+    below_30 = [x for ind, x in enumerate(votes) if ages[ind] < 30]
+    below_50 = [x for ind, x in enumerate(votes) if ages[ind] in range(31, 51)]
+    below_70 = [x for ind, x in enumerate(votes) if ages[ind] in range(51, 71)]
+    above_70 = [x for ind, x in enumerate(votes) if ages[ind] >= 71]
+
+    age_title = "Votes by Age Bracket(Percentage)"
+    age_subheadings = ["18-30", "31-50", "51-70", "70+"]
+    age_data = [below_30, below_50, below_70, above_70]
+    display_insights_chart(age_title, age_subheadings, age_data)
+
+
+def count_region_votes(votes, region):
+    """
+    Counts votes by the selected region voted from to display second
+    bar chart on the insights menu.
+    """
+    # Creates lists of votes for each region to be counted later
+    lewes_rg = [x for ind, x in enumerate(votes) if region[ind] == "Lewes"]
+    eastbourne_rg = [x for ind, x in enumerate(votes) if region[ind] == "Eastbourne"]
+    hastings_rg = [x for ind, x in enumerate(votes) if region[ind] == "Hastings"]
+
+    region_title = "Votes by Region(Percentage)"
+    region_subheadings = ["Lewes", "Hastings", "Eastbourne"]
+    region_data = [lewes_rg, eastbourne_rg, hastings_rg]
+    display_insights_chart(region_title, region_subheadings, region_data)
+
+
+def display_insights_chart(chart_title, chart_subheadings, chart_data):
     """
     Calculates percentages of each age bracket and prints multiple bar
-    chart in the voting insights area. 
+    chart in the voting insights area.
     """
     # Iterates through the list of lists and organizes data for
     # bar chart to be able to understand
@@ -319,17 +348,19 @@ def display_age_percent(age_data):
     green_percentages = []
     blue_percentages = []
 
-    for ind in age_data:
+    for ind in chart_data:
         counted = count_votes(ind)
         red_percentages.append(calculate_percentage(counted[0], counted[1]))
         green_percentages.append(calculate_percentage(counted[0], counted[2]))
         blue_percentages.append(calculate_percentage(counted[0], counted[3]))
 
-    age_bar_chart = ["18-30", "31-50", "51-70", "70+"]
-    plt.multiple_bar(age_bar_chart, [blue_percentages, green_percentages, red_percentages], label = ["Blue", "Green", "Red"])
-    plt.title("Votes by Age Bracket(Percentage)")
+    plt.multiple_bar(chart_subheadings, [blue_percentages, green_percentages, red_percentages], label = ["Blue", "Green", "Red"])
+    plt.title(f"{chart_title}")
     plt.plot_size(100, 25)
     plt.show()
+    plt.clf()
+    plt.cld()
+
 
 def validate_menu_selection(ch1, ch2, ch3):
     """

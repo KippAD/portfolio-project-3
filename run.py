@@ -381,7 +381,7 @@ def validate_menu_selection(ch1, ch2, ch3):
     prompt = f"Press 1 for {ch1}, 2 for {ch2}, or 3 for {ch3}\n"
     while True:
         try:
-            selection = int(input(f"{Fore.CYAN}{prompt}"))
+            selection = int(input(f"{Fore.CYAN}{prompt}\n"))
         except ValueError:
             print(f"{Fore.RED}Incorrect Input: {prompt}")
             continue
@@ -433,12 +433,14 @@ def load_main_menu():
     input(f"{Fore.CYAN}Enter any key to return to the main menu:\n")
     main()
 
+
 def reset_terminal():
     """
     Clears the terminal.
     """
     os.system('clear')
     cprint(figlet_format("The Voting Station!", font='big'), "green", attrs=["bold"])
+
 
 def main():
     """

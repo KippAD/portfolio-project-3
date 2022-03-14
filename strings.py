@@ -58,8 +58,8 @@ vote_results_text = (
 
 insights_page_text = (
     f"{Fore.MAGENTA}Welcome to Insights\n\n"
-    f"{Fore.WHITE}Here you will find actionable data regarding.\n"
-    f"the election and voter demographics in bar chart form.\n"
+    f"{Fore.WHITE}Here you will find actionable data regarding the election "
+    f"and voter demographics in bar chart form.\n"
 )
 
 insights_age_figure = (

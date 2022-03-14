@@ -186,7 +186,7 @@ def get_voter_vote():
     """
     print(f"{Fore.CYAN}Please select the party that you are voting for:\n")
     print(strings.party_list)
-    
+
     vote = validate_menu_selection("the Red Party", "the Green Party", "the Blue Party")
 
     if vote == 1:
@@ -301,7 +301,11 @@ def load_voting_insights():
     votes_list = SHEET.worksheet("votes").col_values(5)
     votes_list.pop(0)
     # Passes lists into unique counting functions
+    reset_terminal()
+    print(f"{strings.insights_page_text}")
+    print(f"{strings.insights_age_figure}")
     count_age_votes(votes_list, ages_list)
+    print(f"{strings.insights_region_figure}")
     count_region_votes(votes_list, regions_list)
 
 
@@ -310,11 +314,13 @@ def count_age_votes(votes, ages):
     Categorizes votes into age groups voted from to display second
     bar chart on the insights menu.
     """
+    # Creates lists of each age bracket to be displayed in insights
     below_30 = [x for ind, x in enumerate(votes) if ages[ind] < 30]
     below_50 = [x for ind, x in enumerate(votes) if ages[ind] in range(31, 51)]
     below_70 = [x for ind, x in enumerate(votes) if ages[ind] in range(51, 71)]
     above_70 = [x for ind, x in enumerate(votes) if ages[ind] >= 71]
-
+    
+    # Data passed into the display_insights_chart function to fill in bar chart
     age_title = "Votes by Age Bracket(Percentage)"
     age_subheadings = ["18-30", "31-50", "51-70", "70+"]
     age_data = [below_30, below_50, below_70, above_70]
@@ -330,7 +336,8 @@ def count_region_votes(votes, region):
     lewes_rg = [x for ind, x in enumerate(votes) if region[ind] == "Lewes"]
     eastbourne_rg = [x for ind, x in enumerate(votes) if region[ind] == "Eastbourne"]
     hastings_rg = [x for ind, x in enumerate(votes) if region[ind] == "Hastings"]
-
+    
+    # Data passed into the display_insights_chart function to fill in bar chart
     region_title = "Votes by Region(Percentage)"
     region_subheadings = ["Lewes", "Hastings", "Eastbourne"]
     region_data = [lewes_rg, eastbourne_rg, hastings_rg]
@@ -340,7 +347,7 @@ def count_region_votes(votes, region):
 def display_insights_chart(chart_title, chart_subheadings, chart_data):
     """
     Calculates percentages of each age bracket and prints multiple bar
-    chart in the voting insights area.
+    charts in the voting insights area.
     """
     # Iterates through the list of lists and organizes data for
     # bar chart to be able to understand

@@ -56,3 +56,20 @@ vote_results_text = (
     f"selecting an option the menu below\n\n"
     f"1. Current Vote Count\n2. Voting Insights\n3. Return to Voter Portal\n"
 )
+
+insights_page_text = (
+    f"{Fore.MAGENTA}Welcome to Insights\n\n"
+    f"{Fore.WHITE}Here you will find actionable data regarding.\n"
+    f"the election and voter demographics in bar chart form.\n"
+)
+
+insights_age_figure = (
+    f"{Fore.BLUE}The Votes by Age Bracket {Fore.WHITE}figure below shows "
+    f"how the votes are split amongst various age groups.\n"
+)
+
+insights_region_figure = (
+    f"{Fore.BLUE}\nThe Votes by Region {Fore.WHITE}figure below shows the "
+    f"popularity of each party in the voting regions (Sussex, \n"
+    f"Eastbourne, Hastings).\n"
+)

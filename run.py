@@ -1,4 +1,5 @@
 import os
+import time
 from termcolor import cprint
 from pyfiglet import figlet_format
 from colorama import Fore, Back, Style
@@ -155,7 +156,7 @@ def get_voter_age():
                 break
             else:
                 print(f"{Fore.RED}Please enter an age between 18 and 120:\n")
-    
+
     return age
 
 
@@ -222,7 +223,9 @@ def submit_vote(answer, vote_list):
         print(f"{Fore.GREEN}Vote submitted...")
         vote_sheet = SHEET.worksheet("votes")
         vote_sheet.append_row(vote_list)
+        time.sleep(1)
         print(f"{Fore.GREEN}Loading Voter Portal...")
+        time.sleep(2)
         load_voter_portal()
     elif answer == 2:
         cast_user_vote()
@@ -334,7 +337,7 @@ def count_age_votes(votes, ages):
     below_50 = [x for ind, x in enumerate(votes) if ages[ind] in range(31, 51)]
     below_70 = [x for ind, x in enumerate(votes) if ages[ind] in range(51, 71)]
     above_70 = [x for ind, x in enumerate(votes) if ages[ind] >= 71]
-    
+
     # Data passed into the display_insights_chart function to fill in bar chart
     age_title = "Votes by Age Bracket(Percentage)"
     age_subheadings = ["18-30", "31-50", "51-70", "70+"]
@@ -351,7 +354,7 @@ def count_region_votes(votes, region):
     lewes_rg = [x for ind, x in enumerate(votes) if region[ind] == "Lewes"]
     eastbourne_rg = [x for ind, x in enumerate(votes) if region[ind] == "Eastbourne"]
     hastings_rg = [x for ind, x in enumerate(votes) if region[ind] == "Hastings"]
-    
+
     # Data passed into the display_insights_chart function to fill in bar chart
     region_title = "Votes by Region(Percentage)"
     region_subheadings = ["Lewes", "Hastings", "Eastbourne"]
@@ -479,8 +482,7 @@ def reset_terminal():
     """
     Clears the terminal.
     """
-    os.system('clear')
-    os.system('clear')
+    os.system('cls' if os.name == 'nt' else 'clear')
     cprint(figlet_format("The Voting Station!", font='big'), "green", attrs=["bold"])
 
 

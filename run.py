@@ -75,6 +75,7 @@ def load_admin_portal():
 
     if admin_menu == 1:
         print("Loading votes...")
+        display_admin_votes()
     elif admin_menu == 2:
         print("Loading insights...")
     else:
@@ -383,6 +384,29 @@ def display_insights_chart(chart_title, chart_subheadings, chart_data):
     plt.cld()
 
 
+def display_admin_votes():
+    """
+    Displays all votes from google sheet into console, including sensitive data that
+    is not accessible in user area.
+    """
+    reset_terminal()
+    sheet = SHEET.worksheet("votes")
+    print(f"{strings.admin_votes_text}")
+
+    vote_count = len(sheet.col_values(1)) - 1
+    print(vote_count)
+    # vote_col = sheet.row_values()
+    # print(vote_col)
+
+    for i in range(2, vote_count):
+        vote_col = sheet.row_values(i)
+        print(
+            f"{i}    {vote_col[0]}    {vote_col[1]}    {vote_col[2]}"
+            f"      {vote_col[3]}    {vote_col[4]}"
+        )
+
+
+
 def validate_menu_selection(ch1, ch2, ch3):
     """
     Ensures that the correct input is given by the user in the multiple choice
@@ -455,6 +479,7 @@ def reset_terminal():
     """
     Clears the terminal.
     """
+    os.system('clear')
     os.system('clear')
     cprint(figlet_format("The Voting Station!", font='big'), "green", attrs=["bold"])
 

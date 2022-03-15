@@ -1,4 +1,4 @@
-from colorama import Fore
+from colorama import Fore, Back
 import colorama
 colorama.init(autoreset=True)
 
@@ -77,4 +77,9 @@ insights_region_figure = (
     f"{Fore.BLUE}\nThe Votes by Region {Fore.WHITE}figure below shows the "
     f"popularity of each party in the voting regions\n(Sussex, "
     f"Eastbourne, Hastings).\n"
+)
+
+admin_votes_text = (
+    f"{Back.YELLOW}{Fore.BLACK}\nNo.    First Name:    Second Name:    "
+    "Age:    Region:   Vote:  "
 )

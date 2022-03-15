@@ -75,7 +75,6 @@ def load_admin_portal():
 
     if admin_menu == 1:
         print("Loading votes...")
-        view_votes_admin()
     elif admin_menu == 2:
         print("Loading insights...")
     else:
@@ -296,7 +295,7 @@ def display_vote_percentage(headings, percentage, count):
     plt.title("Current Vote Count Percentage")
     plt.cls()
     plt.show()
-    load_main_menu()
+    load_results_menu()
 
 
 def load_voting_insights():
@@ -321,7 +320,7 @@ def load_voting_insights():
     count_age_votes(votes_list, ages_list)
     print(f"{strings.insights_region_figure}")
     count_region_votes(votes_list, regions_list)
-    load_main_menu()
+    load_results_menu()
 
 
 def count_age_votes(votes, ages):
@@ -441,9 +440,16 @@ def load_main_menu():
     """
     Allows user to enter any input to be redirected to main menu.
     """
-    input(f"{Fore.CYAN}Enter any key to return to the main menu:\n")
+    input(f"{Fore.CYAN}\nEnter any key to return to the main menu:\n")
     main()
 
+
+def load_results_menu():
+    """
+    Allows user to enter any input to be redirected to main menu.
+    """
+    input(f"{Fore.CYAN}\nEnter any key to return to the insights menu\n")
+    vote_results_menu()
 
 def reset_terminal():
     """

@@ -74,7 +74,8 @@ def load_admin_portal():
     admin_menu = validate_menu_selection("Vote Results", "Voting Insights", "Main Menu")
 
     if admin_menu == 1:
-        print("Loading results...")
+        print("Loading votes...")
+        view_votes_admin()
     elif admin_menu == 2:
         print("Loading insights...")
     else:
@@ -106,11 +107,10 @@ def cast_user_vote():
     region_input = get_voter_region()
     vote_input = get_voter_vote()
     full_vote = [fname_input, lname_input, age_input, region_input, vote_input]
-    
+
     confirm_vote(full_vote)
     confirmation = validate_menu_selection("submit vote", "re-enter vote", "exit")
     submit_vote(confirmation, full_vote)
-
 
 
 def get_voter_name(name_type):
@@ -211,7 +211,6 @@ def confirm_vote(vote):
     print(f"{Fore.BLUE}Age: {Fore.WHITE}{vote[2]}")
     print(f"{Fore.BLUE}Region: {Fore.WHITE}{vote[3]}")
     print(f"{Fore.BLUE}Vote: {Fore.WHITE}{vote[4]}\n")
-1    
 
 
 def submit_vote(answer, vote_list):
@@ -241,7 +240,7 @@ def vote_results_menu():
     choice = validate_menu_selection("Vote Results", "Voting Insights", "Voter Portal")
 
     if choice == 1:
-        display_vote_percent()
+        load_vote_percentage()
     elif choice == 2:
         load_voting_insights()
     else:
@@ -261,30 +260,43 @@ def count_votes(total_votes):
     return votes_list
     
 
-def display_vote_percent():
+def load_vote_percentage():
     """
-    Displays the percentage of the votes in bar chart format in the terminal
-    using plotext module.
+    Gathers all of the necessary data by counting votes and converting them into a
+    percentage before passing them into the display_vote_percentage and displaying
+    a bar chart.
     """
-    # Vote counts as a percentage
+    # Gets votes from google sheet
     reset_terminal()
     party_votes = SHEET.worksheet("votes").col_values(5)
     party_votes.pop(0)
-    v = count_votes(party_votes)
+    # Converts votes into a percentage after counting them
+    counted = count_votes(party_votes)
+    red_percent = calculate_percentage(counted[0], counted[1])
+    green_percent = calculate_percentage(counted[0], counted[2])
+    blue_percent = calculate_percentage(counted[0], counted[3])
 
-    red_percent = calculate_percentage(v[0], v[1])
-    green_percent = calculate_percentage(v[0], v[2])
-    blue_percent = calculate_percentage(v[0], v[3])
+    chart_headings = ["Red Party", "Green Party", "Blue Party"]
+    chart_percentage = [red_percent, green_percent, blue_percent]
+    display_vote_percentage(chart_headings, chart_percentage, counted)
 
-    parties = ["Red Party", "Green Party", "Blue Party"]
-    percentage = [red_percent, green_percent, blue_percent]
 
-    plt.bar(parties, percentage, orientation="h")
-    plt.xlim(0, 100)
+def display_vote_percentage(headings, percentage, count):
+    """
+    Displays the bar chart using data provided from load_vote_percentage
+    function and also prints text into area.
+    """
+    print("This is the current vote count of the election:")
+    print(f"{Fore.RED}The Red Party: {percentage[0]} ({count[1]} Votes)")
+    print(f"{Fore.GREEN}The Green Party: {percentage[1]} ({count[2]} Votes)")
+    print(f"{Fore.BLUE}The Blue Party: {percentage[2]} ({count[3]}) Votes")
+    plt.bar(headings, percentage, orientation="h")
+    plt.xlim(0, 70)
     plt.plot_size(100, 20)
     plt.title("Current Vote Count Percentage")
     plt.cls()
     plt.show()
+    load_main_menu()
 
 
 def load_voting_insights():
@@ -374,9 +386,8 @@ def display_insights_chart(chart_title, chart_subheadings, chart_data):
 
 def validate_menu_selection(ch1, ch2, ch3):
     """
-    Ensures that the correct input is given by the user in
-    the multiple choice menu that appears throughout the
-    application.
+    Ensures that the correct input is given by the user in the multiple choice
+    menu that appears throughout the application.
     """
     prompt = f"Press 1 for {ch1}, 2 for {ch2}, or 3 for {ch3}\n"
     while True:

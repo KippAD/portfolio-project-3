@@ -242,7 +242,7 @@ def vote_results_menu():
 
     if choice == 1:
         display_vote_percent()
-    if choice == 2:
+    elif choice == 2:
         load_voting_insights()
     else:
         load_voter_portal()

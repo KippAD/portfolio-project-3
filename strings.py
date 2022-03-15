@@ -35,7 +35,10 @@ voter_portal_text = (
 # The text displayed when the admin portal is loaded
 admin_portal_text = (
     f"{Fore.MAGENTA}Welcome to the Admin Portal!\n\n"
-    f"{Fore.WHITE}1. Vote Results\n2. Voting Insights\n"
+    f"{Fore.WHITE}This area is locked by login and password as it handles"
+    f"sensitive data\nabout voters. This portal can be used to view and"
+    f" manipulate this data.\n\n"
+    f"{Fore.WHITE}1. View Votes\n2. End Voter\n3. Return to Main Menu\n"
 )
 
 # The information displayed when the user selects information on the main menu

@@ -404,8 +404,8 @@ def validate_admin_login():
     password = "password"
 
     while True:
-        username_attempt = input(f"{Fore.CYAN}Please enter the username:\n")
-        password_attempt = input(f"{Fore.CYAN}Please enter the password:\n")
+        username_attempt = input(f"{Fore.CYAN}Please enter the username:\n{Fore.WHITE}")
+        password_attempt = input(f"{Fore.CYAN}Please enter the password:\n{Fore.WHITE}")
 
         if username_attempt == username and password_attempt == password:
             print(f"{Fore.GREEN}Login details correct")

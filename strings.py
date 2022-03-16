@@ -83,9 +83,19 @@ insights_region_figure = (
     f"Eastbourne, Hastings).\n"
 )
 
+# Displays the text above the table in the admin portal vote results area
+admin_votes_text = (
+    f"{Fore.MAGENTA}Welcome Admin!\n\n"
+    f"{Fore.WHITE}The full list of votes are printed above - be mindful that "
+    f"voter names \nmust remain anonymous.\n\n"
+    f"{Fore.CYAN}As admin you have the power to delete votes by pressing 1.\n"
+    f"{Fore.RED}Note: This action is irreversible and should only be done\n"
+    f"if a vote is deemed illegitimate..."
+)
+
 # Text that makes up the title of the vote table in the admin portal(Irregular
 # spacing is used to match up title with each column in table)≈
-admin_votes_text = (
+admin_votes_titles = (
     f"{Back.YELLOW}{Fore.BLACK}\nNo. FName:     SName:       Age:"
     f"Region:     Vote: "
 )

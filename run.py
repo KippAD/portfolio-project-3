@@ -425,13 +425,11 @@ def display_insights_chart(chart_title, chart_subheadings, chart_data):
 
 def display_admin_votes():
     """
-    Displays all votes from google sheet into console, including sensitive data that
-    is not accessible in user area.
+    Displays all votes from google sheet into console, including sensitive 
+    data that is not accessible in user area.
     """
     reset_terminal()
     sheet = SHEET.worksheet("votes")
-    print(f"{strings.admin_votes_text}")
-
     vote_rows = sheet.get_all_values()
     vote_rows.pop(0)
     i = 1
@@ -439,7 +437,69 @@ def display_admin_votes():
         rows.insert(0, i)
         i += 1
 
+    print(f"{strings.admin_votes_titles}")
     print(tabulate(vote_rows))
+    print(f"{strings.admin_votes_text}")
+    get_admin_actions()
+
+
+def get_admin_actions():
+    """
+    Presents admin with possible actions when on the admin votes display, 
+    including the option to delete a row.
+    """
+    action = validate_admin_action()
+
+    if action == 1:
+        delete_vote()
+    else:
+        load_admin_portal()
+
+
+def validate_admin_action():
+    """
+    Validates the input given by the admin when interacting with the votes
+    in the admin portal.
+    """
+    prompt = "Press 1 to delete a vote, press 2 to return to the Admin Portal"
+    while True:
+        try:
+            decision = int(input(f"\n{Fore.CYAN}{prompt}\n"))
+        except ValueError:
+            print(f"{Fore.RED}Incorrect Input: {prompt}")
+            continue
+        else:
+            if decision == 1 or decision == 2:
+                break
+            else:
+                print(f"{Fore.RED}Incorrect Input: {prompt}")
+
+    return decision
+
+
+def delete_vote():
+    """
+    Takes an integer input from the admin to delete a vote by its index number
+    """
+    total = SHEET.worksheet("votes").col_values(1)
+    print(len(total))
+    prompt = "Please input the vote number of the vote that you wish to delete."
+    while True:
+        try:
+            delete = int(input(f"\n{Fore.CYAN}{prompt}\n"))
+        except ValueError:
+            print(f"{Fore.RED}Incorrect Input: {prompt}")
+            continue
+        else:
+            if delete in range(1, len(total)):
+                # Uses delete + 2 to match the no. with the google sheet row
+                SHEET.worksheet("votes").delete_rows(delete + 1)
+                print(f"{Fore.GREEN}Vote deleted...")
+                time.sleep(2)
+                display_admin_votes()
+                break
+            else:
+                print(f"{Fore.RED}{delete} is not a valid vote number...")
 
 
 def validate_menu_selection(ch1, ch2, ch3):

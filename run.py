@@ -1,8 +1,9 @@
 import os
 import time
+from tabulate import tabulate
 from termcolor import cprint
 from pyfiglet import figlet_format
-from colorama import Fore, Back, Style
+from colorama import Fore
 from google.oauth2.service_account import Credentials
 import plotext as plt
 import collections
@@ -431,17 +432,14 @@ def display_admin_votes():
     sheet = SHEET.worksheet("votes")
     print(f"{strings.admin_votes_text}")
 
-    vote_count = len(sheet.col_values(1)) - 1
-    print(vote_count)
-    # vote_col = sheet.row_values()
-    # print(vote_col)
+    vote_rows = sheet.get_all_values()
+    vote_rows.pop(0)
+    i = 1
+    for rows in vote_rows:
+        rows.insert(0, i)
+        i += 1
 
-    for i in range(2, vote_count):
-        vote_col = sheet.row_values(i)
-        print(
-            f"{i}    {vote_col[0]}    {vote_col[1]}    {vote_col[2]}"
-            f"      {vote_col[3]}    {vote_col[4]}"
-        )
+    print(tabulate(vote_rows))
 
 
 def validate_menu_selection(ch1, ch2, ch3):

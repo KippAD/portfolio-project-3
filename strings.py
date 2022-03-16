@@ -83,7 +83,9 @@ insights_region_figure = (
     f"Eastbourne, Hastings).\n"
 )
 
+# Text that makes up the title of the vote table in the admin portal(Irregular
+# spacing is used to match up title with each column in table)≈
 admin_votes_text = (
-    f"{Back.YELLOW}{Fore.BLACK}\nNo.    First Name:    Second Name:    "
-    "Age:    Region:   Vote:  "
+    f"{Back.YELLOW}{Fore.BLACK}\nNo. FName:     SName:       Age:"
+    f"Region:     Vote: "
 )

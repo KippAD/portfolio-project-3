@@ -43,7 +43,7 @@ def select_portal():
     if chosen_portal == 1:
         load_voter_portal()
     elif chosen_portal == 2:
-        load_admin_portal()
+        validate_admin_login()
     else:
         load_information()
 
@@ -62,24 +62,6 @@ def load_voter_portal():
     elif voter_menu == 2:
         print("Loading voting results...\n")
         vote_results_menu()
-    else:
-        main()
-
-
-def load_admin_portal():
-    """
-    Loads admin men if login is correctly input by the user. Displays options
-    to view vote results and voting insights.
-    """
-    validate_admin_login()
-    print(strings.admin_portal_text)
-    admin_menu = validate_menu_selection("Vote Results", "Voting Insights", "Main Menu")
-
-    if admin_menu == 1:
-        print("Loading votes...")
-        display_admin_votes()
-    elif admin_menu == 2:
-        print("Loading insights...")
     else:
         main()
 
@@ -423,6 +405,24 @@ def display_insights_chart(chart_title, chart_subheadings, chart_data):
     plt.cld()
 
 
+def load_admin_portal():
+    """
+    Loads admin men if login is correctly input by the user. Displays options
+    to view vote results and voting insights.
+    """
+    reset_terminal()
+    print(strings.admin_portal_text)
+    admin_menu = validate_menu_selection("Vote Results", "Voting Insights", "Main Menu")
+
+    if admin_menu == 1:
+        print("Loading votes...")
+        display_admin_votes()
+    elif admin_menu == 2:
+        print("Loading vote control...")
+    else:
+        main()
+
+
 def display_admin_votes():
     """
     Displays all votes from google sheet into console, including sensitive 
@@ -492,7 +492,7 @@ def delete_vote():
             continue
         else:
             if delete in range(1, len(total)):
-                # Uses delete + 2 to match the no. with the google sheet row
+                # Uses delete + 1 to match the no. with the google sheet row
                 SHEET.worksheet("votes").delete_rows(delete + 1)
                 print(f"{Fore.GREEN}Vote deleted...")
                 time.sleep(2)
@@ -543,7 +543,7 @@ def validate_admin_login():
         else:
             print(f"{Fore.RED}Incorrect login")
 
-    reset_terminal()
+    load_admin_portal()
 
 
 def calculate_percentage(total, count):
@@ -569,6 +569,7 @@ def load_results_menu():
     """
     input(f"{Fore.CYAN}\nEnter any key to return to the insights menu\n")
     vote_results_menu()
+
 
 def reset_terminal():
     """

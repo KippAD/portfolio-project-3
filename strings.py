@@ -38,7 +38,9 @@ admin_portal_text = (
     f"{Fore.WHITE}This area is locked by login and password as it handles "
     f"sensitive data\nabout voters. This portal can be used to view and"
     f" manipulate this data.\n\n"
-    f"{Fore.WHITE}1. View Votes\n2. End Vote\n3. Return to Main Menu\n"
+    f"{Fore.CYAN}Press 1 to view all vote information, 2 to access vote "
+    f"control, or\n3 to return to the main menu.\n\n"
+    f"{Fore.WHITE}1. View Votes\n2. Vote Control\n3. Return to Main Menu\n"
 )
 
 # The information displayed when the user selects information on the main menu

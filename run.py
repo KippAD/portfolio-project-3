@@ -43,7 +43,7 @@ def select_portal():
     if chosen_portal == 1:
         load_voter_portal()
     elif chosen_portal == 2:
-        validate_admin_login()
+        load_admin_portal()
     else:
         load_information()
 
@@ -84,26 +84,16 @@ def load_vote_casting():
     reset_terminal()
     print(f"{Fore.MAGENTA}Welcome to the Voting Station!\n\n")
     prompt = "Press 1 to begin voting, press 2 to return to the voter portal:"
-    while True:
-        try:
-            response = int(input(f"{Fore.CYAN}{prompt}\n"))
-        except ValueError:
-            print(f"{Fore.RED}Incorrect Input: {prompt}")
-            continue
-        else:
-            if response == 1:
-                print(f"\n{Fore.GREEN}Loading vote casting...\n")
-                time.sleep(2)
-                cast_user_vote()
-                break
-            elif response == 2:
-                print(f"\n{Fore.GREEN}Loading voter portal..\n")
-                time.sleep(2)
-                load_voter_portal()
-                break
-            else:
-                print(f"{Fore.RED}{prompt}")
-                continue
+    response = validate_two_options(prompt)
+    
+    if response == 1:
+        print(f"\n{Fore.GREEN}Loading vote casting...\n")
+        time.sleep(2)
+        cast_user_vote()
+    elif response == 2:
+        print(f"\n{Fore.GREEN}Loading voter portal..\n")
+        time.sleep(2)
+        load_voter_portal()
 
 
 def cast_user_vote():
@@ -279,7 +269,7 @@ def count_votes(total_votes):
     votes_list = [total_count, occurences["Red"], occurences["Green"], occurences["Blue"]]
 
     return votes_list
-    
+ 
 
 def load_vote_percentage():
     """
@@ -407,7 +397,43 @@ def display_insights_chart(chart_title, chart_subheadings, chart_data):
 
 def load_admin_portal():
     """
-    Loads admin men if login is correctly input by the user. Displays options
+    Instigates loading the admin portal and will only call display_admin_portal
+    function once login has passed through validate_admin_login function.
+    """
+    print(f"{Fore.CYAN}Welcome Admin! Please login in to access the admin portal.\n")
+    validate_admin_login()
+    display_admin_portal()
+
+
+def validate_admin_login():
+    """
+    Asks the user to enter the admin and password required to access the admin
+    portal and ensures that login details are correct before allowing access.
+    """
+    username = "admin"
+    password = "password"
+
+    while True:
+        reset_terminal()
+        # Option for user to exit out of login at the start of each loop.
+        prompt = "Press 1 to login, or 2 to return to the Main Menu"
+        selection = validate_two_options(prompt)
+        if selection == 2:
+            main()
+
+        username_attempt = input(f"{Fore.CYAN}Please enter the username:\n{Fore.WHITE}")
+        password_attempt = input(f"{Fore.CYAN}Please enter the password:\n{Fore.WHITE}")
+        if username_attempt == username and password_attempt == password:
+            print(f"{Fore.GREEN}Login details correct")
+            print(f"{Fore.MAGENTA}Loading Admin Portal...")
+            break
+        else:
+            print(f"{Fore.RED}Incorrect login")
+
+
+def display_admin_portal():
+    """
+    Displays the admin menu once login is correctly completed. Displays options
     to view vote results and voting insights.
     """
     reset_terminal()
@@ -448,33 +474,13 @@ def get_admin_actions():
     Presents admin with possible actions when on the admin votes display, 
     including the option to delete a row.
     """
-    action = validate_admin_action()
+    prompt = "Press 1 to delete a vote, press 2 to return to the Admin Portal"
+    action = validate_two_options(prompt)
 
     if action == 1:
         delete_vote()
     else:
-        load_admin_portal()
-
-
-def validate_admin_action():
-    """
-    Validates the input given by the admin when interacting with the votes
-    in the admin portal.
-    """
-    prompt = "Press 1 to delete a vote, press 2 to return to the Admin Portal"
-    while True:
-        try:
-            decision = int(input(f"\n{Fore.CYAN}{prompt}\n"))
-        except ValueError:
-            print(f"{Fore.RED}Incorrect Input: {prompt}")
-            continue
-        else:
-            if decision == 1 or decision == 2:
-                break
-            else:
-                print(f"{Fore.RED}Incorrect Input: {prompt}")
-
-    return decision
+        display_admin_portal()
 
 
 def delete_vote():
@@ -502,6 +508,26 @@ def delete_vote():
                 print(f"{Fore.RED}{delete} is not a valid vote number...")
 
 
+def validate_two_options(input_msg):
+    """
+    Validates the input given by the admin when there is an input with two
+    possible options, returning the value once validation has finished.
+    """
+    while True:
+        try:
+            decision = int(input(f"\n{Fore.CYAN}{input_msg}\n"))
+        except ValueError:
+            print(f"{Fore.RED}Incorrect Input: {input_msg}")
+            continue
+        else:
+            if decision == 1 or decision == 2:
+                break
+            else:
+                print(f"{Fore.RED}Incorrect Input: {input_msg}")
+
+    return decision
+
+
 def validate_menu_selection(ch1, ch2, ch3):
     """
     Ensures that the correct input is given by the user in the multiple choice
@@ -521,29 +547,6 @@ def validate_menu_selection(ch1, ch2, ch3):
             print(f"{Fore.RED}Incorrect Input: {prompt}")
 
     return selection
-
-
-def validate_admin_login():
-    """
-    Asks the user to enter the admin and password required to access the admin
-    portal and ensures that login details are correct before allowing access.
-    """
-    print(f"{Fore.CYAN}Welcome Admin! Please login in to access the admin portal.\n")
-    username = "admin"
-    password = "password"
-
-    while True:
-        username_attempt = input(f"{Fore.CYAN}Please enter the username:\n{Fore.WHITE}")
-        password_attempt = input(f"{Fore.CYAN}Please enter the password:\n{Fore.WHITE}")
-
-        if username_attempt == username and password_attempt == password:
-            print(f"{Fore.GREEN}Login details correct")
-            print(f"{Fore.MAGENTA}Loading Admin Portal...")
-            break
-        else:
-            print(f"{Fore.RED}Incorrect login")
-
-    load_admin_portal()
 
 
 def calculate_percentage(total, count):

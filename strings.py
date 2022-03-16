@@ -54,6 +54,7 @@ information_text = (
     f"the main menu. The insights menu may also be accessed from there.\n"
 )
 
+# The text displayed in the voting results area
 vote_results_text = (
     f"{Fore.MAGENTA}Welcome to the Voting Results menu\n\n"
     f"{Fore.WHITE}Here you can view the current vote count and certain "
@@ -61,6 +62,7 @@ vote_results_text = (
     f"1. Current Vote Count\n2. Voting Insights\n3. Return to Voter Portal\n"
 )
 
+# Main text displayed in the insights area of the application
 insights_page_text = (
     f"{Fore.MAGENTA}Welcome to Insights\n\n"
     f"{Fore.WHITE}This area contains actionable insights about the "
@@ -68,11 +70,13 @@ insights_page_text = (
     f"understand trends in voting.\n\n"
 )
 
+# Annotation for the first bar chart in the insights area
 insights_age_figure = (
     f"{Fore.BLUE}The Votes by Age Bracket {Fore.WHITE}figure below shows "
     f"how the votes are split amongst various age groups.\n"
 )
 
+# Annotation for the second bar chart in the insights area
 insights_region_figure = (
     f"{Fore.BLUE}\nThe Votes by Region {Fore.WHITE}figure below shows the "
     f"popularity of each party in the voting regions\n(Sussex, "

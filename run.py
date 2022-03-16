@@ -57,7 +57,7 @@ def load_voter_portal():
 
     if voter_menu == 1:
         print("Loading the voting station...\n")
-        cast_user_vote()
+        load_vote_casting()
     elif voter_menu == 2:
         print("Loading voting results...\n")
         vote_results_menu()
@@ -93,22 +93,57 @@ def load_information():
     load_main_menu()
 
 
-def cast_user_vote():
+def load_vote_casting():
     """
-    Takes validated user inputs to build list that is
-    will be submitted as a vote to the external google spreadsheet.
+    Instigates the vote casting process but first gives user to back out from
+    process and return to the voter portal.
     """
     reset_terminal()
-    print(f"{Fore.MAGENTA}Welcome to the Voting Station!\n")
-    print(f"{Fore.WHITE}To cast your vote, please fill out the form below\n")
+    print(f"{Fore.MAGENTA}Welcome to the Voting Station!\n\n")
+    prompt = "Press 1 to begin voting, press 2 to return to the voter portal:"
+    while True:
+        try:
+            response = int(input(f"{Fore.CYAN}{prompt}\n"))
+        except ValueError:
+            print(f"{Fore.RED}Incorrect Input: {prompt}")
+            continue
+        else:
+            if response == 1:
+                print(f"\n{Fore.GREEN}Loading vote casting...\n")
+                time.sleep(2)
+                cast_user_vote()
+                break
+            elif response == 2:
+                print(f"\n{Fore.GREEN}Loading voter portal..\n")
+                time.sleep(2)
+                load_voter_portal()
+                break
+            else:
+                print(f"{Fore.RED}{prompt}")
+                continue
 
+
+def cast_user_vote():
+    """
+    Takes validated user inputs to build list that is will be submitted as a 
+    vote to the external google spreadsheet.
+    """
+    reset_terminal()
+    print(f"{Fore.WHITE}To cast your vote, please fill out the form below\n")
     fname_input = get_voter_name("first")
     lname_input = get_voter_name("last")
+    time.sleep(2)
+    reset_terminal()
+
     age_input = get_voter_age()
     region_input = get_voter_region()
-    vote_input = get_voter_vote()
-    full_vote = [fname_input, lname_input, age_input, region_input, vote_input]
+    time.sleep(2)
+    reset_terminal()
 
+    vote_input = get_voter_vote()
+    time.sleep(2)
+
+    full_vote = [fname_input, lname_input, age_input, region_input, vote_input]
     confirm_vote(full_vote)
     confirmation = validate_menu_selection("submit vote", "re-enter vote", "exit")
     submit_vote(confirmation, full_vote)
@@ -125,14 +160,14 @@ def get_voter_name(name_type):
             name = name.title()
         except ValueError:
             print(f"{Fore.RED}\nYour name can only contain letters.\n")
-            print(f"{Fore.CYAN}Please exclude any numbers, spaces, or characters...")
+            print(f"{Fore.CYAN}Please exclude any numbers, spaces, or special characters...")
             continue
 
         if name.isalpha():
             break
         else:
             print(f"{Fore.RED}\nYour name can only contain letters.\n")
-            print(f"{Fore.RED}Please exclude any numbers, spaces, or characters...\n")
+            print(f"{Fore.RED}Please exclude any numbers, spaces, or special characters...\n")
 
     name_type = name_type.capitalize()
     print(f"\n{Fore.GREEN}{name_type} Name Entered: {name}\n")
@@ -217,7 +252,7 @@ def confirm_vote(vote):
 def submit_vote(answer, vote_list):
     """
     Takes the input from the validate_vote_confirm function and submits vote
-    if y is selected and restarts voting process if n is selected.
+    if 1 is selected and restarts voting process if 2 is selected.
     """
     if answer == 1:
         print(f"{Fore.GREEN}Vote submitted...")
@@ -230,7 +265,7 @@ def submit_vote(answer, vote_list):
     elif answer == 2:
         cast_user_vote()
     else:
-        main()
+        load_voter_portal()
 
 
 def vote_results_menu():
@@ -407,7 +442,6 @@ def display_admin_votes():
             f"{i}    {vote_col[0]}    {vote_col[1]}    {vote_col[2]}"
             f"      {vote_col[3]}    {vote_col[4]}"
         )
-
 
 
 def validate_menu_selection(ch1, ch2, ch3):

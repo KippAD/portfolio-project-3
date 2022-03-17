@@ -507,11 +507,10 @@ def delete_vote():
     Takes an integer input from the admin to delete a vote by its index number
     """
     total = SHEET.worksheet("votes").col_values(1)
-    print(len(total))
-    prompt = "Please input the number of the vote that you wish to delete:"
+    prompt = f"{strings.delete_prompt}"
     while True:
         try:
-            delete = int(input(f"\n{Fore.CYAN}{prompt}\n"))
+            delete = int(input(f"\n{prompt}\n"))
         except ValueError:
             print(f"{Fore.RED}Incorrect Input: {prompt}")
             continue
@@ -523,6 +522,9 @@ def delete_vote():
                 time.sleep(2)
                 display_admin_votes()
                 break
+            elif delete == 0:
+                print(f"{Fore.GREEN}Action cancelled.")
+                display_admin_votes()
             else:
                 print(f"{Fore.RED}{delete} is not a valid vote number...")
 

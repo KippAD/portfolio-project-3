@@ -97,7 +97,7 @@ admin_votes_text = (
     f"{Fore.MAGENTA}Welcome Admin!\n\n"
     f"{Fore.WHITE}The full list of votes are printed above - be mindful that "
     f"voter names \nmust remain anonymous.\n\n"
-    f"{Fore.CYAN}As admin you have the power to delete votes by pressing 1.\n"
+    f"{Fore.CYAN}As admin you have the power to delete votes.\n\n"
     f"{Fore.RED}Note: This action is irreversible and should only be done\n"
     f"if a vote is deemed illegitimate..."
 )
@@ -109,7 +109,6 @@ admin_votes_titles = (
     f"Region:     Vote: "
 )
 
-
 # The text printed in the control menu where the admin can toggle whether
 # votes can be cast or not.
 admin_control_text = (
@@ -118,6 +117,12 @@ admin_control_text = (
     f"is over,\nif there is an issue with the system, or if suspicious data "
     f"is being\nsubmitted to the database.\n"
 )
+
+# Delete vote confirmation prompt in the vote section of the admin portal
+delete_prompt = (
+        f"{Fore.CYAN}Please enter the vote number of the vote that you wish\n"
+        f"to delete, to cancel this action press 0:"
+    )
 
 # Two states of switch in admin control that print if voting is on or off
 vote_toggle_on = f"{Back.GREEN}{Fore.BLACK}Voting is currently switched ON"

@@ -78,6 +78,7 @@ def check_voting_status():
     if voting_switch == "on":
         load_vote_casting()
     else:
+        reset_terminal()
         print(f"{strings.voting_disabled_text}")
         input(f"{Fore.CYAN}\nEnter any key to return to the Voter Portal\n")
         load_voter_portal()
@@ -93,7 +94,7 @@ def load_vote_casting():
     print(f"{Fore.MAGENTA}Welcome to the Voting Station!")
     prompt = "Press 1 to begin voting, press 2 to return to the voter portal:"
     response = validate_two_options(prompt)
-    
+
     if response == 1:
         cast_user_vote()
     elif response == 2:
@@ -300,9 +301,9 @@ def display_vote_percentage(headings, percentage, count):
     """
     loading_message("the Vote Count")
     print("This is the current vote count of the election:")
-    print(f"{Fore.RED}The Red Party: {percentage[0]} ({count[1]} Votes)")
-    print(f"{Fore.GREEN}The Green Party: {percentage[1]} ({count[2]} Votes)")
-    print(f"{Fore.BLUE}The Blue Party: {percentage[2]} ({count[3]}) Votes")
+    print(f"{Fore.RED}The Red Party: {percentage[0]}% ({count[1]} Votes)")
+    print(f"{Fore.GREEN}The Green Party: {percentage[1]}% ({count[2]} Votes)")
+    print(f"{Fore.BLUE}The Blue Party: {percentage[2]}% ({count[3]}) Votes")
     plt.bar(headings, percentage, orientation="h")
     plt.xlim(0, 70)
     plt.plot_size(100, 20)
@@ -333,6 +334,7 @@ def load_voting_insights():
     print(f"{strings.insights_page_text}")
     print(f"{strings.insights_age_figure}")
     count_age_votes(votes_list, ages_list)
+    time.sleep(1)
     print(f"{strings.insights_region_figure}")
     count_region_votes(votes_list, regions_list)
     load_results_menu()
@@ -433,6 +435,7 @@ def validate_admin_login():
             break
         else:
             print(f"{Fore.RED}Incorrect login")
+            time.sleep(2)
 
 
 def display_admin_portal():
@@ -630,6 +633,7 @@ def reset_terminal():
     Clears the terminal.
     """
     os.system('cls' if os.name == 'nt' else 'clear')
+    os.system('printf "\ec"')
     cprint(figlet_format("The Voting Station!", font='big'), "green", attrs=["bold"])
 
 

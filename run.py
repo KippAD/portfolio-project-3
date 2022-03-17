@@ -58,9 +58,11 @@ def load_voter_portal():
 
     if voter_menu == 1:
         print("Loading the voting station...\n")
-        load_vote_casting()
+        time.sleep(2)
+        check_voting_status()
     elif voter_menu == 2:
         print("Loading voting results...\n")
+        time.sleep(2)
         vote_results_menu()
     else:
         main()
@@ -74,6 +76,23 @@ def load_information():
     reset_terminal()
     print(strings.information_text)
     load_main_menu()
+
+
+def check_voting_status():
+    """
+    Checks to see if voting is switched on or off - the switch is located in the admin
+    portal and will allow voting if on and prevent voting if off.
+    """
+    reset_terminal()
+    voting_switch = SHEET.worksheet("control").acell("A2").value
+    if voting_switch == "on":
+        load_vote_casting()
+    else:
+        print(f"{strings.voting_disabled_text}")
+        input(f"{Fore.CYAN}\nEnter any key to return to the Voter Portal\n")
+        print(f"{Fore.GREEN}Loading the Voter Portal...")
+        time.sleep(2)
+        load_voter_portal()
 
 
 def load_vote_casting():
@@ -445,6 +464,7 @@ def display_admin_portal():
         display_admin_votes()
     elif admin_menu == 2:
         print("Loading vote control...")
+        load_admin_control()
     else:
         main()
 
@@ -506,6 +526,44 @@ def delete_vote():
                 break
             else:
                 print(f"{Fore.RED}{delete} is not a valid vote number...")
+
+
+def load_admin_control():
+    """
+    Displays the menu text where admin can disable voting in application.
+    """
+    reset_terminal()
+    print(f"{strings.admin_control_text}")
+
+    toggle_state = SHEET.worksheet("control").acell("A2").value
+    if toggle_state == "on":
+        print(f"{strings.vote_toggle_on}")
+    else:
+        print(f"{strings.vote_toggle_off}")
+
+    prompt = "To toggle the vote casting press 1, to return to the Admin Portal press 2"
+    response = validate_two_options(prompt)
+
+    if response == 1:
+        lock_voting_admin(toggle_state)
+    else:
+        display_admin_portal()
+
+
+def lock_voting_admin(switch_state):
+    """
+    Alters the switch value in google sheet when administrator toggles voting or
+    or off annd then reloads the admin control area with updated value.
+    """
+    if switch_state == "on":
+        SHEET.worksheet("control").update("A2", "off")
+        print(f"\n{Fore.RED}Switching voting off...")
+    else:
+        SHEET.worksheet("control").update("A2", "on")
+        print(f"\n{Fore.GREEN}Switching voting on...")
+
+    time.sleep(2)
+    load_admin_control()
 
 
 def validate_two_options(input_msg):

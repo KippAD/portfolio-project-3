@@ -56,6 +56,15 @@ information_text = (
     f"the main menu. The insights menu may also be accessed from there.\n"
 )
 
+# The msg presented to the user when they try to cast a vote and voting is
+# toggled off by the admin
+voting_disabled_text = (
+    f"{Fore.RED}Sorry, voting has been disabled for the time being...\n\n"
+    f"{Fore.WHITE}This could be just a temporary measure, so please try again "
+    f"later.\nIn the meantime feel free to view the vote count and voting insights\n"
+    f"in the Vote Results menu."
+)
+
 # The text displayed in the voting results area
 vote_results_text = (
     f"{Fore.MAGENTA}Welcome to the Voting Results menu\n\n"
@@ -101,3 +110,17 @@ admin_votes_titles = (
     f"{Back.YELLOW}{Fore.BLACK}\nNo. FName:     SName:       Age:"
     f"Region:     Vote: "
 )
+
+
+# The text printed in the control menu where the admin can toggle whether
+# votes can be cast or not.
+admin_control_text = (
+    f"{Fore.MAGENTA}Welcome to the Voting Control Switch!\n\n"
+    f"{Fore.WHITE}Use this switch to disable vote casting when the election is "
+    f"over,\nif there is an issue with the system, or if suspicious data is "
+    f"being\nsubmitted to the database.\n"
+)
+
+# Two states of switch in admin control that print if voting is on or off
+vote_toggle_on = f"{Back.GREEN}{Fore.BLACK}Voting is currently switched ON"
+vote_toggle_off = f"{Back.RED}{Fore.BLACK}Voting is currently switched OFF"

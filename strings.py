@@ -37,19 +37,18 @@ admin_portal_text = (
     f"{Fore.WHITE}This area is locked by login and password as it handles "
     f"sensitive data\nabout voters. This portal can be used to view and"
     f" manipulate this data.\n\n"
-    f"{Fore.CYAN}Press 1 to view all vote information, 2 to access vote "
-    f"control, or\n3 to return to the main menu.\n\n"
+    f"{Fore.CYAN}Please select an option from the menu below:\n\n"
     f"{Fore.WHITE}1. View Votes\n2. Vote Control\n3. Return to Main Menu\n"
 )
 
 # The information displayed when the user selects information on the main menu
 information_text = (
     f"{Fore.MAGENTA}Welcome to the Sussex Voting Station\n\n"
-    f"{Fore.WHITE}This application is the official method of casting your vote\n"
-    f"in the ongoing Sussex regional elections.\n\n"
-    f"Throughout the application users may also view information regarding the\n"
-    f"status of the vote as well as insights about voting demographics.\n\n"
-    f"{Fore.BLUE}Candidates:\n\n"
+    f"{Fore.WHITE}This application is the official method of casting your "
+    f"vote\nin the ongoing Sussex regional elections.\n\n"
+    f"Throughout the application users may also view information regarding \n"
+    f"the status of the vote as well as insights about voting demographics.\n"
+    f"\n{Fore.BLUE}Candidates:\n\n"
     f"{party_list}\n"
     f"{Fore.WHITE}To cast a vote simply head to the Voter Portal from "
     f"the main\nmenu. The insights menu may also be accessed from there.\n"
@@ -60,16 +59,16 @@ information_text = (
 voting_disabled_text = (
     f"{Fore.RED}Sorry, voting has been disabled for the time being...\n\n"
     f"{Fore.WHITE}This could be just a temporary measure, so please try again "
-    f"later.\nIn the meantime feel free to view the vote count and voting insights\n"
-    f"in the Vote Results menu."
+    f"later.\nIn the meantime feel free to view the vote count and voting "
+    f"insights\nin the Vote Results menu."
 )
 
 # The text displayed in the voting results area
 vote_results_text = (
     f"{Fore.MAGENTA}Welcome to the Voting Results menu\n\n"
     f"{Fore.WHITE}Here you can view the current vote count and certain "
-    f"insights\nabout the demographics of the vote by using the menu below.\n\n"
-    f"1. Current Vote Count\n2. Voting Insights\n3. Return to Voter Portal\n"
+    f"insights\nabout the demographics of the vote by using the menu below.\n"
+    f"\n1. Current Vote Count\n2. Voting Insights\n3. Return to Voter Portal\n"
 )
 
 # Main text displayed in the insights area of the application
@@ -115,9 +114,9 @@ admin_votes_titles = (
 # votes can be cast or not.
 admin_control_text = (
     f"{Fore.MAGENTA}Welcome to the Voting Control Switch!\n\n"
-    f"{Fore.WHITE}Use this switch to disable vote casting when the election is "
-    f"over,\nif there is an issue with the system, or if suspicious data is "
-    f"being\nsubmitted to the database.\n"
+    f"{Fore.WHITE}Use this switch to disable vote casting when the election "
+    f"is over,\nif there is an issue with the system, or if suspicious data "
+    f"is being\nsubmitted to the database.\n"
 )
 
 # Two states of switch in admin control that print if voting is on or off

@@ -51,8 +51,8 @@ information_text = (
     f"status of the vote as well as insights about voting demographics.\n\n"
     f"{Fore.BLUE}Candidates:\n\n"
     f"{party_list}\n"
-    f"{Fore.WHITE}To cast a vote simply head to the Voter Portal from\n"
-    f"the main menu. The insights menu may also be accessed from there.\n"
+    f"{Fore.WHITE}To cast a vote simply head to the Voter Portal from "
+    f"the main\nmenu. The insights menu may also be accessed from there.\n"
 )
 
 # The msg presented to the user when they try to cast a vote and voting is

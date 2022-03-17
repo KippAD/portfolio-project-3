@@ -132,20 +132,17 @@ def get_voter_name(name_type):
     Ensures that data submitted when user cast votes is correct
     and returns correct value before data is submitted to spreadsheet.
     """
+    error = f"{Fore.CYAN}Please exclude any numbers, spaces, or special characters..."
     while True:
-        try:
-            name = str(input(f"{Fore.CYAN}Please enter your {name_type} name:{Fore.WHITE}\n"))
-            name = name.title()
-        except ValueError:
-            print(f"{Fore.RED}\nYour name can only contain letters.\n")
-            print(f"{Fore.CYAN}Please exclude any numbers, spaces, or special characters...")
-            continue
+        name = input(f"{Fore.CYAN}Please enter your {name_type} name:{Fore.WHITE}\n")
+        name = name.title()
 
         if name.isalpha():
             break
         else:
             print(f"{Fore.RED}\nYour name can only contain letters.\n")
-            print(f"{Fore.RED}Please exclude any numbers, spaces, or special characters...\n")
+            print(f"{error}\n")
+            continue
 
     name_type = name_type.capitalize()
     print(f"\n{Fore.GREEN}{name_type} Name Entered: {name}\n")
@@ -334,7 +331,7 @@ def load_voting_insights():
     print(f"{strings.insights_page_text}")
     print(f"{strings.insights_age_figure}")
     count_age_votes(votes_list, ages_list)
-    time.sleep(1)
+    time.sleep(0.25)
     print(f"{strings.insights_region_figure}")
     count_region_votes(votes_list, regions_list)
     load_results_menu()
@@ -431,7 +428,7 @@ def validate_admin_login():
         username_attempt = input(f"{Fore.CYAN}Please enter the username:\n{Fore.WHITE}")
         password_attempt = input(f"{Fore.CYAN}Please enter the password:\n{Fore.WHITE}")
         if username_attempt == username and password_attempt == password:
-            print(f"{Fore.GREEN}Login details correct")
+            print(f"\n{Fore.GREEN}Login details correct")
             break
         else:
             print(f"{Fore.RED}Incorrect login")
@@ -582,13 +579,15 @@ def validate_menu_selection(ch1, ch2, ch3):
         try:
             selection = int(input(f"{Fore.CYAN}{prompt}"))
         except ValueError:
-            print(f"{Fore.RED}Incorrect Input: {prompt}")
+            print(f"{Fore.RED}Incorrect Input: Your input must be a number.\n")
+            print(f"{Fore.CYAN}{prompt}")
             continue
-
-        if selection >= 1 and selection <= 3:
-            break
         else:
-            print(f"{Fore.RED}Incorrect Input: {prompt}")
+            if selection >= 1 and selection <= 3:
+                break
+            else:
+                print(f"{Fore.RED}Incorrect Number: Your input must be 1 or 2\n")
+                print(f"{Fore.CYAN}{prompt}")
 
     return selection
 

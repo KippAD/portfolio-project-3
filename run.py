@@ -27,19 +27,13 @@ SHEET = GSPREAD_CLIENT.open('python_voting_system')
 
 def display_main_menu():
     """
-    Displays main menu with options to move to other areas.
+    Displays main menu with options to move to other areas and takes user input
+    to navigate to chosen area if application.
     """
-    reset_terminal()
+    loading_message("the Main Menu")
     print(strings.main_menu_text)
 
-
-def select_portal():
-    """
-    Validates user input and directs them to selected portal.
-    """
     chosen_portal = validate_menu_selection("Voter Portal", "Admin Portal", "Information")
-    reset_terminal()
-
     if chosen_portal == 1:
         load_voter_portal()
     elif chosen_portal == 2:
@@ -52,17 +46,14 @@ def load_voter_portal():
     """
     Loads voter portal menu displays possible options for user to select next.
     """
-    reset_terminal()
+    loading_message("the Voter Portal")
+
     print(strings.voter_portal_text)
     voter_menu = validate_menu_selection("Cast Vote", "View Result", "Main Menu")
 
     if voter_menu == 1:
-        print("Loading the voting station...\n")
-        time.sleep(2)
         check_voting_status()
     elif voter_menu == 2:
-        print("Loading voting results...\n")
-        time.sleep(2)
         vote_results_menu()
     else:
         main()
@@ -73,7 +64,7 @@ def load_information():
     Displays information about the application when chosen
     by the user on the main menu.
     """
-    reset_terminal()
+    loading_message("Information")
     print(strings.information_text)
     load_main_menu()
 
@@ -83,15 +74,12 @@ def check_voting_status():
     Checks to see if voting is switched on or off - the switch is located in the admin
     portal and will allow voting if on and prevent voting if off.
     """
-    reset_terminal()
     voting_switch = SHEET.worksheet("control").acell("A2").value
     if voting_switch == "on":
         load_vote_casting()
     else:
         print(f"{strings.voting_disabled_text}")
         input(f"{Fore.CYAN}\nEnter any key to return to the Voter Portal\n")
-        print(f"{Fore.GREEN}Loading the Voter Portal...")
-        time.sleep(2)
         load_voter_portal()
 
 
@@ -100,18 +88,15 @@ def load_vote_casting():
     Instigates the vote casting process but first gives user to back out from
     process and return to the voter portal.
     """
-    reset_terminal()
-    print(f"{Fore.MAGENTA}Welcome to the Voting Station!\n\n")
+    loading_message("Vote Casting")
+
+    print(f"{Fore.MAGENTA}Welcome to the Voting Station!")
     prompt = "Press 1 to begin voting, press 2 to return to the voter portal:"
     response = validate_two_options(prompt)
     
     if response == 1:
-        print(f"\n{Fore.GREEN}Loading vote casting...\n")
-        time.sleep(2)
         cast_user_vote()
     elif response == 2:
-        print(f"\n{Fore.GREEN}Loading voter portal..\n")
-        time.sleep(2)
         load_voter_portal()
 
 
@@ -148,7 +133,7 @@ def get_voter_name(name_type):
     """
     while True:
         try:
-            name = str(input(f"{Fore.CYAN}Please enter your {name_type} name:\n"))
+            name = str(input(f"{Fore.CYAN}Please enter your {name_type} name:{Fore.WHITE}\n"))
             name = name.title()
         except ValueError:
             print(f"{Fore.RED}\nYour name can only contain letters.\n")
@@ -173,7 +158,7 @@ def get_voter_age():
     """
     while True:
         try:
-            age = int(input(f"{Fore.CYAN}Please enter your age:\n"))
+            age = int(input(f"{Fore.CYAN}Please enter your age:{Fore.WHITE}\n"))
         except ValueError:
             print(f"{Fore.RED}You age can only contain numbers!\n")
             continue
@@ -251,8 +236,6 @@ def submit_vote(answer, vote_list):
         vote_sheet = SHEET.worksheet("votes")
         vote_sheet.append_row(vote_list)
         time.sleep(1)
-        print(f"{Fore.GREEN}Loading Voter Portal...")
-        time.sleep(2)
         load_voter_portal()
     elif answer == 2:
         cast_user_vote()
@@ -265,7 +248,7 @@ def vote_results_menu():
     Displays the menu with options to view different insights about the
     voting results (Vote count, vote percentage by region, vote by age)
     """
-    reset_terminal()
+    loading_message("the Vote Results Menu")
     print(strings.vote_results_text)
     choice = validate_menu_selection("Vote Results", "Voting Insights", "Voter Portal")
 
@@ -288,7 +271,7 @@ def count_votes(total_votes):
     votes_list = [total_count, occurences["Red"], occurences["Green"], occurences["Blue"]]
 
     return votes_list
- 
+
 
 def load_vote_percentage():
     """
@@ -297,7 +280,6 @@ def load_vote_percentage():
     a bar chart.
     """
     # Gets votes from google sheet
-    reset_terminal()
     party_votes = SHEET.worksheet("votes").col_values(5)
     party_votes.pop(0)
     # Converts votes into a percentage after counting them
@@ -316,6 +298,7 @@ def display_vote_percentage(headings, percentage, count):
     Displays the bar chart using data provided from load_vote_percentage
     function and also prints text into area.
     """
+    loading_message("the Vote Count")
     print("This is the current vote count of the election:")
     print(f"{Fore.RED}The Red Party: {percentage[0]} ({count[1]} Votes)")
     print(f"{Fore.GREEN}The Green Party: {percentage[1]} ({count[2]} Votes)")
@@ -334,6 +317,7 @@ def load_voting_insights():
     Displays bar charts of voting popularity by age and region, allowing user
     to see the demographics of party supporters.
     """
+    loading_message("Voting Insights")
     # Converts ages in google sheet from string into integer
     ages_str = SHEET.worksheet("votes").col_values(3)
     ages_str.pop(0)
@@ -419,6 +403,7 @@ def load_admin_portal():
     Instigates loading the admin portal and will only call display_admin_portal
     function once login has passed through validate_admin_login function.
     """
+    loading_message("Admin Login")
     print(f"{Fore.CYAN}Welcome Admin! Please login in to access the admin portal.\n")
     validate_admin_login()
     display_admin_portal()
@@ -434,6 +419,7 @@ def validate_admin_login():
 
     while True:
         reset_terminal()
+        print(f"{Fore.MAGENTA}You must log in to access the Admin Portal!")
         # Option for user to exit out of login at the start of each loop.
         prompt = "Press 1 to login, or 2 to return to the Main Menu"
         selection = validate_two_options(prompt)
@@ -444,7 +430,6 @@ def validate_admin_login():
         password_attempt = input(f"{Fore.CYAN}Please enter the password:\n{Fore.WHITE}")
         if username_attempt == username and password_attempt == password:
             print(f"{Fore.GREEN}Login details correct")
-            print(f"{Fore.MAGENTA}Loading Admin Portal...")
             break
         else:
             print(f"{Fore.RED}Incorrect login")
@@ -455,15 +440,13 @@ def display_admin_portal():
     Displays the admin menu once login is correctly completed. Displays options
     to view vote results and voting insights.
     """
-    reset_terminal()
+    loading_message("the Admin Portal")
     print(strings.admin_portal_text)
     admin_menu = validate_menu_selection("Vote Results", "Voting Insights", "Main Menu")
 
     if admin_menu == 1:
-        print("Loading votes...")
         display_admin_votes()
     elif admin_menu == 2:
-        print("Loading vote control...")
         load_admin_control()
     else:
         main()
@@ -474,7 +457,7 @@ def display_admin_votes():
     Displays all votes from google sheet into console, including sensitive 
     data that is not accessible in user area.
     """
-    reset_terminal()
+    loading_message("Vote Data")
     sheet = SHEET.worksheet("votes")
     vote_rows = sheet.get_all_values()
     vote_rows.pop(0)
@@ -532,7 +515,7 @@ def load_admin_control():
     """
     Displays the menu text where admin can disable voting in application.
     """
-    reset_terminal()
+    loading_message("Admin Control")
     print(f"{strings.admin_control_text}")
 
     toggle_state = SHEET.worksheet("control").acell("A2").value
@@ -573,15 +556,15 @@ def validate_two_options(input_msg):
     """
     while True:
         try:
-            decision = int(input(f"\n{Fore.CYAN}{input_msg}\n"))
+            decision = int(input(f"\n{Fore.CYAN}{input_msg}{Fore.WHITE}\n"))
         except ValueError:
-            print(f"{Fore.RED}Incorrect Input: {input_msg}")
+            print(f"{Fore.RED}Incorrect Input: {input_msg}{Fore.WHITE}")
             continue
         else:
             if decision == 1 or decision == 2:
                 break
             else:
-                print(f"{Fore.RED}Incorrect Input: {input_msg}")
+                print(f"{Fore.RED}Incorrect Input: {input_msg}{Fore.WHITE}")
 
     return decision
 
@@ -591,10 +574,10 @@ def validate_menu_selection(ch1, ch2, ch3):
     Ensures that the correct input is given by the user in the multiple choice
     menu that appears throughout the application.
     """
-    prompt = f"Press 1 for {ch1}, 2 for {ch2}, or 3 for {ch3}\n"
+    prompt = f"Press 1 for {ch1}, 2 for {ch2}, or 3 for {ch3}\n{Fore.WHITE}"
     while True:
         try:
-            selection = int(input(f"{Fore.CYAN}{prompt}\n"))
+            selection = int(input(f"{Fore.CYAN}{prompt}"))
         except ValueError:
             print(f"{Fore.RED}Incorrect Input: {prompt}")
             continue
@@ -605,6 +588,16 @@ def validate_menu_selection(ch1, ch2, ch3):
             print(f"{Fore.RED}Incorrect Input: {prompt}")
 
     return selection
+
+
+def loading_message(area):
+    """
+    Prints the loading msg that is displayed when moving throughout areas of the
+    application before clearing the terminal.
+    """
+    print(f"\n{Fore.BLUE}Loading {area}....\n")
+    time.sleep(1.5)
+    reset_terminal()
 
 
 def calculate_percentage(total, count):
@@ -620,7 +613,7 @@ def load_main_menu():
     """
     Allows user to enter any input to be redirected to main menu.
     """
-    input(f"{Fore.CYAN}\nEnter any key to return to the main menu:\n")
+    input(f"{Fore.CYAN}\nEnter any key to return to the main menu:{Fore.WHITE}\n")
     main()
 
 
@@ -628,7 +621,7 @@ def load_results_menu():
     """
     Allows user to enter any input to be redirected to main menu.
     """
-    input(f"{Fore.CYAN}\nEnter any key to return to the insights menu\n")
+    input(f"{Fore.CYAN}\nEnter any key to return to the insights menu{Fore.WHITE}\n")
     vote_results_menu()
 
 
@@ -644,9 +637,7 @@ def main():
     """
     The main function where all application functions run.
     """
-    reset_terminal()
     display_main_menu()
-    select_portal()
 
 
 main()

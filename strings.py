@@ -27,7 +27,6 @@ voter_portal_text = (
     f"{Fore.MAGENTA}Welcome to the Voter Portal!\n\n"
     f"{Fore.WHITE}Use this menu to cast a vote or to navigate to the\n"
     f"voting results and insights menu.\n\n"
-    f"In the wrong place? Head back to the Main Menu by pressing 3.\n\n"
     f"{Fore.CYAN}Please select an option from the menu below:\n\n"
     f"{Fore.WHITE}1. Cast Vote\n2. View Results\n3. Main Menu\n"
 )

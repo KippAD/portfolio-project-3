@@ -84,7 +84,7 @@ def check_voting_status():
     else:
         reset_terminal()
         print(f"{strings.voting_disabled_text}")
-        input(f"{Fore.CYAN}\nEnter any key to return to the Voter Portal\n")
+        input(f"{Fore.CYAN}\nEnter any key to return to the Voter Portal:\n")
         load_voter_portal()
 
 

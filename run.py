@@ -461,14 +461,14 @@ def display_admin_portal():
     admin_menu = validate_three_options(msg)
 
     if admin_menu == 1:
-        display_admin_votes()
+        load_admin_votes()
     elif admin_menu == 2:
         load_admin_control()
     else:
         main()
 
 
-def display_admin_votes():
+def load_admin_votes():
     """
     Displays all votes from google sheet into console, including sensitive
     data that is not accessible in user area.
@@ -504,29 +504,49 @@ def get_admin_actions():
 
 def delete_vote():
     """
-    Takes an integer input from the admin to delete a vote by its index number
+    Takes an integer input from the admin and validates that it is a number
+    within a range of the length of all vote indexes. Calls 
+    confirm_vote_deletion function if valid number is entered.
     """
     total = SHEET.worksheet("votes").col_values(1)
     prompt = f"{strings.delete_prompt}"
     while True:
         try:
-            delete = int(input(f"\n{prompt}\n"))
+            delete_num = int(input(f"\n{prompt}{Fore.WHITE}\n"))
         except ValueError:
             print(f"{Fore.RED}Incorrect Input: {prompt}")
             continue
         else:
-            if delete in range(1, len(total)):
-                # Uses delete + 1 to match the no. with the google sheet row
-                SHEET.worksheet("votes").delete_rows(delete + 1)
-                print(f"{Fore.GREEN}Vote deleted...")
-                time.sleep(2)
-                display_admin_votes()
+            if delete_num in range(1, len(total)):
+                # Passes chose vote into delete confirmation
+                confirm_vote_deletion(delete_num)
                 break
-            elif delete == 0:
-                print(f"{Fore.GREEN}Action cancelled.")
-                display_admin_votes()
+            elif delete_num == 0:
+                print(f"{Fore.GREEN}Action cancelled...")
+                load_admin_votes()
             else:
-                print(f"{Fore.RED}{delete} is not a valid vote number...")
+                print(f"{Fore.RED}{delete_num} is not a valid vote number...")
+
+
+def confirm_vote_deletion(vote_index):
+    """
+    Takes the integer provided in the delete vote function to delete a vote
+    from the printed table in the admin votes area, also offering an option
+    to cancel the action and reload the area.
+    """
+    print(f"{Fore.RED}Are you sure? Vote deletion is permanent...")
+    prompt = "Press 1 to confirm or 2 to cancel:"
+    confirm = validate_two_options(prompt)
+
+    if confirm == 1:
+        # Uses delete + 1 to match the no. with the google sheet row
+        SHEET.worksheet("votes").delete_rows(vote_index + 1)
+        print(f"{Fore.GREEN}Vote deleted...")
+        time.sleep(2)
+        load_admin_votes()
+    else:
+        print(f"{Fore.RED}Vote deletion cancelled...")
+        load_admin_votes()
 
 
 def load_admin_control():

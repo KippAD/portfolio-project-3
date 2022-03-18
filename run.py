@@ -241,8 +241,8 @@ def confirm_vote(vote):
 def submit_vote(answer, vote_list):
     """
     Takes parameters from cast_user_vote function and takes appropriate action
-    depending on input - 1 submits vote to google sheet, 2 begins voting process
-    again, and 3 cancels vote submission and reloads voter portal.
+    depending on input - 1 submits vote to google sheet, 2 begins voting
+    process again, and 3 cancels vote submission and reloads voter portal.
     """
     if answer == 1:
         print(f"{Fore.GREEN}Vote submitted...")
@@ -258,9 +258,9 @@ def submit_vote(answer, vote_list):
 
 def vote_results_menu():
     """
-    Displays the results menu with options to either view vote count, view different
-    insights about the voting results, or return to voter portal. Takes input and
-    navigates user to correct area.
+    Displays the results menu with options to either view vote count, view
+    different insights about the voting results, or return to voter portal.
+    Takes input and navigates user to correct area.
     """
     loading_message("the Vote Results Menu")
     print(strings.vote_results_text)
@@ -330,8 +330,8 @@ def display_vote_percentage(headings, percentage, count):
 
 def load_voting_insights():
     """
-    Displays bar charts of voting popularity by age and region in insights area,
-    allowing user to see the demographics of party supporters.
+    Displays bar charts of voting popularity by age and region in insights
+    area, allowing user to see the demographics of party supporters.
     """
     loading_message("Voting Insights")
     # Converts ages in google sheet from string into integer
@@ -478,8 +478,8 @@ def display_admin_portal():
 
 def load_admin_votes():
     """
-    Displays all votes from google sheet into console in tabular form, including
-    sensitive data that is not accessible in user area.
+    Displays all votes from google sheet into console in tabular form,
+    including sensitive data that is not accessible in user area.
     """
     loading_message("Vote Data")
     sheet = SHEET.worksheet("votes")

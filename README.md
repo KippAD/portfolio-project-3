@@ -76,53 +76,63 @@ It was useful to map out the applications logic and functionality in order to be
 
 ## Features
 ---
-### **Existing Features**
+## **Existing Features**
 
-#### **Vote Casting**
-
+### **Vote Casting**
+---
 <img  src="assets/readme-images/voting-collage.png" width="80%">
-
 
 The vote casting function takes a user's vote and stores the data externally. This is the main process of the application as its principal aim is to hold an election.
 
 - Takes first and second names, age, region, and vote, validating all inputs to ensure that the user inputs the correct data to the external google sheet.
 - Allows users to review their inputs before submitting, meaning they can cancel their vote or complete the form again if they are not content.
 
-#### **Vote Results and Insights**
-
+### **Vote Results and Insights**
+---
 <img  src="assets/readme-images/results-collage-1.jpg" width="80%">
 <img  src="assets/readme-images/results-collage-2.png" width="80%">
-
-
 
 Using the data provided by the user, the Voting Station uses the plotext and gspread modules to retrieve and display the live data retrieved from the vote database.
 
 - Vote results displays a live current vote count in percentages in bar chart format, updating automatically with each new vote.
 - Voting insights provides further information about voting demographics in bar chart form, these are the popularity of each party in each voting region and the popularity of each party in certain age brackets.
 
-#### **Information**
+### **Information**
+---
 <img  src="assets/readme-images/information.png" width="50%">
 
 The information page explains to the user the purpose of the application and suggests possible actions that they might take.
 
 - Clearly describes the function of the application in more depth to the user if it is not immediately obvious on the main menu.
 
-#### **Admin Portal**
-
+### **Admin Portal**
+---
 <img  src="assets/readme-images/admin-collage-1.png" width="80%">
-<img  src="assets/readme-images/admin-collage-2.png" width="80%">
-
 
 The admin portal is separated from the rest of the application as it has access to sensitive data and has powers to manipulate the vote.
 
 - Access to the admin portal is prohibited by login and password.
 - Is able to view all vote data in tabular form, including names that are omitted in other areas of the application.
-- The admin can delete votes by using their index in the displayed table.
-- In admin control, there is an toggle to turn off vote taking - this will prevent users from submitting votes until it is turned on again. This could be useful if there was an error with vote validation and incorrect data was being submitted.
+- Menu has access to other admin actions including the voting switch and vote deletion.
 
-**Admin Vote Switch:**
+## **Admin Vote Deletion:**
+---
+<img  src="assets/readme-images/admin-collage-2.png" width="80%">
 
+The admin has the power to delete votes from the election in the Admin Portal.
+
+- Table of votes is neatly displayed using tabular, along with all voting details recorded in each vote.
+- Admin can user voting number displayed in table to delete votes.
+- This function would only be used in certain circumstances, for example if an illegitimate vote got through validation.
+
+## **Admin Vote Switch**
+---
 <img  src="assets/readme-images/switch-collage.png" width="80%">
+
+In the admin control area the admin can switch voting or or off.
+
+- Voting toggle is able to turn off vote taking, preventing users from submitting votes until it is turned on again. 
+- This could be useful if there was an error with vote validation or incorrect data was being submitted.
 
 [Back to contents](#contents)
 
@@ -138,6 +148,37 @@ To build on the above idea, with more data points there would be a greater range
 
 ## **Technology** 
 ---
+The Voting Station was built with the following technologies:
+
+1.  [**HTML**](https://en.wikipedia.org/wiki/HTML5) - Used to give content to the application.
+2.  [**CSS**](https://en.wikipedia.org/wiki/CSS) - For styling the terminal in Heroku.
+3.  [**JavaScript**](https://en.wikipedia.org/wiki/JavaScript) - Used to create the web environment of which the terminal app runs in.
+4.  [**Python**](https://www.python.org/) - Used to develop the functionality and design of the application in the CLI.
+5.  [**Gitpod**](https://gitpod.io) - The IDE used to develop the application and test the python code.
+6.  [**Github**](https://github.com) - For hosting the application repository and for version control.
+7.  [**Heroku**](https://www.heroku.com/) - For hosting the actual application.
+8.  [**Google Cloud Platform**](https://cloud.google.com/) - For creating the API's to connect the application with Google Sheets.
+9.  [**Google Sheets**](https://cloud.google.com/) - For storing data accessed by the application.
+10.  [**Lucid Chart**](https://www.lucidchart.com/pages/) - To design the logic path of the python code
+11.  [**Am I Responsive**](http://ami.responsivedesign.is/) - To create responsive image at start of readme.
+12.  [**Favicon.io**](https://favicon.io.net/) - Used to create a favicon for the application.
+
+[Back to contents](#contents)
+
+## **Python Modules**
+---
+The following modules were used in developing the Voting Station:
+
+1.  [**Time**](https://docs.python.org/3/library/time.html) - For adding time delays to application.
+2.  [**OS**](https://docs.python.org/3/library/os.html) - Used for clearing the terminal.
+3.  [**Collections**](https://docs.python.org/3/library/collections.html) - Used to count votes more concisely.
+4.  [**Tabulate**](https://pypi.org/project/tabulate/) - For presenting the vote data in table format in admin portal.
+5.  [**Termcolor**](https://pypi.org/project/termcolor/) - For cprinting the ascii title.
+6.  [**Pyfiglet**](https://pypi.org/project/pyfiglet/0.7/) - For generating the ascii title.
+7.  [**Colorama**](https://pypi.org/project/colorama/) - To add color to the application text.
+8.  [**Credentials**](https://pypi.org/project/credentials/) - To add credentials and control access to google sheet.
+9.  [**Plotext**](https://pypi.org/project/plotext/) - For plotting google sheet data in bar chart format in the terminal.
+10.  [**Gspread**](https://docs.gspread.org/en/latest/) - To handle data stored in the google sheet.
 
 [Back to contents](#contents)
 
@@ -155,7 +196,6 @@ Most issues that arose during development pertained to trailing whitespace and l
 **Run.py:**
 
 <img  src="assets/readme-images/run-validation.png" width="60%">
-
 
 **Strings.py:**
 
@@ -200,11 +240,9 @@ The only issues found when testing were related to the color of a warning when d
 [Back to contents](#contents)
 
 ### **Manual Data Testing** 
-To check that the data being presented in the bar charts was correct, manual tests were also conducted. This involved counting each vote using google sheets and ensuring that it matched up to the data in the Current Vote Count, also calculating the percentage and ensuring that it matched up.
+To check that the data being presented in the bar charts was correct, manual tests were also conducted. This involved counting each vote using google sheets and ensuring that that it matched up with the data that was currently displayed in the bar charts in the application.
 
-With the insights page, bar charts were made within google sheets to compare the data generated by python and ensure that it was correct.
-
-[manual data testing img]
+The data in the google sheets matched the data being printed in the application, indicating that all calculations were functioning correctly in the Voting Station.
 
 [Back to contents](#contents)
 
@@ -228,7 +266,6 @@ The Voting Station was tested using the Lighthouse extension of Google Chrome, t
 **Mobile:**
 
 <img  src="assets/readme-images/lh-mobile-2.png" width="80%">
-
 
 **Desktop:**
 
@@ -266,5 +303,7 @@ There are also a couple of examples of bad UX which result from the application 
 [Back to contents](#contents)
 
 ### **Credits & Acknowledgments**
+
+
 
 [Back to contents](#contents)

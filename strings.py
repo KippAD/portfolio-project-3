@@ -76,20 +76,22 @@ vote_results_text = (
 insights_page_text = (
     f"{Fore.MAGENTA}Welcome to Insights\n\n"
     f"{Fore.WHITE}This area contains actionable insights about the "
-    f"demographics of voters in the election and can\nbe used to "
+    f"demographics of voters in the\nelection and can be used to "
     f"understand trends in voting.\n\n"
 )
 
 # Annotation for the first bar chart in the insights area.
 insights_age_figure = (
     f"{Fore.BLUE}The Votes by Age Bracket {Fore.WHITE}figure below shows "
-    f"how the votes are split amongst various age groups.\n"
+    f"how the votes are split amongst\nvarious age groups. (Note: If there is "
+    f"an issue with the bar chart\nthen return to the results menu and reload "
+    f"the insights page).\n"
 )
 
 # Annotation for the second bar chart in the insights area.
 insights_region_figure = (
     f"{Fore.BLUE}\nThe Votes by Region {Fore.WHITE}figure below shows the "
-    f"popularity of each party in the voting regions\n(Sussex, "
+    f"popularity of each party in the\nvoting regions (Sussex, "
     f"Eastbourne, Hastings).\n"
 )
 

@@ -35,16 +35,16 @@ The objectives for the Voting Station from a UX perspective are:
 
 2. The application has a consistent design that makes it clear to the user what processes are happening and when input is required. From an aesthetic perspective, the user gets a positive emotional response from interacting with the application.
 
-3. In order to reach these objectives and achieve a high UX standard, focus needs to be put on presenting the application clearly and with a good aesthetic. This is somewhat harder in a CLI application as design is more limited, but using external modules the design can be improved and contribute to creating a good user experience.
+In order to reach these objectives and achieve a high UX standard, focus needs to be put on presenting the application clearly and with a good aesthetic. This is somewhat harder in a CLI application as design is more limited, but by using external modules the design can be improved alongside the user experience.
 
 **To achieve the first objective:**
-- The inputs that control the applications flow are clearly marked, the user will always know when an action is required from them to move through the application.
+- The inputs that control the applications flow are clearly marked so that the user will always know when an action is required from them.
 - The user will always know where they are within the application, enabling them to move through it more intuitively.
-- User actions are clearly explained across the application. The user will always know what will happen in response to their inputs.
-- This will be complimented by consistent text colors that represent different actions: Blue text is a loading msg, cyan text indicates an input is required, and red text a warning.
+- User actions are clearly explained across the application so that the user will always know what will happen in response to their inputs.
 
 **To achieve the second objective:**
-- Colorama and Ascii Title will add color and design throughout, whereas without them the terminal would be limited to a black background with white text.
+- Consistent text colors will represent different actions: Blue text is a loading msg, cyan text indicates an input is required, and red text a warning.
+- Colorama and Ascii Title will add color and design throughout, expaning the limitations of the terminal that would otherwise be limited to a black background with white text.
 - Voting data will be printed into bar chart form, improving the UX by presenting data in a neat and digestible way for the user.
 
 [Back to contents](#contents)
@@ -56,7 +56,7 @@ As mentioned in the UX objectives, the scope of the design is slightly limited d
 
 <p  align="center"><img  src="assets/readme-images/ascii-title.png" width="50%"></p>
 
-- **Colorama** - Gives color and background color to text within the application. As mentioned previously, this is useful in giving a consistent experience for the user by categorizing the text in the application to different functions and processes. For example cyan text always indicates to a user that an input is required, red text is a warning and green indicates that a user action has been accepted. As a user continues to use the application they will also build familiarity with the actions associated with the colors.
+- **Colorama** - Gives color and background color to text within the application. As mentioned previously, this is useful in giving a consistent experience for the user by categorizing the text in the application to different functions and processes. For example cyan text always indicates to a user that an input is required, red text is a warning, and green indicates that a user action has been accepted. As a user continues to use the application they will also build familiarity with the actions associated with the colors.
 
 <p  align="center"><img  src="assets/readme-images/colorama.png" width="50%"></p>
 
@@ -71,7 +71,6 @@ It was useful to map out the applications logic and functionality in order to be
 
 <p  align="center"><img  src="assets/readme-images/lucid-chart.png" width="50%"></p>
 
-
 [Back to contents](#contents)
 
 ## Features
@@ -84,7 +83,7 @@ It was useful to map out the applications logic and functionality in order to be
 
 The vote casting function takes a user's vote and stores the data externally. This is the main process of the application as its principal aim is to hold an election.
 
-- Takes first and second names, age, region, and vote, validating all inputs to ensure that the user inputs the correct data to the external google sheet.
+- Takes first and second names, age, region, and vote, validating all inputs to ensure that the user submits the correct data to the external google sheet.
 - Allows users to review their inputs before submitting, meaning they can cancel their vote or complete the form again if they are not content.
 
 ### **Vote Results and Insights**
@@ -129,7 +128,7 @@ The admin has the power to delete votes from the election in the Admin Portal.
 ---
 <img  src="assets/readme-images/switch-collage.png" width="80%">
 
-In the admin control area the admin can switch voting or or off.
+In the admin control area the admin can switch voting on or off.
 
 - Voting toggle is able to turn off vote taking, preventing users from submitting votes until it is turned on again. 
 - This could be useful if there was an error with vote validation or incorrect data was being submitted.
@@ -159,8 +158,8 @@ The Voting Station was built with the following technologies:
 7.  [**Heroku**](https://www.heroku.com/) - For hosting the actual application.
 8.  [**Google Cloud Platform**](https://cloud.google.com/) - For creating the API's to connect the application with Google Sheets.
 9.  [**Google Sheets**](https://cloud.google.com/) - For storing data accessed by the application.
-10.  [**Lucid Chart**](https://www.lucidchart.com/pages/) - To design the logic path of the python code
-11.  [**Am I Responsive**](http://ami.responsivedesign.is/) - To create responsive image at start of readme.
+10.  [**Lucid Chart**](https://www.lucidchart.com/pages/) - To design the logic path of the python code.
+11.  [**Am I Responsive**](http://ami.responsivedesign.is/) - To create the responsive image at start of the readme.
 12.  [**Favicon.io**](https://favicon.io.net/) - Used to create a favicon for the application.
 
 [Back to contents](#contents)
@@ -176,7 +175,7 @@ The following modules were used in developing the Voting Station:
 5.  [**Termcolor**](https://pypi.org/project/termcolor/) - For cprinting the ascii title.
 6.  [**Pyfiglet**](https://pypi.org/project/pyfiglet/0.7/) - For generating the ascii title.
 7.  [**Colorama**](https://pypi.org/project/colorama/) - To add color to the application text.
-8.  [**Credentials**](https://pypi.org/project/credentials/) - To add credentials and control access to google sheet.
+8.  [**Credentials**](https://pypi.org/project/credentials/) - To add credentials and control access to the google sheet.
 9.  [**Plotext**](https://pypi.org/project/plotext/) - For plotting google sheet data in bar chart format in the terminal.
 10.  [**Gspread**](https://docs.gspread.org/en/latest/) - To handle data stored in the google sheet.
 
@@ -202,9 +201,9 @@ Most issues that arose during development pertained to trailing whitespace and l
 <img  src="assets/readme-images/strings-validation.png" width="60%">
 
 #### **HTML, CSS, and JavaScript**
-As the Voting Station is developed from a template provided by Code Institute, the Javascript in the application has not been tested as no adjustments to the code have been made.
+As the Voting Station is developed from a template provided by Code Institute, the JavaScript in the application has not been adjusted and therefore there is no need to test the code.
 
-However small changes have been made to the HTML and CSS in order to format the position of the terminal in Heroku, so all HTML and CSS were passed through the [**W3C HTML Validator**](https://validator.w3.org/) and the [**Jigsaw CSS Validator**](https://jigsaw.w3.org/css-validator/) respectively.
+However, small changes have been made to the HTML and CSS in order to format the position of the terminal in Heroku, so all HTML and CSS has been passed through the [**W3C HTML Validator**](https://validator.w3.org/) and the [**Jigsaw CSS Validator**](https://jigsaw.w3.org/css-validator/) respectively.
 
 **For HTML**:
 
@@ -235,7 +234,7 @@ The results are below:
 
 All input validation and functionality worked as expected, and no incorrect data types are able to compromise the application and pass through voting.
 
-The only issues found when testing were related to the color of a warning when deleting a vote being incorrect which was resolved, and also the first bar chart in insights rendering incorrectly. This second issue is a known bug, although navigating back to the voter portal and then back into insights will load the chart successfully.
+The first issue found when testing was related to the color of a warning being incorrect. The second more significant problem was the first bar chart in insights rendering incorrectly. This second issue is a known bug, although navigating back to the voter portal and then back into insights will load the chart successfully.
 
 [Back to contents](#contents)
 
@@ -256,7 +255,7 @@ The Voting Station has been tested across multiple browsers:
 
 The only issue found during browser testing was in Safari, where the opening input would not allow any keyboard entry, effectively freezing the application before it had begun. This issue occurred on a 2021 Macbook, but testing Safari on a different 2015 model did not recreate the error. On the older macbook the application ran exactly as intended, this could indicate that the issue is to do with either the newer machine or a newer version of Safari and not the code itself.
 
-In all other browsers the application functioned exactly as anticipated, all user interaction was successful, and the google sheet was always updated appropriately.
+In all other browsers, the application functioned exactly as anticipated, all user interactions was successful, and the google sheet was always updated appropriately.
 
 [Back to contents](#contents)
 
@@ -271,7 +270,7 @@ The Voting Station was tested using the Lighthouse extension of Google Chrome, t
 
 <img  src="assets/readme-images/lh-desktop-2.png" width="80%">
 
-The SEO score was originally lower due to the site not having a meta description so adding one seemed to resolve the score. The other low score was in Best Practices. This issue was related to the JavaScript library involved, which as mentioned earlier was preinstalled with the template.
+The SEO score was originally lower due to the site not having a meta description, an issue that was easily resolved. The other low score was in Best Practices. This issue was related to the JavaScript library involved, which as mentioned earlier was preinstalled with the template.
 
 [Back to contents](#contents)
 
@@ -280,10 +279,10 @@ The SEO score was originally lower due to the site not having a meta description
 #### **Resolved**
 
 **Clearing Terminal**
-An issue that was particularly difficult to resolve in the beginning of Heroku was related to clearing the terminal. Using the OS module there is a function to clear the terminal, however this is seemingly limited to the viewport size of the terminal itself and therefore with larger amounts of content that would exceed the terminal height, the function would not fully clear the terminal. This was eventually resolved thanks to a fellow student Helena on slack having the same issue and who found a solution:
+An issue that was particularly difficult to resolve in the beginning of Heroku was related to clearing the terminal. Using the OS module there is a function to clear the terminal, however this is seemingly limited to the viewport size of the terminal itself and therefore with larger amounts of content that would exceed the terminal height, the function would not fully clear the terminal. Eventually a solution was found thanks to Helena, a fellow student on slack.
 
 **Favicon**
-A persistent problem faced throughout the application development was the favicon not displaying in Heroku. This can be seen throughout the commit history where repeated attempts are made to resolve the issue as in order to test a solution, the changes had to be pushed to Github. Eventually changing the link to the favicon from a file path to a raw link solved the issue.
+A persistent problem faced throughout the application development was the favicon not displaying in Heroku. This can be seen throughout the commit history where repeated attempts are made to resolve the issue. This is because in order to test a solution the changes had to be pushed to Github, and often that solution failed to work. Eventually changing the link to the favicon from a file path to a raw link solved the issue.
 
 #### **Unresolved**
 
@@ -304,6 +303,10 @@ There are also a couple of examples of bad UX which result from the application 
 
 ### **Credits & Acknowledgments**
 
+I would like to thank my mentor Precious Ijege for all of the support and advice on creating this project.
 
+Also to my fellow students on slack, who on countless occasions helped me solve issues that I was having.
+
+Without all of guidance and support I would not have got very far.
 
 [Back to contents](#contents)

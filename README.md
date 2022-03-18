@@ -5,7 +5,7 @@ The Voting Station is a command line interface based voting system that is built
 
 [Link to the live site](https://the-voting-station.herokuapp.com/)
 
-<p  align="center"><img  src="assets/readme-images/readme-hero-img.png" width="50%"></p>
+<p  align="center"><img  src="assets/readme-images/readme-hero-img.png" width="75%"></p>
 
 ## Contents 
 - [Planning](#planning)
@@ -80,8 +80,8 @@ It was useful to map out the applications logic and functionality in order to be
 
 #### **Vote Casting**
 
-<img  src="assets/readme-images/vote-casting-1.png" width="30%">
-<img  src="assets/readme-images/vote-casting-2.png" width="30%">
+<img  src="assets/readme-images/voting-collage.png" width="80%">
+
 
 The vote casting function takes a user's vote and stores the data externally. This is the main process of the application as its principal aim is to hold an election.
 
@@ -90,10 +90,10 @@ The vote casting function takes a user's vote and stores the data externally. Th
 
 #### **Vote Results and Insights**
 
-<img  src="assets/readme-images/plotext.png" width="20%">
-<img  src="assets/readme-images/insights-1.png" width="20%">
-<img  src="assets/readme-images/insights-2.png" width="20%">
-<img  src="assets/readme-images/insights-3.png" width="20%">
+<img  src="assets/readme-images/results-collage-1.jpg" width="80%">
+<img  src="assets/readme-images/results-collage-2.png" width="80%">
+
+
 
 Using the data provided by the user, the Voting Station uses the plotext and gspread modules to retrieve and display the live data retrieved from the vote database.
 
@@ -101,7 +101,7 @@ Using the data provided by the user, the Voting Station uses the plotext and gsp
 - Voting insights provides further information about voting demographics in bar chart form, these are the popularity of each party in each voting region and the popularity of each party in certain age brackets.
 
 #### **Information**
-<img  src="assets/readme-images/information.png" width="30%">
+<img  src="assets/readme-images/information.png" width="50%">
 
 The information page explains to the user the purpose of the application and suggests possible actions that they might take.
 
@@ -109,10 +109,9 @@ The information page explains to the user the purpose of the application and sug
 
 #### **Admin Portal**
 
-<img  src="assets/readme-images/admin-1.png" width="25%">
-<img  src="assets/readme-images/admin-3.png" width="25%">
-<img  src="assets/readme-images/admin-2.png" width="15%">
-<img  src="assets/readme-images/admin-4.png" width="25%">
+<img  src="assets/readme-images/admin-collage-1.png" width="80%">
+<img  src="assets/readme-images/admin-collage-2.png" width="80%">
+
 
 The admin portal is separated from the rest of the application as it has access to sensitive data and has powers to manipulate the vote.
 
@@ -123,8 +122,7 @@ The admin portal is separated from the rest of the application as it has access 
 
 **Admin Vote Switch:**
 
-<img  src="assets/readme-images/vote-off.png" width="40%">
-<img  src="assets/readme-images/vote-switch.png" width="40%">
+<img  src="assets/readme-images/switch-collage.png" width="80%">
 
 [Back to contents](#contents)
 
@@ -156,12 +154,12 @@ Most issues that arose during development pertained to trailing whitespace and l
 
 **Run.py:**
 
-<img  src="assets/readme-images/run-validation.png" width="40%">
+<img  src="assets/readme-images/run-validation.png" width="60%">
 
 
 **Strings.py:**
 
-<img  src="assets/readme-images/strings-validation.png" width="40%">
+<img  src="assets/readme-images/strings-validation.png" width="60%">
 
 #### **HTML, CSS, and JavaScript**
 As the Voting Station is developed from a template provided by Code Institute, the Javascript in the application has not been tested as no adjustments to the code have been made.
@@ -170,19 +168,19 @@ However small changes have been made to the HTML and CSS in order to format the 
 
 **For HTML**:
 
-<img  src="assets/readme-images/html-warnings.png" width="80%">
+<img  src="assets/readme-images/html-warnings.png" width="100%">
 
 The validator initially returned three errors, including a fatal error. These were all related to the placement of the site favicon in the wrong html file. All of these errors were removed when the favicon was moved to the head of the layout.html file.
 
 The passed validator test is below:
 
-<img  src="assets/readme-images/html-validation.png" width="80%">
+<img  src="assets/readme-images/html-validation.png" width="100%">
 
 **For CSS**:
 
 CSS validation unsurprisingly returned no errors as the alterations to the code were very minor:
 
-<img  src="assets/readme-images/css-validator.png" width="80%">
+<img  src="assets/readme-images/css-validator.png" width="100%">
 
 [Back to contents](#contents)
 
@@ -193,7 +191,7 @@ This was done by inputting all incorrect data types - strings, numbers, negative
 
 The results are below:
 
-<img  src="assets/readme-images/input-testing.png" width="40%">
+<img  src="assets/readme-images/input-testing.png" width="60%">
 
 All input validation and functionality worked as expected, and no incorrect data types are able to compromise the application and pass through voting.
 

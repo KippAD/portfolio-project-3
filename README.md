@@ -43,14 +43,14 @@ In order to reach these objectives and achieve a high UX standard, focus needs t
 - User actions are clearly explained across the application so that the user will always know what will happen in response to their inputs.
 
 **To achieve the second objective:**
-- Consistent text colors will represent different actions: Blue text is a loading msg, cyan text indicates an input is required, and red text a warning.
-- Colorama and Ascii Title will add color and design throughout, expaning the limitations of the terminal that would otherwise be limited to a black background with white text.
-- Voting data will be printed into bar chart form, improving the UX by presenting data in a neat and digestible way for the user.
+- Consistent text colors will represent different actions: Blue text is a loading message, cyan text indicates an input is required, and red text a warning.
+- Colorama and Ascii Title will add color and design throughout, expanding the possibilities of the terminal that would otherwise be limited to a black background with white text.
+- Voting data in the application will be printed in bar chart format, improving the UX by presenting data in a neat and digestible way.
 
 [Back to contents](#contents)
 
 ### **Design**
-As mentioned in the UX objectives, the scope of the design is slightly limited due to being CLI based. In the planning phase, the following modules were researched and included in the project in order to maximize how much design could be added to the application:
+As mentioned in the UX objectives, the scope of the design is slightly limited due to the application being CLI based. In the planning phase, the following modules were researched and included in the project in order to maximize how much design could be added:
 
 - **Termacolor and Pyfiglet** - These modules meant that a title of Ascii text could be designed and then printed into the terminal. The title is seen throughout the application.
 
@@ -81,7 +81,7 @@ It was useful to map out the applications logic and functionality in order to be
 ---
 <img  src="assets/readme-images/voting-collage.png" width="80%">
 
-The vote casting function takes a user's vote and stores the data externally. This is the main process of the application as its principal aim is to hold an election.
+The vote casting function takes a user vote and stores the data externally. This is the main process of the application as its principal aim is to hold an election.
 
 - Takes first and second names, age, region, and vote, validating all inputs to ensure that the user submits the correct data to the external google sheet.
 - Allows users to review their inputs before submitting, meaning they can cancel their vote or complete the form again if they are not content.
@@ -111,7 +111,7 @@ The information page explains to the user the purpose of the application and sug
 The admin portal is separated from the rest of the application as it has access to sensitive data and has powers to manipulate the vote.
 
 - Access to the admin portal is prohibited by login and password.
-- Is able to view all vote data in tabular form, including names that are omitted in other areas of the application.
+- Admin is able to view all vote data in tabular form, including names that are omitted in other areas of the application.
 - Menu has access to other admin actions including the voting switch and vote deletion.
 
 ## **Admin Vote Deletion:**
@@ -201,7 +201,7 @@ Most issues that arose during development pertained to trailing whitespace and l
 <img  src="assets/readme-images/strings-validation.png" width="60%">
 
 #### **HTML, CSS, and JavaScript**
-As the Voting Station is developed from a template provided by Code Institute, the JavaScript in the application has not been adjusted and therefore there is no need to test the code.
+As the Voting Station is developed from a template provided by Code Institute, the JavaScript in the application has not been adjusted and therefore there was no need to test the code.
 
 However, small changes have been made to the HTML and CSS in order to format the position of the terminal in Heroku, so all HTML and CSS has been passed through the [**W3C HTML Validator**](https://validator.w3.org/) and the [**Jigsaw CSS Validator**](https://jigsaw.w3.org/css-validator/) respectively.
 
@@ -253,7 +253,7 @@ The Voting Station has been tested across multiple browsers:
 - **Safari**
 - **Opera**
 
-The only issue found during browser testing was in Safari, where the opening input would not allow any keyboard entry, effectively freezing the application before it had begun. This issue occurred on a 2021 Macbook, but testing Safari on a different 2015 model did not recreate the error. On the older macbook the application ran exactly as intended, this could indicate that the issue is to do with either the newer machine or a newer version of Safari and not the code itself.
+The only issue found during browser testing was in Safari where the opening input would not allow any keyboard entry, effectively freezing the application before it had begun. This issue occurred on a 2021 Macbook, but testing Safari on a different 2015 model did not recreate the error. On the older macbook the application ran exactly as intended, this could indicate that the issue is to do with either the newer machine or a newer version of Safari and not the code itself.
 
 In all other browsers, the application functioned exactly as anticipated, all user interactions was successful, and the google sheet was always updated appropriately.
 
@@ -287,13 +287,13 @@ A persistent problem faced throughout the application development was the favico
 #### **Unresolved**
 
 **First Insights Bar Chart**
-The largest unresolved bug in the application is an error with one of the bar charts in the insights area of the application. Upon loading, the chart does not plot data and instead prints a colorless square with no discernible information on it - this seemingly occurred on every instance that the insights page was loaded for the first time. However, by exiting the insights page and loading it once again the bar chart would print as expected. Whilst not totally resolved, adding a timer between the calling of the two bar chart functions has managed to prevent the issue happening as regularly as before, but sometimes it still occurs. In this case, the user is instructed to reload the insights page.
+The largest unresolved bug in the application is an error with one of the bar charts in the insights area of the application. Upon loading, the chart does not plot data and instead prints a colorless square with no discernible information on it - this seemingly occurred on every instance that the insights page was loaded for the first time. However, by exiting the insights page and loading it once again, the bar chart would print as expected. Whilst not totally resolved, adding a timer between the calling of the two bar chart functions has managed to prevent the issue happening as regularly as before, but sometimes it still occurs. In this case, the user is instructed to reload the insights page.
 
 **Double Barrel Names**
 It was realized quite late into the project development that whilst the name validation is effective in preventing incorrect inputs by preventing special characters and spaces, problems can be caused for users with two first names or double barreled surnames that require hyphens or spaces.  This is cause for improvement in future development of the project.
 
 **Bad UX**
-There are also a couple of examples of bad UX which result from the application being based in the CLI. These occur in the admin votes table and the insights page, where due to larger amounts of content being printed, the user is dragged down to the bottom of the console and half of the content is cut off by the terminal. These do not affect the functionality of the application, but still require the user to scroll up to read the data where it would be preferable if the data fit into the terminal.
+There are also a couple of examples of bad UX which result from the application being based in the CLI. These occur in the admin votes table and the insights page, where due to larger amounts of content being printed, the user is dragged down to the bottom of the console and half of the content is cut off by the terminal. These do not affect the functionality of the application but still require the user to scroll up to read the data where it would be preferable if the data fit into the terminal.
 
 [Back to contents](#contents)
 

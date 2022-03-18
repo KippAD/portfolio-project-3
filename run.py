@@ -1,3 +1,4 @@
+"""Main file that runs the voting station application"""
 import time
 import os
 import collections
@@ -27,11 +28,12 @@ SHEET = GSPREAD_CLIENT.open('python_voting_system')
 
 def display_main_menu():
     """
-    Displays main menu with options to move to other areas and takes user input
-    to navigate to chosen area if application.
+    Displays main menu with possible navigation options and takes user input
+    to navigate to chosen area of application.
     """
     loading_message("the Main Menu")
     print(strings.main_menu_text)
+
     msg = "Press 1 for voter portal, 2 for admin portal, or 3 for information:"
     chosen_portal = validate_three_options(msg)
     if chosen_portal == 1:
@@ -44,14 +46,14 @@ def display_main_menu():
 
 def load_voter_portal():
     """
-    Loads voter portal menu displays possible options for user to select next.
+    Displays the voter portal with possible navigation options and takes
+    user input to navigate to chosen area of application.
     """
     loading_message("the Voter Portal")
     print(strings.voter_portal_text)
 
     msg = "Press 1 to cast a vote, 2 to view vote results or 3 for main menu:"
     voter_menu = validate_three_options(msg)
-
     if voter_menu == 1:
         check_voting_status()
     elif voter_menu == 2:
@@ -62,8 +64,8 @@ def load_voter_portal():
 
 def load_information():
     """
-    Displays information about the application when chosen
-    by the user on the main menu.
+    When selected from the main menu the function displays the information area
+    which explains the applications purpose to the user.
     """
     loading_message("Information")
     print(strings.information_text)
@@ -72,8 +74,9 @@ def load_information():
 
 def check_voting_status():
     """
-    Checks to see if voting is switched on or off - the switch is located in
-    the admin portal and will allow voting if on and prevent voting if off.
+    Checks google sheet to see if voting is switched on or off and will block
+    voting if cell value is off. Explains to the user that voting is disabled
+    and offers option to return to voter portal.
     """
     voting_switch = SHEET.worksheet("control").acell("A2").value
     if voting_switch == "on":
@@ -87,15 +90,14 @@ def check_voting_status():
 
 def load_vote_casting():
     """
-    Instigates the vote casting process but first gives user to back out from
-    process and return to the voter portal.
+    Instigates the vote casting process but first gives user an option to
+    return to the voter portal.
     """
     loading_message("Vote Casting")
-
     print(f"{Fore.MAGENTA}Welcome to the Voting Station!")
+
     prompt = "Press 1 to begin voting, press 2 to return to the voter portal:"
     response = validate_two_options(prompt)
-
     if response == 1:
         cast_user_vote()
     elif response == 2:
@@ -104,27 +106,27 @@ def load_vote_casting():
 
 def cast_user_vote():
     """
-    Takes validated user inputs to build list that is will be submitted as a
+    Takes validated user inputs to build a list that will be submitted as a
     vote to the external google spreadsheet.
     """
     reset_terminal()
     print(f"{Fore.WHITE}To cast your vote, please fill out the form below\n")
+    # Takes inputs for both names and resets terminal
     fname_input = get_voter_name("first")
     lname_input = get_voter_name("last")
     time.sleep(2)
     reset_terminal()
-
+    # Gathers inputs for age and region and resets terminal
     age_input = get_voter_age()
     region_input = get_voter_region()
     time.sleep(2)
     reset_terminal()
-
+    # Gets party vote and loads vote confirmation display
     vote_input = get_voter_vote()
     time.sleep(2)
-
     full_vote = [fname_input, lname_input, age_input, region_input, vote_input]
     confirm_vote(full_vote)
-
+    # Takes user input to confirm vote submission
     msg = "Press 1 to submit your vote, 2 start again, or 3 for voter portal:"
     confirmation = validate_three_options(msg)
     submit_vote(confirmation, full_vote)
@@ -132,8 +134,8 @@ def cast_user_vote():
 
 def get_voter_name(name_type):
     """
-    Ensures that data submitted when user cast votes is correct
-    and returns correct value before data is submitted to spreadsheet.
+    Gets name input for vote casting and ensures that input data submitted by
+    user is correct before returning the validated value.
     """
     error = "Please exclude any numbers, spaces, or special characters..."
     input_prompt = f"Please enter your {name_type} name:"
@@ -157,7 +159,7 @@ def get_voter_name(name_type):
 def get_voter_age():
     """
     Gets voters age from an input, validates that the value is an integer
-    between 18 and 120 and returns the value.
+    between 18 and 120 before returning the value.
     """
     input_prompt = "Please enter your age:"
 
@@ -225,8 +227,8 @@ def get_voter_vote():
 
 def confirm_vote(vote):
     """
-    Confirms the data input by the user when casting vote before
-    submitting to the google sheet.
+    Prints all data input by the user during vote casting for the purposes
+    of vote confirmation in the submit_vote function.
     """
     reset_terminal()
     print(f"{Fore.CYAN}Are you happy with the information entered?\n")
@@ -238,8 +240,9 @@ def confirm_vote(vote):
 
 def submit_vote(answer, vote_list):
     """
-    Takes the input from the validate_vote_confirm function and submits vote
-    if 1 is selected and restarts voting process if 2 is selected.
+    Takes parameters from cast_user_vote function and takes appropriate action
+    depending on input - 1 submits vote to google sheet, 2 begins voting process
+    again, and 3 cancels vote submission and reloads voter portal.
     """
     if answer == 1:
         print(f"{Fore.GREEN}Vote submitted...")
@@ -255,8 +258,9 @@ def submit_vote(answer, vote_list):
 
 def vote_results_menu():
     """
-    Displays the menu with options to view different insights about the
-    voting results (Vote count, vote percentage by region, vote by age)
+    Displays the results menu with options to either view vote count, view different
+    insights about the voting results, or return to voter portal. Takes input and
+    navigates user to correct area.
     """
     loading_message("the Vote Results Menu")
     print(strings.vote_results_text)
@@ -272,24 +276,11 @@ def vote_results_menu():
         load_voter_portal()
 
 
-def count_votes(total_votes):
-    """
-    Counts the votes from the google sheet and returns the vote count in
-    integers as well as a percentage.
-    """
-    total_count = len(total_votes)
-    # Counts occurences of each vote in party_votes list
-    count = collections.Counter(total_votes)
-    votes_list = [total_count, count["Red"], count["Green"], count["Blue"]]
-
-    return votes_list
-
-
 def load_vote_percentage():
     """
-    Gathers all of the necessary data by counting votes and converting them
-    into a percentage before passing them into the display_vote_percentage and
-    displaying a bar chart.
+    Gets votes from google sheet and counts them before converting them into
+    percentages. Then organizes data in the correct way to be passed through
+    display_vote_percentage function.
     """
     # Gets votes from google sheet
     party_votes = SHEET.worksheet("votes").col_values(5)
@@ -299,16 +290,29 @@ def load_vote_percentage():
     red_percent = calculate_percentage(counted[0], counted[1])
     green_percent = calculate_percentage(counted[0], counted[2])
     blue_percent = calculate_percentage(counted[0], counted[3])
-
+    # Converts vote data into correct format for bar chart display
     chart_headings = ["Red Party", "Green Party", "Blue Party"]
     chart_percentage = [red_percent, green_percent, blue_percent]
     display_vote_percentage(chart_headings, chart_percentage, counted)
 
 
+def count_votes(total_votes):
+    """
+    Counts the votes from the google sheet and returns a list with the total
+    count and the count of each of the three parties.
+    """
+    total_count = len(total_votes)
+    # Counts occurences of each vote in party_votes list
+    count = collections.Counter(total_votes)
+    votes_list = [total_count, count["Red"], count["Green"], count["Blue"]]
+
+    return votes_list
+
+
 def display_vote_percentage(headings, percentage, count):
     """
     Displays the bar chart using data provided from load_vote_percentage
-    function and also prints text into area.
+    function and also prints text into the current vote count area.
     """
     loading_message("the Vote Count")
     print("This is the current vote count of the election:")
@@ -326,8 +330,8 @@ def display_vote_percentage(headings, percentage, count):
 
 def load_voting_insights():
     """
-    Displays bar charts of voting popularity by age and region, allowing user
-    to see the demographics of party supporters.
+    Displays bar charts of voting popularity by age and region in insights area,
+    allowing user to see the demographics of party supporters.
     """
     loading_message("Voting Insights")
     # Converts ages in google sheet from string into integer
@@ -353,8 +357,8 @@ def load_voting_insights():
 
 def count_age_votes(votes, ages):
     """
-    Categorizes votes into age groups voted from to display second
-    bar chart on the insights menu.
+    Categorizes votes into age groups to pass through display_insights_chart
+    function which displays a bar chart in the insights area.
     """
     # Creates lists of each age bracket to be displayed in insights
     below_30 = [x for ind, x in enumerate(votes) if ages[ind] < 30]
@@ -371,39 +375,43 @@ def count_age_votes(votes, ages):
 
 def count_region_votes(votes, region):
     """
-    Counts votes by the selected region voted from to display second
-    bar chart on the insights menu.
+    Categorizes votes into regions voted from to pass through
+    display_insights_chart function which displays a second bar chart in the
+    insights area.
     """
     # Creates lists of votes for each region to be counted later
     lewes = [x for ind, x in enumerate(votes) if region[ind] == "Lewes"]
-    eastbourne = [x for ind, x in enumerate(votes) if region[ind] == "Eastbourne"]
-    hastings = [x for ind, x in enumerate(votes) if region[ind] == "Hastings"]
+    eastb = [x for ind, x in enumerate(votes) if region[ind] == "Eastbourne"]
+    hast = [x for ind, x in enumerate(votes) if region[ind] == "Hastings"]
 
     # Data passed into the display_insights_chart function to fill in bar chart
     region_title = "Votes by Region(Percentage)"
     region_subheadings = ["Lewes", "Hastings", "Eastbourne"]
-    region_data = [lewes, eastbourne, hastings]
+    region_data = [lewes, eastb, hast]
     display_insights_chart(region_title, region_subheadings, region_data)
 
 
 def display_insights_chart(chart_title, chart_subheadings, chart_data):
     """
-    Calculates percentages of each age bracket and prints multiple bar
-    charts in the voting insights area.
+    Takes parameters from count_age_votes and count_region_votes functions in
+    order to display a bar chart, this includes converting the lists of votes
+    into percentages.
     """
-    # Iterates through the list of lists and organizes data for
-    # bar chart to be able to understand
     red_percentages = []
     green_percentages = []
     blue_percentages = []
-
+    # Appends above lists with counted percentages of each party
     for ind in chart_data:
         counted = count_votes(ind)
         red_percentages.append(calculate_percentage(counted[0], counted[1]))
         green_percentages.append(calculate_percentage(counted[0], counted[2]))
         blue_percentages.append(calculate_percentage(counted[0], counted[3]))
-
-    plt.multiple_bar(chart_subheadings, [blue_percentages, green_percentages, red_percentages], label=["Blue", "Green", "Red"])
+    # New lists are used to plot chart below
+    plt.multiple_bar(
+        chart_subheadings,
+        [blue_percentages, green_percentages, red_percentages],
+        label=["Blue", "Green", "Red"]
+        )
     plt.title(f"{chart_title}")
     plt.plot_size(100, 25)
     plt.show()
@@ -452,14 +460,14 @@ def validate_admin_login():
 def display_admin_portal():
     """
     Displays the admin menu once login is correctly completed. Displays options
-    to view vote results and voting insights.
+    to view vote results and voting insights and takes user input to navigate
+    to selected area.
     """
     loading_message("the Admin Portal")
     print(strings.admin_portal_text)
 
     msg = "Press 1 to view all votes, 2 for admin control, or 3 for main menu:"
     admin_menu = validate_three_options(msg)
-
     if admin_menu == 1:
         load_admin_votes()
     elif admin_menu == 2:
@@ -470,8 +478,8 @@ def display_admin_portal():
 
 def load_admin_votes():
     """
-    Displays all votes from google sheet into console, including sensitive
-    data that is not accessible in user area.
+    Displays all votes from google sheet into console in tabular form, including
+    sensitive data that is not accessible in user area.
     """
     loading_message("Vote Data")
     sheet = SHEET.worksheet("votes")
@@ -505,7 +513,7 @@ def get_admin_actions():
 def delete_vote():
     """
     Takes an integer input from the admin and validates that it is a number
-    within a range of the length of all vote indexes. Calls 
+    within the range of the length of all vote indexes. Calls
     confirm_vote_deletion function if valid number is entered.
     """
     total = SHEET.worksheet("votes").col_values(1)
@@ -518,7 +526,7 @@ def delete_vote():
             continue
         else:
             if delete_num in range(1, len(total)):
-                # Passes chose vote into delete confirmation
+                # Passes chosen vote into delete confirmation
                 confirm_vote_deletion(delete_num)
                 break
             elif delete_num == 0:
@@ -551,7 +559,8 @@ def confirm_vote_deletion(vote_index):
 
 def load_admin_control():
     """
-    Displays the menu text where admin can disable voting in application.
+    Displays the menu text where admin can disable voting in application and
+    takes user input to toggle vote switch.
     """
     loading_message("Admin Control")
     print(f"{strings.admin_control_text}")
@@ -589,7 +598,7 @@ def lock_voting_admin(switch_state):
 
 def validate_two_options(input_msg):
     """
-    Validates the input given by the admin when there is an input with two
+    Validates the input given by a user when there is an input with two
     possible options, returning the value once validation has finished.
     """
     while True:
@@ -609,8 +618,8 @@ def validate_two_options(input_msg):
 
 def validate_three_options(input_msg):
     """
-    Ensures that the correct input is given by the user in the multiple choice
-    menu that appears throughout the application.
+    Validates the input given by a user when there is an input with three
+    possible options, returning the value once validation has finished.
     """
     while True:
         try:
@@ -639,7 +648,7 @@ def loading_message(area):
 
 def calculate_percentage(total, count):
     """
-    Calculates the percentage of a value to two decimal places
+    Calculates the percentage of a value to two decimal places.
     """
     percentage = count / total * 100
     percentage = round(percentage, 2)
@@ -657,9 +666,9 @@ def load_main_menu():
 
 def load_results_menu():
     """
-    Allows user to enter any input to be redirected to main menu.
+    Allows user to enter any input to be redirected to results menu.
     """
-    input_prompt = "Enter any key to return to the insights menu"
+    input_prompt = "Enter any key to return to the results menu"
     input(f"{Fore.CYAN}\n{input_prompt}{Fore.WHITE}\n")
     vote_results_menu()
 
@@ -670,7 +679,8 @@ def reset_terminal():
     """
     os.system('cls' if os.name == 'nt' else 'clear')
     os.system('printf "\ec"')
-    cprint(figlet_format("The Voting Station!", font='big'), "green", attrs=["bold"])
+    title = "The Voting Station!"
+    cprint(figlet_format(title, font='big'), "green", attrs=["bold"])
 
 
 def main():

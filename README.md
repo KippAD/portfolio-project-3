@@ -5,7 +5,7 @@ The Voting Station is a command line interface based voting system that is built
 
 [Link to the live site](https://the-voting-station.herokuapp.com/)
 
-header image
+<p  align="center"><img  src="assets/readme-images/readme-hero-img.png" width="50%"></p>
 
 ## Contents 
 - [Planning](#planning)
@@ -26,8 +26,6 @@ header image
 - [Deployment](#deployment)
 - [Credits & Acknowledgements](#credits-&-acknowledgements)
 
----
-
 ## **Planning**
 ---
 ### **UX Objectives**
@@ -39,13 +37,13 @@ The objectives for the Voting Station from a UX perspective are:
 
 3. In order to reach these objectives and achieve a high UX standard, focus needs to be put on presenting the application clearly and with a good aesthetic. This is somewhat harder in a CLI application as design is more limited, but using external modules the design can be improved and contribute to creating a good user experience.
 
-To achieve the first objective:
+**To achieve the first objective:**
 - The inputs that control the applications flow are clearly marked, the user will always know when an action is required from them to move through the application.
 - The user will always know where they are within the application, enabling them to move through it more intuitively.
 - User actions are clearly explained across the application. The user will always know what will happen in response to their inputs.
 - This will be complimented by consistent text colors that represent different actions: Blue text is a loading msg, cyan text indicates an input is required, and red text a warning.
 
-To achieve the second objective:
+**To achieve the second objective:**
 - Colorama and Ascii Title will add color and design throughout, whereas without them the terminal would be limited to a black background with white text.
 - Voting data will be printed into bar chart form, improving the UX by presenting data in a neat and digestible way for the user.
 
@@ -56,14 +54,23 @@ As mentioned in the UX objectives, the scope of the design is slightly limited d
 
 - **Termacolor and Pyfiglet** - These modules meant that a title of Ascii text could be designed and then printed into the terminal. The title is seen throughout the application.
 
+<p  align="center"><img  src="assets/readme-images/ascii-title.png" width="50%"></p>
+
 - **Colorama** - Gives color and background color to text within the application. As mentioned previously, this is useful in giving a consistent experience for the user by categorizing the text in the application to different functions and processes. For example cyan text always indicates to a user that an input is required, red text is a warning and green indicates that a user action has been accepted. As a user continues to use the application they will also build familiarity with the actions associated with the colors.
 
+<p  align="center"><img  src="assets/readme-images/colorama.png" width="50%"></p>
+
 - **Plotext and Tabulate** - These modules contributed greatly in improving the design and UX in the Voting Station. They allow data to be printed into the terminal in bar chart and tabular form respectively, and meant that large swathes of data were meaningfully presented.
+
+<p  align="center"><img  src="assets/readme-images/plotext.png" width="50%"></p>
 
 [Back to contents](#contents)
 
 ### **Logic Chart**
 It was useful to map out the applications logic and functionality in order to better understand how to structure the code during development. Using Lucidchart, the application was plotted out and it proved to be a very important resource to keep referring back to during the development process. 
+
+<p  align="center"><img  src="assets/readme-images/lucid-chart.png" width="50%"></p>
+
 
 [Back to contents](#contents)
 
@@ -72,29 +79,52 @@ It was useful to map out the applications logic and functionality in order to be
 ### **Existing Features**
 
 #### **Vote Casting**
+
+<img  src="assets/readme-images/vote-casting-1.png" width="30%">
+<img  src="assets/readme-images/vote-casting-2.png" width="30%">
+
 The vote casting function takes a user's vote and stores the data externally. This is the main process of the application as its principal aim is to hold an election.
 
 - Takes first and second names, age, region, and vote, validating all inputs to ensure that the user inputs the correct data to the external google sheet.
 - Allows users to review their inputs before submitting, meaning they can cancel their vote or complete the form again if they are not content.
 
 #### **Vote Results and Insights**
+
+<img  src="assets/readme-images/plotext.png" width="20%">
+<img  src="assets/readme-images/insights-1.png" width="20%">
+<img  src="assets/readme-images/insights-2.png" width="20%">
+<img  src="assets/readme-images/insights-3.png" width="20%">
+
 Using the data provided by the user, the Voting Station uses the plotext and gspread modules to retrieve and display the live data retrieved from the vote database.
 
 - Vote results displays a live current vote count in percentages in bar chart format, updating automatically with each new vote.
 - Voting insights provides further information about voting demographics in bar chart form, these are the popularity of each party in each voting region and the popularity of each party in certain age brackets.
 
 #### **Information**
+<img  src="assets/readme-images/information.png" width="30%">
+
 The information page explains to the user the purpose of the application and suggests possible actions that they might take.
 
 - Clearly describes the function of the application in more depth to the user if it is not immediately obvious on the main menu.
 
 #### **Admin Portal**
+
+<img  src="assets/readme-images/admin-1.png" width="25%">
+<img  src="assets/readme-images/admin-3.png" width="25%">
+<img  src="assets/readme-images/admin-2.png" width="15%">
+<img  src="assets/readme-images/admin-4.png" width="25%">
+
 The admin portal is separated from the rest of the application as it has access to sensitive data and has powers to manipulate the vote.
 
 - Access to the admin portal is prohibited by login and password.
 - Is able to view all vote data in tabular form, including names that are omitted in other areas of the application.
 - The admin can delete votes by using their index in the displayed table.
 - In admin control, there is an toggle to turn off vote taking - this will prevent users from submitting votes until it is turned on again. This could be useful if there was an error with vote validation and incorrect data was being submitted.
+
+**Admin Vote Switch:**
+
+<img  src="assets/readme-images/vote-off.png" width="40%">
+<img  src="assets/readme-images/vote-switch.png" width="40%">
 
 [Back to contents](#contents)
 
@@ -124,6 +154,14 @@ All python code in the Voting Station was tested using the [**Python Pep8 Valida
 
 Most issues that arose during development pertained to trailing whitespace and lines that were too long, both of which were fairly straight forward to resolve. The results from the PEP8 Validator are below:
 
+**Run.py:**
+
+<img  src="assets/readme-images/run-validation.png" width="40%">
+
+
+**Strings.py:**
+
+<img  src="assets/readme-images/strings-validation.png" width="40%">
 
 #### **HTML, CSS, and JavaScript**
 As the Voting Station is developed from a template provided by Code Institute, the Javascript in the application has not been tested as no adjustments to the code have been made.
@@ -132,20 +170,19 @@ However small changes have been made to the HTML and CSS in order to format the 
 
 **For HTML**:
 
-[Error image]
+<img  src="assets/readme-images/html-warnings.png" width="80%">
 
 The validator initially returned three errors, including a fatal error. These were all related to the placement of the site favicon in the wrong html file. All of these errors were removed when the favicon was moved to the head of the layout.html file.
 
 The passed validator test is below:
 
-[Passed validator img]
+<img  src="assets/readme-images/html-validation.png" width="80%">
 
 **For CSS**:
 
 CSS validation unsurprisingly returned no errors as the alterations to the code were very minor:
 
-[CSS validator img]
-
+<img  src="assets/readme-images/css-validator.png" width="80%">
 
 [Back to contents](#contents)
 
@@ -156,7 +193,7 @@ This was done by inputting all incorrect data types - strings, numbers, negative
 
 The results are below:
 
-[manual input testing img]
+<img  src="assets/readme-images/input-testing.png" width="40%">
 
 All input validation and functionality worked as expected, and no incorrect data types are able to compromise the application and pass through voting.
 
@@ -189,11 +226,17 @@ In all other browsers the application functioned exactly as anticipated, all use
 
 ### **Lighthouse Testing**
 The Voting Station was tested using the Lighthouse extension of Google Chrome, the results are below:
-[lighthouse img]
 
-The low SEO score was due to the site not having a meta description, which seemed to resolve the score:
+**Mobile:**
 
-The other low score was in Best Practices. This issue was related to the JavaScript library involved, which as mentioned earlier was preinstalled with the template.
+<img  src="assets/readme-images/lh-mobile-2.png" width="80%">
+
+
+**Desktop:**
+
+<img  src="assets/readme-images/lh-desktop-2.png" width="80%">
+
+The SEO score was originally lower due to the site not having a meta description so adding one seemed to resolve the score. The other low score was in Best Practices. This issue was related to the JavaScript library involved, which as mentioned earlier was preinstalled with the template.
 
 [Back to contents](#contents)
 

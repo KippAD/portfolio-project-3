@@ -501,7 +501,7 @@ def get_admin_actions():
     Presents admin with possible actions when on the admin votes display,
     including the option to delete a row.
     """
-    prompt = "Press 1 to delete a vote, press 2 to return to the Admin Portal:"
+    prompt = "Press 1 to delete a vote, or 2 to return to the Admin Portal:"
     action = validate_two_options(prompt)
 
     if action == 1:
@@ -520,7 +520,7 @@ def delete_vote():
     prompt = f"{strings.delete_prompt}"
     while True:
         try:
-            delete_num = int(input(f"\n{prompt}{Fore.WHITE}\n"))
+            delete_num = int(input(f"\n{Fore.CYAN}{prompt}{Fore.WHITE}\n"))
         except ValueError:
             print(f"{Fore.RED}Incorrect Input: {prompt}")
             continue

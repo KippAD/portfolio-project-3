@@ -123,7 +123,7 @@ admin_control_text = (
 
 # Delete vote confirmation prompt in the vote section of the admin portal.
 delete_prompt = (
-        f"{Fore.CYAN}Please enter the vote number of the vote that you wish\n"
+        f"Please enter the vote number of the vote that you wish\n"
         f"to delete, to cancel this action press 0:"
     )
 

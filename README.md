@@ -5,7 +5,7 @@ The Voting Station is a command line interface based voting system that is built
 
 [Link to the live site](https://the-voting-station.herokuapp.com/)
 
-<p  align="center"><img  src="assets/readme-images/readme-hero-img.png" width="75%"></p>
+<p align="center"><img  src="assets/readme-images/readme-hero-img.png" width="75%"></p>
 
 ## Contents 
 - [Planning](#planning)
@@ -281,6 +281,8 @@ The SEO score was originally lower due to the site not having a meta description
 **Clearing Terminal**
 An issue that was particularly difficult to resolve in the beginning of Heroku was related to clearing the terminal. Using the OS module there is a function to clear the terminal, however this is seemingly limited to the viewport size of the terminal itself and therefore with larger amounts of content that would exceed the terminal height, the function would not fully clear the terminal. Eventually a solution was found thanks to Helena, a fellow student on slack.
 
+<img  src="assets/readme-images/slack-solution.png" width="60%">
+
 **Favicon**
 A persistent problem faced throughout the application development was the favicon not displaying in Heroku. This can be seen throughout the commit history where repeated attempts are made to resolve the issue. This is because in order to test a solution the changes had to be pushed to Github, and often that solution failed to work. Eventually changing the link to the favicon from a file path to a raw link solved the issue.
 
@@ -298,6 +300,43 @@ There are also a couple of examples of bad UX which result from the application 
 [Back to contents](#contents)
 
 ### **Deployment**
+This project was deployed on Heroku. The following step how to deploy a project of your own:
+
+1. Navigate to Heroku and log in. (If you do not have an account the create one using the Sign Up button)
+
+<p align="center"><img  src="assets/readme-images/heroku-1.png" width="40%"></p>
+
+2. Once logged in, navigate to your account dashboard and click the New button, then click Create New App in the corresponding drop down.
+
+<p align="center"><img  src="assets/readme-images/heroku-2.png" width="60%"></p>
+
+3. Choose a name for your application before selecting an appropriate region.
+
+<p align="center"><img  src="assets/readme-images/heroku-3.png" width="40%"></p>
+
+4. Within the application interface, head to the settings tab and click reveal config vars.
+
+<p align="center"><img  src="assets/readme-images/heroku-4.png" width="60%"></p>
+
+5. Once in Config Vars enter the key of "PORT", and the value of "8000". (If working with google sheets API, you would also enter the credentials into the Config Vars)
+
+<p align="center"><img  src="assets/readme-images/heroku-5.png" width="60%"></p>
+
+6. In the area underneath, click the Add Buildpack button - in this menu select Python and save. Repeat the process and add Node.js and ensure that in the buildpack order Python is above Node.js.
+
+<p align="center"><img  src="assets/readme-images/heroku-6.png" width="60%"></p>
+
+7. Head back to the top of the page and select the Deploy panel. In this area select Github as the method of deployment and ensure that the appropriate Github account is connected to the Heroku account.
+
+<p align="center"><img  src="assets/readme-images/heroku-7.png" width="60%"></p>
+
+8. Using the search bar in the connect to github area, input the necessary repository and click connect.
+
+<p align="center"><img  src="assets/readme-images/heroku-8.png" width="60%"></p>
+
+9. Once connected, enable automatic deployment and then scroll down and select Deploy Branch. Once loaded a link will be displayed that will take you to the live project.
+
+<p align="center"><img  src="assets/readme-images/heroku-9.png" width="60%"></p>
 
 [Back to contents](#contents)
 

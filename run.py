@@ -386,7 +386,7 @@ def count_region_votes(votes, region):
 
     # Data passed into the display_insights_chart function to fill in bar chart
     region_title = "Votes by Region(Percentage)"
-    region_subheadings = ["Lewes", "Hastings", "Eastbourne"]
+    region_subheadings = ["Lewes", "Eastbourne", "Hastings"]
     region_data = [lewes, eastb, hast]
     display_insights_chart(region_title, region_subheadings, region_data)
 

@@ -239,9 +239,9 @@ The first issue found when testing was related to the color of a warning being i
 [Back to contents](#contents)
 
 ### **Manual Data Testing** 
-To check that the data being presented in the bar charts was correct, manual tests were also conducted. This involved counting each vote using google sheets and ensuring that that it matched up with the data that was currently displayed in the bar charts in the application.
+To check that the data being presented in the bar charts was correct, manual tests were also conducted. This involved google sheets to check the data displayed in the Voting Station by manually calculating the same data in google sheets, and ensuring that that all values matched up. This was done for the current vote count display and for the bar charts in insights.
 
-The data in the google sheets matched the data being printed in the application, indicating that all calculations were functioning correctly in the Voting Station.
+During testing it was discovered that in the vote by region bar chart the titles of two regions were the wrong way around, meaning that the data represented in the bar chart was incorrect. This was resolved by switching the titles around. Other than that single issue, the data in the google sheets matched the data being printed in the application, indicating that all calculations were functioning correctly in the Voting Station.
 
 [Back to contents](#contents)
 

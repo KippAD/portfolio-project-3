@@ -3,7 +3,7 @@
 ## **Brief**
 The Voting Station is a command line interface based voting system that is built to hold an election. The election is set in Sussex and is run between three candidates: The Red, Green, and Blue Parties. The application aims to automate the voting process by collecting votes from users, storing and counting them, and then presenting data back to the user in a visually appealing way.
 
-**Login details for admin portal:**
+**Login details for Admin Portal:**
 
 Username: admin
 
@@ -43,7 +43,7 @@ The objectives for the Voting Station from a UX perspective are:
 
 2. The application has a consistent design that makes it clear to the user what processes are happening and when input is required. From an aesthetic perspective, the user gets a positive emotional response from interacting with the application.
 
-Due to the application being based in the command line interface, the design is more limited in its possibilities. This means that more focus has to be put on creating a display that looks good and appeals to the user. However, using external python modules and librarires will allow the design to be improved alongside the user experience as they offer more oppurtunities to customize the interface.
+Due to the application being based in the command line interface, the design is more limited in its possibilities, meaning that more focus has to be put on creating a display that looks good and appeals to the user. These limitations can be countered by using external python modules and librarires that offer more oppurtunities to customize the interface, and therefore improve the design and UX.
 
 **To achieve the first objective:**
 - The inputs that control the applications flow are clearly marked so that the user will always know when an action is required from them.
@@ -116,13 +116,13 @@ The information page explains to the user the purpose of the application and sug
 ---
 <img  src="assets/readme-images/admin-collage-1.png" width="80%">
 
-The admin portal is separated from the rest of the application as it has access to sensitive data and has powers to manipulate the vote.
+The Admin Portal is separated from the rest of the application as it has access to sensitive data and has powers to manipulate the vote.
 
-- Access to the admin portal is prohibited by login and password.
+- Access to the Admin Portal is prohibited by login and password.
 - Admin is able to view all vote data in tabular form, including names that are omitted in other areas of the application.
 - Menu has access to other admin actions including the voting switch and vote deletion.
 
-## **Admin Vote Deletion:**
+### **Admin Vote Deletion:**
 ---
 <img  src="assets/readme-images/admin-collage-2.png" width="80%">
 
@@ -132,14 +132,14 @@ The admin has the power to delete votes from the election in the Admin Portal.
 - Admin can user voting number displayed in table to delete votes.
 - This function would only be used in certain circumstances, for example if an illegitimate vote got through validation.
 
-## **Admin Vote Switch**
+### **Admin Vote Switch**
 ---
 <img  src="assets/readme-images/switch-collage.png" width="80%">
 
-In the admin control area the admin can switch voting on or off.
+In the admin control area, the admin is able switch voting on or off.
 
-- Voting toggle is able to turn off vote taking, preventing users from submitting votes until it is turned on again. 
-- This could be useful if there was an error with vote validation or incorrect data was being submitted.
+- Voting toggle allows the vote casting function to be enable and disabled by the admin, preventing users from submitting votes until it is turned on again. 
+- This could be useful if there was an error with vote validation or if incorrect data was being submitted.
 
 [Back to contents](#contents)
 
@@ -154,7 +154,6 @@ To build on the above idea, with more data points there would be a greater range
 [Back to contents](#contents)
 
 ## **Technology** 
----
 The Voting Station was built with the following technologies:
 
 1.  [**HTML**](https://en.wikipedia.org/wiki/HTML5) - Used to give content to the application.
@@ -173,13 +172,12 @@ The Voting Station was built with the following technologies:
 [Back to contents](#contents)
 
 ## **Python Modules**
----
 The following modules were used in developing the Voting Station:
 
 1.  [**Time**](https://docs.python.org/3/library/time.html) - For adding time delays to application.
 2.  [**OS**](https://docs.python.org/3/library/os.html) - Used for clearing the terminal.
 3.  [**Collections**](https://docs.python.org/3/library/collections.html) - Used to count votes more concisely.
-4.  [**Tabulate**](https://pypi.org/project/tabulate/) - For presenting the vote data in table format in admin portal.
+4.  [**Tabulate**](https://pypi.org/project/tabulate/) - For presenting the vote data in table format in Admin Portal.
 5.  [**Termcolor**](https://pypi.org/project/termcolor/) - For cprinting the ascii title.
 6.  [**Pyfiglet**](https://pypi.org/project/pyfiglet/0.7/) - For generating the ascii title.
 7.  [**Colorama**](https://pypi.org/project/colorama/) - To add color to the application text.
@@ -192,10 +190,8 @@ The following modules were used in developing the Voting Station:
 ## **Testing**
 
 ### **Validator Tests**
----
 
 #### **Python PEP8 Validator**
-
 All python code in the Voting Station was tested using the [**Python Pep8 Validator**](http://pep8online.com/checkresult). When tested for the first time, no errors or warnings were returned. This is due to Gitpod’s built-in system that alerted any issues with the python code during development, so all issues were resolved before the application was tested in the validator.
 
 Most issues that arose during development pertained to trailing whitespace and lines that were too long, both of which were fairly straight forward to resolve. The results from the PEP8 Validator are below:
@@ -242,7 +238,7 @@ The results are below:
 
 All input validation and functionality worked as expected, and no incorrect data types are able to compromise the application and pass through voting.
 
-The first issue found when testing was related to the color of a warning being incorrect. The second more significant problem was the first bar chart in insights rendering incorrectly. This second issue is a known bug, although navigating back to the voter portal and then back into insights will load the chart successfully.
+The first issue found when testing was related to the color of a warning being incorrect. The second more significant problem was the first bar chart in insights rendering incorrectly. This second issue is a known bug, although navigating to the results menu and then back into insights will load the chart successfully.
 
 [Back to contents](#contents)
 
@@ -263,7 +259,7 @@ The Voting Station has been tested across multiple browsers:
 
 The only issue found during browser testing was in Safari where the opening input would not allow any keyboard entry, effectively freezing the application before it had begun. This issue occurred on a 2021 Macbook, but testing Safari on a different 2015 model did not recreate the error. On the older Macbook the application ran exactly as intended, which could indicate that the issue is to do with either the newer machine or a newer version of Safari and not the code itself.
 
-In all other browsers, the application functioned exactly as anticipated, all user interactions was successful, and the google sheet was always updated appropriately.
+In all other browsers, the application functioned exactly as anticipated, all user interactions were successful, and the google sheet was always updated appropriately.
 
 [Back to contents](#contents)
 
@@ -287,22 +283,27 @@ The SEO score was originally lower due to the site not having a meta description
 #### **Resolved**
 
 **Clearing Terminal**
-An issue that was particularly difficult to resolve in the beginning of Heroku was related to clearing the terminal. Using the OS module there is a function to clear the terminal, however this is seemingly limited to the viewport size of the terminal itself and therefore with larger amounts of content that would exceed the terminal height, the function would not fully clear all content. Eventually a solution was found thanks to Helena, a fellow student on slack.
+
+An issue that was particularly difficult to resolve once the application had been deployed to Heroku was related to clearing the terminal. Using the OS module there is a function to clear the terminal, however this is seemingly limited to the viewport size of the terminal itself and therefore with larger amounts of content that would exceed the terminal height, the function would not fully clear all content. Eventually a solution was found thanks to Helena, a fellow student on slack.
 
 <img  src="assets/readme-images/slack-solution.png" width="60%">
 
 **Favicon**
+
 A persistent problem faced throughout the application development was the favicon not displaying in Heroku. This can be seen throughout the commit history where repeated attempts are made to resolve the issue. This is because in order to test a solution the changes had to be pushed to Github, and often that solution failed to work. Eventually changing the link to the favicon from a file path to a raw link solved the issue.
 
 #### **Unresolved**
 
 **First Insights Bar Chart**
+
 The largest unresolved bug in the application is an error with one of the bar charts in the insights area of the application. Upon loading, the chart does not plot data and instead prints a colorless square with no discernible information on it - this seemingly occurred on every instance that the insights page was loaded for the first time. However, by exiting the insights page and loading it once again, the bar chart would print as expected. Whilst not totally resolved, adding a timer between the calling of the two bar chart functions has managed to prevent the issue happening as regularly as before, but sometimes it still occurs. In this case, the user is instructed to reload the insights page.
 
 **Double Barrel Names**
-It was realized quite late into the project development that whilst the name validation is effective in preventing incorrect inputs by preventing special characters and spaces, problems can be caused for users with two first names or double barreled surnames that require hyphens or spaces.  This is cause for improvement in future development of the project.
+
+It was realized quite late into the project development that whilst the name validation is effective in preventing incorrect inputs by blocking special characters and spaces, problems can be caused for users with two first names or double barreled surnames that require hyphens or spaces.  This is cause for improvement in future development of the project.
 
 **Bad UX**
+
 There are also a couple of examples of bad UX which result from the application being based in the CLI. These occur in the admin votes table and the insights page, where due to larger amounts of content being printed, the user is dragged down to the bottom of the console and half of the content is cut off by the terminal. These do not affect the functionality of the application but still require the user to scroll up to read the data where it would be preferable if the data fit into the terminal.
 
 [Back to contents](#contents)
@@ -310,7 +311,7 @@ There are also a couple of examples of bad UX which result from the application 
 ### **Deployment**
 The following steps detail how to deploy a project of your own on Heroku:
 
-1. Navigate to Heroku and log in. (If you do not have an account the create one using the Sign Up button)
+1. Navigate to Heroku and log in. (If you do not have an account then create one using the Sign Up button)
 
 <p align="center"><img  src="assets/readme-images/heroku-1.png" width="40%"></p>
 
@@ -318,7 +319,7 @@ The following steps detail how to deploy a project of your own on Heroku:
 
 <p align="center"><img  src="assets/readme-images/heroku-2.png" width="60%"></p>
 
-3. Choose a name for your application before selecting an appropriate region, and finally selecting "Create New App".
+3. Choose a name for your application and select an appropriate region, before finally clicking "Create New App".
 
 <p align="center"><img  src="assets/readme-images/heroku-3.png" width="40%"></p>
 
@@ -326,11 +327,11 @@ The following steps detail how to deploy a project of your own on Heroku:
 
 <p align="center"><img  src="assets/readme-images/heroku-4.png" width="60%"></p>
 
-5. Once in Config Vars enter the key of "PORT", and the value of "8000". (If working with google sheets API, you would also enter the credentials into the Config Vars)
+5. Once in Config Vars enter the key of "PORT", and the value of "8000". (If working with google sheets API you would also enter the credentials into the Config Vars)
 
 <p align="center"><img  src="assets/readme-images/heroku-5.png" width="60%"></p>
 
-6. In the Buildpack area just below click the "Add Buildpack" button, select Python, and save. Repeat the process and add Node.js and ensure that in the buildpack order Python is above Node.js - the order of buildpacks can be easily adjusted by dragging one above or below the other.
+6. In the Buildpack area just below click the "Add Buildpack" button, select Python, and save. Repeat the process and add Node.js and ensure that in the buildpack order Python is above Node.js - the order of buildpacks can be easily adjusted by clicking and dragging one above or below the other.
 
 <p align="center"><img  src="assets/readme-images/heroku-6.png" width="60%"></p>
 

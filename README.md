@@ -24,15 +24,16 @@ Password: password
     - [Current Features](#current-features)
     - [Future Features](#future-features)
 - [Technology](#technology)
+- [Python Modules](#python-modules)
 - [Testing](#testing)
     - [Validator Tests](#validator-tests)
-    - [Manual Browser Testing](#manual-browser-testing)
+    - [Manual Input Testing](#manual-input-testing)
     - [Manual Data Testing](#manual-data-testing)
-    - [Browswer Compatibility](#browser-compatibility)
+    - [Browser Compatibility](#browser-compatibility)
     - [Lighthouse Testing](#lighthouse-testing)
     - [Bugs](#bugs)
 - [Deployment](#deployment)
-- [Credits & Acknowledgements](#credits-&-acknowledgements)
+- [Acknowledgements](#acknowledgements)
 
 ## **Planning**
 ---
@@ -43,7 +44,7 @@ The objectives for the Voting Station from a UX perspective are:
 
 2. The application has a consistent design that makes it clear to the user what processes are happening and when input is required. From an aesthetic perspective, the user gets a positive emotional response from interacting with the application.
 
-Due to the application being based in the command line interface, the design is more limited in its possibilities, meaning that more focus has to be put on creating a display that looks good and appeals to the user. These limitations can be countered by using external python modules and libraries that offer more oppurtunities to customize the interface, and therefore improve the design and UX.
+Due to the application being based in the command line interface, the design is more limited in its possibilities, meaning that more focus has to be put on creating a display that looks good and appeals to the user. These limitations can be countered by using external Python modules and libraries that offer more opportunities to customize the interface, and therefore improve the design and UX.
 
 **To achieve the first objective:**
 - The inputs that control the applications flow are clearly marked so that the user will always know when an action is required from them.
@@ -64,7 +65,7 @@ As mentioned in the UX objectives, the scope of the design is slightly limited d
 
 <p  align="center"><img  src="assets/readme-images/ascii-title.png" width="50%"></p>
 
-- **Colorama** - Gives color and background color to text within the application. As mentioned previously, this is useful in giving a consistent experience for the user by categorizing the text in the application to different functions and processes. For example cyan text always indicates to a user that an input is required, red text is a warning, and green indicates that a user action has been accepted. As a user continues to use the application they will also build familiarity with the actions associated with the colors.
+- **Colorama** - Gives color and background color to text within the application. As mentioned previously, this is useful in giving a consistent experience for the user by categorizing the text in the application to different functions and processes. For example cyan text always indicates to a user that an input is required, red text is a warning, and green indicates that a user action has been accepted. As a user continues to use the application they will build familiarity with the actions associated with the colors.
 
 <p  align="center"><img  src="assets/readme-images/colorama.png" width="50%"></p>
 
@@ -75,7 +76,7 @@ As mentioned in the UX objectives, the scope of the design is slightly limited d
 [Back to contents](#contents)
 
 ### **Logic Chart**
-It was useful to map out the applications logic and functionality in order to better understand how to structure the code during development. Using Lucidchart, the application was plotted out and it proved to be a very important resource to keep referring back to during the development process. 
+It was useful to map out the applications logic and functionality in order to better understand how to structure the code during development. Using [Lucidchart](https://www.lucidchart.com/pages/), the application was plotted out and it proved to be a very important resource to keep referring back to during the development process. 
 
 <p  align="center"><img  src="assets/readme-images/lucid-chart.png" width="50%"></p>
 
@@ -83,7 +84,7 @@ It was useful to map out the applications logic and functionality in order to be
 
 ## Features
 ---
-## **Existing Features**
+## **Current Features**
 
 ### **Vote Casting**
 ---
@@ -138,8 +139,8 @@ The admin has the power to delete votes from the election in the Admin Portal.
 
 In the admin control area, the admin is able switch voting on or off.
 
-- Voting toggle allows the vote casting function to be enabled and disabled by the admin, preventing users from submitting votes until it is turned on again. 
-- This could be useful if there was an error with vote validation or if incorrect data was being submitted.
+- Voting toggle allows the vote casting function to be enabled and disabled by the admin, controlling whether users are able to submit votes. 
+- This feature could be useful if there was an error with vote validation or if incorrect data was being submitted.
 
 [Back to contents](#contents)
 
@@ -160,14 +161,14 @@ The Voting Station was built with the following technologies:
 2.  [**CSS**](https://en.wikipedia.org/wiki/CSS) - For styling the terminal in Heroku.
 3.  [**JavaScript**](https://en.wikipedia.org/wiki/JavaScript) - Used to create the web environment of which the terminal app runs in.
 4.  [**Python**](https://www.python.org/) - Used to develop the functionality and design of the application in the CLI.
-5.  [**Gitpod**](https://gitpod.io) - The IDE used to develop the application and test the python code.
+5.  [**Gitpod**](https://gitpod.io) - The IDE used to develop the application and test the Python code.
 6.  [**Github**](https://github.com) - For hosting the application repository and for version control.
 7.  [**Heroku**](https://www.heroku.com/) - For hosting the actual application.
 8.  [**Google Cloud Platform**](https://cloud.google.com/) - For creating the API's to connect the application with Google Sheets.
-9.  [**Google Sheets**](https://cloud.google.com/) - For storing data accessed by the application.
-10.  [**Lucid Chart**](https://www.lucidchart.com/pages/) - To design the logic path of the python code.
-11.  [**Am I Responsive**](http://ami.responsivedesign.is/) - To create the responsive image at start of the readme.
-12.  [**Favicon.io**](https://favicon.io.net/) - Used to create a favicon for the application.
+9.  [**Google Sheets**](https://www.google.com/sheets/about/) - For storing data accessed by the application.
+10.  [**Lucid Chart**](https://www.lucidchart.com/pages/) - To design the logic path of the Python code.
+11.  [**Am I Responsive**](http://ami.responsivedesign.is/) - To create the image at start of the readme.
+12.  [**Favicon.io**](https://favicon.io/) - Used to create a favicon for the application.
 
 [Back to contents](#contents)
 
@@ -192,7 +193,7 @@ The following modules were used in developing the Voting Station:
 ### **Validator Tests**
 
 #### **Python PEP8 Validator**
-All python code in the Voting Station was tested using the [**Python Pep8 Validator**](http://pep8online.com/checkresult). When tested for the first time, no errors or warnings were returned. This is due to Gitpod’s built-in system that alerted any issues with the python code during development, so all issues were resolved before the application was tested in the validator.
+All Python code in the Voting Station was tested using the [**Python Pep8 Validator**](http://pep8online.com/). When tested for the first time, no errors or warnings were returned. This is due to Gitpod’s built-in system that alerted any issues with the Python code during development, so all issues were resolved before the application was tested in the validator.
 
 Most issues that arose during development pertained to trailing whitespace and lines that were too long, both of which were fairly straight forward to resolve. The results from the PEP8 Validator are below:
 
@@ -236,14 +237,14 @@ The results are below:
 
 <img  src="assets/readme-images/input-testing.png" width="60%">
 
-All input validation and functionality worked as expected, and no incorrect data types are able to compromise the application and pass through voting.
-
 The first issue found when testing was related to the color of a warning being incorrect. The second more significant problem was the first bar chart in insights rendering incorrectly. This second issue is a known bug, although navigating to the results menu and then back into insights will load the chart successfully.
+
+All input validation and functionality worked as expected, and no incorrect data types are able to compromise the application and pass through voting.
 
 [Back to contents](#contents)
 
 ### **Manual Data Testing** 
-To check that the data being presented in the bar charts was correct, manual tests were also conducted. This involved manually checking the data displayed in the Voting Station against the data in the Google Sheet, and ensuring that they both matched up. This was done for both the current vote count display and bar charts in insights.
+To check that the data being presented in the bar charts was correct, manual tests were also conducted. This involved manually checking the data displayed in the Voting Station against the data in the Google Sheet and ensuring that they both matched up. This was done for both the current vote count display and bar charts in insights.
 
 During testing it was discovered that in the vote by region bar chart, the titles of two regions were the wrong way around, meaning that the data represented in the bar chart was incorrect. This was resolved by switching the titles around. Other than that single issue, the data in the Google Sheets matched the data being printed in the application, indicating that all calculations were functioning correctly in the Voting Station.
 
@@ -319,15 +320,15 @@ The following steps detail how to deploy a project of your own on Heroku:
 
 <p align="center"><img  src="assets/readme-images/heroku-2.png" width="60%"></p>
 
-3. Choose a name for your application and select an appropriate region, before finally clicking "Create New App".
+3. Choose a name for your application and select an appropriate region before finally clicking "Create New App".
 
 <p align="center"><img  src="assets/readme-images/heroku-3.png" width="40%"></p>
 
-4. Within the application interface, head to the "Settings" tab and click "Reveal Config Vars".
+4. Within the application interface head to the "Settings" tab and click "Reveal Config Vars".
 
 <p align="center"><img  src="assets/readme-images/heroku-4.png" width="60%"></p>
 
-5. Once in Config Vars enter the key of "PORT", and the value of "8000". (If working with Google Sheets API you would also enter the credentials into the Config Vars)
+5. Once in Config Vars enter the key of "PORT" and the value of "8000". (If working with Google Sheets API you would also enter the credentials into the Config Vars)
 
 <p align="center"><img  src="assets/readme-images/heroku-5.png" width="60%"></p>
 
@@ -339,7 +340,7 @@ The following steps detail how to deploy a project of your own on Heroku:
 
 <p align="center"><img  src="assets/readme-images/heroku-7.png" width="60%"></p>
 
-8. Using the search bar in the "Connect to Github" area, locate the chosen repository and click connect.
+8. Using the search bar in the "Connect to Github" area, locate the chosen repository and click "Connect".
 
 <p align="center"><img  src="assets/readme-images/heroku-8.png" width="60%"></p>
 
@@ -355,6 +356,6 @@ I would like to thank my mentor Precious Ijege for all of the support and advice
 
 Also to my fellow students on slack, who on countless occasions helped me solve issues that I was having.
 
-Without all of this guidance and support I would not have got very far.
+I have loved learning Python but it was difficult at times, and without the guidance and support I would not have got very far.
 
 [Back to contents](#contents)

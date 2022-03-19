@@ -108,7 +108,7 @@ admin_votes_text = (
 # Text that makes up the title of the vote table in the admin portal (irregular
 # spacing is used to match up title with each column in table).
 admin_votes_titles = (
-    f"{Back.YELLOW}{Fore.BLACK}\nNo. FName:     SName:       Age:"
+    f"{Back.YELLOW}{Fore.BLACK}\nNo. FName:       SName:       Age:"
     f"Region:     Vote: "
 )
 

@@ -33,7 +33,7 @@ Password: password
     - [Lighthouse Testing](#lighthouse-testing)
     - [Bugs](#bugs)
 - [Deployment](#deployment)
-- [Acknowledgement](#acknowledgement)
+- [Acknowledgements](#acknowledgements)
 
 ## **Planning**
 ---

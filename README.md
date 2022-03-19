@@ -33,7 +33,7 @@ Password: password
     - [Lighthouse Testing](#lighthouse-testing)
     - [Bugs](#bugs)
 - [Deployment](#deployment)
-- [Acknowledgements](#acknowledgements)
+- [Acknowledgement](#acknowledgement)
 
 ## **Planning**
 ---
@@ -310,7 +310,7 @@ There are also a couple of examples of bad UX which result from the application 
 [Back to contents](#contents)
 
 ### **Deployment**
-The following steps detail how to deploy a project of your own on Heroku:
+The following steps detail how to deploy a project of your own on [**Heroku**](https://www.heroku.com/):
 
 1. Navigate to Heroku and log in. (If you do not have an account then create one using the Sign Up button)
 
@@ -350,7 +350,7 @@ The following steps detail how to deploy a project of your own on Heroku:
 
 [Back to contents](#contents)
 
-### **Credits & Acknowledgments**
+### **Acknowledgements**
 
 I would like to thank my mentor Precious Ijege for all of the support and advice on creating this project.
 

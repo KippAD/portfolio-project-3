@@ -3,7 +3,15 @@
 ## **Brief**
 The Voting Station is a command line interface based voting system that is built to hold an election. The election is set in Sussex and is run between three candidates: The Red, Green, and Blue Parties. The application aims to automate the voting process by collecting votes from users, storing and counting them, and then presenting data back to the user in a visually appealing way.
 
-[Link to the live site](https://the-voting-station.herokuapp.com/)
+**Login details for admin portal:**
+
+Username: admin
+
+Password: password
+
+[Link to Heroku App](https://the-voting-station.herokuapp.com/) - [Link to Google Sheet](https://docs.google.com/spreadsheets/d/1xahaI5p6dAiUJqpnXbWY78Ph-1Lv-7vKWn3ZpGqIroU/edit?usp=sharing)
+
+---
 
 <p align="center"><img  src="assets/readme-images/readme-hero-img.png" width="75%"></p>
 
@@ -35,7 +43,7 @@ The objectives for the Voting Station from a UX perspective are:
 
 2. The application has a consistent design that makes it clear to the user what processes are happening and when input is required. From an aesthetic perspective, the user gets a positive emotional response from interacting with the application.
 
-In order to reach these objectives and achieve a high UX standard, focus needs to be put on presenting the application clearly and with a good aesthetic. This is somewhat harder in a CLI application as design is more limited, but by using external modules the design can be improved alongside the user experience.
+Due to the application being based in the command line interface, the design is more limited in its possibilities. This means that more focus has to be put on creating a display that looks good and appeals to the user. However, using external python modules and librarires will allow the design to be improved alongside the user experience as they offer more oppurtunities to customize the interface.
 
 **To achieve the first objective:**
 - The inputs that control the applications flow are clearly marked so that the user will always know when an action is required from them.
@@ -43,7 +51,7 @@ In order to reach these objectives and achieve a high UX standard, focus needs t
 - User actions are clearly explained across the application so that the user will always know what will happen in response to their inputs.
 
 **To achieve the second objective:**
-- Consistent text colors will represent different actions: Blue text is a loading message, cyan text indicates an input is required, and red text a warning.
+- Consistent text colors will represent different actions: blue text is a loading message, cyan text indicates an input is required, and red text a warning.
 - Colorama and Ascii Title will add color and design throughout, expanding the possibilities of the terminal that would otherwise be limited to a black background with white text.
 - Voting data in the application will be printed in bar chart format, improving the UX by presenting data in a neat and digestible way.
 
@@ -52,7 +60,7 @@ In order to reach these objectives and achieve a high UX standard, focus needs t
 ### **Design**
 As mentioned in the UX objectives, the scope of the design is slightly limited due to the application being CLI based. In the planning phase, the following modules were researched and included in the project in order to maximize how much design could be added:
 
-- **Termacolor and Pyfiglet** - These modules meant that a title of Ascii text could be designed and then printed into the terminal. The title is seen throughout the application.
+- **Termacolor and Pyfiglet** - These modules meant that a title of Ascii text could be generated and then printed into the terminal. The title is seen throughout the application.
 
 <p  align="center"><img  src="assets/readme-images/ascii-title.png" width="50%"></p>
 
@@ -91,10 +99,10 @@ The vote casting function takes a user vote and stores the data externally. This
 <img  src="assets/readme-images/results-collage-1.jpg" width="80%">
 <img  src="assets/readme-images/results-collage-2.png" width="80%">
 
-Using the data provided by the user, the Voting Station uses the plotext and gspread modules to retrieve and display the live data retrieved from the vote database.
+Using the data provided by the user that is stored in the google sheet, the Voting Station uses the plotext and gspread modules to build bar charts that display live calculations of data.
 
-- Vote results displays a live current vote count in percentages in bar chart format, updating automatically with each new vote.
-- Voting insights provides further information about voting demographics in bar chart form, these are the popularity of each party in each voting region and the popularity of each party in certain age brackets.
+- The Current Vote Count area displays a bar chart that shows the current count of all votes in percentages. This chart is live and updates with each new vote.
+- Voting insights provides further information about the voting demographics in bar chart form, these are the popularity of each party in each voting region and the popularity of each party in certain age brackets.
 
 ### **Information**
 ---
@@ -188,7 +196,7 @@ The following modules were used in developing the Voting Station:
 
 #### **Python PEP8 Validator**
 
-All python code in the Voting Station was tested using the [**Python Pep8 Validator**](http://pep8online.com/checkresult). At the time of testing, no errors or warnings were returned. This is due to Gitpod’s built-in system that alerted any issues with the python code during development, so all issues were resolved before the application was tested in the validator.
+All python code in the Voting Station was tested using the [**Python Pep8 Validator**](http://pep8online.com/checkresult). When tested for the first time, no errors or warnings were returned. This is due to Gitpod’s built-in system that alerted any issues with the python code during development, so all issues were resolved before the application was tested in the validator.
 
 Most issues that arose during development pertained to trailing whitespace and lines that were too long, both of which were fairly straight forward to resolve. The results from the PEP8 Validator are below:
 
@@ -239,9 +247,9 @@ The first issue found when testing was related to the color of a warning being i
 [Back to contents](#contents)
 
 ### **Manual Data Testing** 
-To check that the data being presented in the bar charts was correct, manual tests were also conducted. This involved google sheets to check the data displayed in the Voting Station by manually calculating the same data in google sheets, and ensuring that that all values matched up. This was done for the current vote count display and for the bar charts in insights.
+To check that the data being presented in the bar charts was correct, manual tests were also conducted. This involved manually checking the data displayed in the Voting Station against the data in the google sheet, and ensuring that they both matched up. This was done for both the current vote count display and bar charts in insights.
 
-During testing it was discovered that in the vote by region bar chart the titles of two regions were the wrong way around, meaning that the data represented in the bar chart was incorrect. This was resolved by switching the titles around. Other than that single issue, the data in the google sheets matched the data being printed in the application, indicating that all calculations were functioning correctly in the Voting Station.
+During testing it was discovered that in the vote by region bar chart, the titles of two regions were the wrong way around, meaning that the data represented in the bar chart was incorrect. This was resolved by switching the titles around. Other than that single issue, the data in the google sheets matched the data being printed in the application, indicating that all calculations were functioning correctly in the Voting Station.
 
 [Back to contents](#contents)
 
@@ -253,7 +261,7 @@ The Voting Station has been tested across multiple browsers:
 - **Safari**
 - **Opera**
 
-The only issue found during browser testing was in Safari where the opening input would not allow any keyboard entry, effectively freezing the application before it had begun. This issue occurred on a 2021 Macbook, but testing Safari on a different 2015 model did not recreate the error. On the older macbook the application ran exactly as intended, this could indicate that the issue is to do with either the newer machine or a newer version of Safari and not the code itself.
+The only issue found during browser testing was in Safari where the opening input would not allow any keyboard entry, effectively freezing the application before it had begun. This issue occurred on a 2021 Macbook, but testing Safari on a different 2015 model did not recreate the error. On the older Macbook the application ran exactly as intended, which could indicate that the issue is to do with either the newer machine or a newer version of Safari and not the code itself.
 
 In all other browsers, the application functioned exactly as anticipated, all user interactions was successful, and the google sheet was always updated appropriately.
 
@@ -279,7 +287,7 @@ The SEO score was originally lower due to the site not having a meta description
 #### **Resolved**
 
 **Clearing Terminal**
-An issue that was particularly difficult to resolve in the beginning of Heroku was related to clearing the terminal. Using the OS module there is a function to clear the terminal, however this is seemingly limited to the viewport size of the terminal itself and therefore with larger amounts of content that would exceed the terminal height, the function would not fully clear the terminal. Eventually a solution was found thanks to Helena, a fellow student on slack.
+An issue that was particularly difficult to resolve in the beginning of Heroku was related to clearing the terminal. Using the OS module there is a function to clear the terminal, however this is seemingly limited to the viewport size of the terminal itself and therefore with larger amounts of content that would exceed the terminal height, the function would not fully clear all content. Eventually a solution was found thanks to Helena, a fellow student on slack.
 
 <img  src="assets/readme-images/slack-solution.png" width="60%">
 
@@ -300,21 +308,21 @@ There are also a couple of examples of bad UX which result from the application 
 [Back to contents](#contents)
 
 ### **Deployment**
-This project was deployed on Heroku. The following step how to deploy a project of your own:
+The following steps detail how to deploy a project of your own on Heroku:
 
 1. Navigate to Heroku and log in. (If you do not have an account the create one using the Sign Up button)
 
 <p align="center"><img  src="assets/readme-images/heroku-1.png" width="40%"></p>
 
-2. Once logged in, navigate to your account dashboard and click the New button, then click Create New App in the corresponding drop down.
+2. Once logged in, navigate to your account dashboard and click the "New" button, then click "Create New App "in the corresponding drop down.
 
 <p align="center"><img  src="assets/readme-images/heroku-2.png" width="60%"></p>
 
-3. Choose a name for your application before selecting an appropriate region.
+3. Choose a name for your application before selecting an appropriate region, and finally selecting "Create New App".
 
 <p align="center"><img  src="assets/readme-images/heroku-3.png" width="40%"></p>
 
-4. Within the application interface, head to the settings tab and click reveal config vars.
+4. Within the application interface, head to the "Settings" tab and click "Reveal Config Vars".
 
 <p align="center"><img  src="assets/readme-images/heroku-4.png" width="60%"></p>
 
@@ -322,19 +330,19 @@ This project was deployed on Heroku. The following step how to deploy a project 
 
 <p align="center"><img  src="assets/readme-images/heroku-5.png" width="60%"></p>
 
-6. In the area underneath, click the Add Buildpack button - in this menu select Python and save. Repeat the process and add Node.js and ensure that in the buildpack order Python is above Node.js.
+6. In the Buildpack area just below click the "Add Buildpack" button, select Python, and save. Repeat the process and add Node.js and ensure that in the buildpack order Python is above Node.js - the order of buildpacks can be easily adjusted by dragging one above or below the other.
 
 <p align="center"><img  src="assets/readme-images/heroku-6.png" width="60%"></p>
 
-7. Head back to the top of the page and select the Deploy panel. In this area select Github as the method of deployment and ensure that the appropriate Github account is connected to the Heroku account.
+7. Head back to the top of the page and select the "Deploy" panel. In this area select Github as the method of deployment and ensure that the appropriate Github account is connected to the Heroku account.
 
 <p align="center"><img  src="assets/readme-images/heroku-7.png" width="60%"></p>
 
-8. Using the search bar in the connect to github area, input the necessary repository and click connect.
+8. Using the search bar in the "Connect to Github" area, locate the chosen repository and click connect.
 
 <p align="center"><img  src="assets/readme-images/heroku-8.png" width="60%"></p>
 
-9. Once connected, enable automatic deployment and then scroll down and select Deploy Branch. Once loaded a link will be displayed that will take you to the live project.
+9. Once connected, click "Enable Automatic Deployment" and then scroll down and select "Deploy Branch". Once loaded a link will be displayed that will take you to the live project.
 
 <p align="center"><img  src="assets/readme-images/heroku-9.png" width="60%"></p>
 

@@ -43,7 +43,7 @@ The objectives for the Voting Station from a UX perspective are:
 
 2. The application has a consistent design that makes it clear to the user what processes are happening and when input is required. From an aesthetic perspective, the user gets a positive emotional response from interacting with the application.
 
-Due to the application being based in the command line interface, the design is more limited in its possibilities, meaning that more focus has to be put on creating a display that looks good and appeals to the user. These limitations can be countered by using external python modules and librarires that offer more oppurtunities to customize the interface, and therefore improve the design and UX.
+Due to the application being based in the command line interface, the design is more limited in its possibilities, meaning that more focus has to be put on creating a display that looks good and appeals to the user. These limitations can be countered by using external python modules and libraries that offer more oppurtunities to customize the interface, and therefore improve the design and UX.
 
 **To achieve the first objective:**
 - The inputs that control the applications flow are clearly marked so that the user will always know when an action is required from them.
@@ -52,7 +52,7 @@ Due to the application being based in the command line interface, the design is 
 
 **To achieve the second objective:**
 - Consistent text colors will represent different actions: blue text is a loading message, cyan text indicates an input is required, and red text a warning.
-- Colorama and Ascii Title will add color and design throughout, expanding the possibilities of the terminal that would otherwise be limited to a black background with white text.
+- Colorama and ASCII title will add color and design throughout, expanding the possibilities of the terminal that would otherwise be limited to a black background with white text.
 - Voting data in the application will be printed in bar chart format, improving the UX by presenting data in a neat and digestible way.
 
 [Back to contents](#contents)
@@ -60,7 +60,7 @@ Due to the application being based in the command line interface, the design is 
 ### **Design**
 As mentioned in the UX objectives, the scope of the design is slightly limited due to the application being CLI based. In the planning phase, the following modules were researched and included in the project in order to maximize how much design could be added:
 
-- **Termacolor and Pyfiglet** - These modules meant that a title of Ascii text could be generated and then printed into the terminal. The title is seen throughout the application.
+- **Termacolor and Pyfiglet** - These modules meant that a title of ASCII text could be generated and then printed into the terminal. The title is seen throughout the application.
 
 <p  align="center"><img  src="assets/readme-images/ascii-title.png" width="50%"></p>
 
@@ -91,7 +91,7 @@ It was useful to map out the applications logic and functionality in order to be
 
 The vote casting function takes a user vote and stores the data externally. This is the main process of the application as its principal aim is to hold an election.
 
-- Takes first and second names, age, region, and vote, validating all inputs to ensure that the user submits the correct data to the external google sheet.
+- Takes first and second names, age, region, and vote, validating all inputs to ensure that the user submits the correct data to the external Google Sheet.
 - Allows users to review their inputs before submitting, meaning they can cancel their vote or complete the form again if they are not content.
 
 ### **Vote Results and Insights**
@@ -99,7 +99,7 @@ The vote casting function takes a user vote and stores the data externally. This
 <img  src="assets/readme-images/results-collage-1.jpg" width="80%">
 <img  src="assets/readme-images/results-collage-2.png" width="80%">
 
-Using the data provided by the user that is stored in the google sheet, the Voting Station uses the plotext and gspread modules to build bar charts that display live calculations of data.
+Using the data provided by the user that is stored in the Google Sheet, the Voting Station uses the Plotext and Gspread modules to build bar charts that display live calculations of data.
 
 - The Current Vote Count area displays a bar chart that shows the current count of all votes in percentages. This chart is live and updates with each new vote.
 - Voting insights provides further information about the voting demographics in bar chart form, these are the popularity of each party in each voting region and the popularity of each party in certain age brackets.
@@ -138,7 +138,7 @@ The admin has the power to delete votes from the election in the Admin Portal.
 
 In the admin control area, the admin is able switch voting on or off.
 
-- Voting toggle allows the vote casting function to be enable and disabled by the admin, preventing users from submitting votes until it is turned on again. 
+- Voting toggle allows the vote casting function to be enabled and disabled by the admin, preventing users from submitting votes until it is turned on again. 
 - This could be useful if there was an error with vote validation or if incorrect data was being submitted.
 
 [Back to contents](#contents)
@@ -177,13 +177,13 @@ The following modules were used in developing the Voting Station:
 1.  [**Time**](https://docs.python.org/3/library/time.html) - For adding time delays to application.
 2.  [**OS**](https://docs.python.org/3/library/os.html) - Used for clearing the terminal.
 3.  [**Collections**](https://docs.python.org/3/library/collections.html) - Used to count votes more concisely.
-4.  [**Tabulate**](https://pypi.org/project/tabulate/) - For presenting the vote data in table format in Admin Portal.
-5.  [**Termcolor**](https://pypi.org/project/termcolor/) - For cprinting the ascii title.
-6.  [**Pyfiglet**](https://pypi.org/project/pyfiglet/0.7/) - For generating the ascii title.
+4.  [**Tabulate**](https://pypi.org/project/tabulate/) - For presenting the vote data in tabular format in the Admin Portal.
+5.  [**Termcolor**](https://pypi.org/project/termcolor/) - For cprinting the ASCII title.
+6.  [**Pyfiglet**](https://pypi.org/project/pyfiglet/0.7/) - For generating the ASCII title.
 7.  [**Colorama**](https://pypi.org/project/colorama/) - To add color to the application text.
-8.  [**Credentials**](https://pypi.org/project/credentials/) - To add credentials and control access to the google sheet.
-9.  [**Plotext**](https://pypi.org/project/plotext/) - For plotting google sheet data in bar chart format in the terminal.
-10.  [**Gspread**](https://docs.gspread.org/en/latest/) - To handle data stored in the google sheet.
+8.  [**Credentials**](https://pypi.org/project/credentials/) - To add credentials and control access to the Google Sheet.
+9.  [**Plotext**](https://pypi.org/project/plotext/) - For plotting Google Sheet data in bar chart format in the terminal.
+10.  [**Gspread**](https://docs.gspread.org/en/latest/) - To handle data stored in the Google Sheet.
 
 [Back to contents](#contents)
 
@@ -213,7 +213,7 @@ However, small changes have been made to the HTML and CSS in order to format the
 
 <img  src="assets/readme-images/html-warnings.png" width="100%">
 
-The validator initially returned three errors, including a fatal error. These were all related to the placement of the site favicon in the wrong html file. All of these errors were removed when the favicon was moved to the head of the layout.html file.
+The validator initially returned three errors, including a fatal error. These were all related to the placement of the site favicon in the wrong HTML file. All of these errors were removed when the favicon was moved to the head of the layout.html file.
 
 The passed validator test is below:
 
@@ -243,9 +243,9 @@ The first issue found when testing was related to the color of a warning being i
 [Back to contents](#contents)
 
 ### **Manual Data Testing** 
-To check that the data being presented in the bar charts was correct, manual tests were also conducted. This involved manually checking the data displayed in the Voting Station against the data in the google sheet, and ensuring that they both matched up. This was done for both the current vote count display and bar charts in insights.
+To check that the data being presented in the bar charts was correct, manual tests were also conducted. This involved manually checking the data displayed in the Voting Station against the data in the Google Sheet, and ensuring that they both matched up. This was done for both the current vote count display and bar charts in insights.
 
-During testing it was discovered that in the vote by region bar chart, the titles of two regions were the wrong way around, meaning that the data represented in the bar chart was incorrect. This was resolved by switching the titles around. Other than that single issue, the data in the google sheets matched the data being printed in the application, indicating that all calculations were functioning correctly in the Voting Station.
+During testing it was discovered that in the vote by region bar chart, the titles of two regions were the wrong way around, meaning that the data represented in the bar chart was incorrect. This was resolved by switching the titles around. Other than that single issue, the data in the Google Sheets matched the data being printed in the application, indicating that all calculations were functioning correctly in the Voting Station.
 
 [Back to contents](#contents)
 
@@ -259,7 +259,7 @@ The Voting Station has been tested across multiple browsers:
 
 The only issue found during browser testing was in Safari where the opening input would not allow any keyboard entry, effectively freezing the application before it had begun. This issue occurred on a 2021 Macbook, but testing Safari on a different 2015 model did not recreate the error. On the older Macbook the application ran exactly as intended, which could indicate that the issue is to do with either the newer machine or a newer version of Safari and not the code itself.
 
-In all other browsers, the application functioned exactly as anticipated, all user interactions were successful, and the google sheet was always updated appropriately.
+In all other browsers, the application functioned exactly as anticipated, all user interactions were successful, and the Google Sheet was always updated appropriately.
 
 [Back to contents](#contents)
 
@@ -284,7 +284,7 @@ The SEO score was originally lower due to the site not having a meta description
 
 **Clearing Terminal**
 
-An issue that was particularly difficult to resolve once the application had been deployed to Heroku was related to clearing the terminal. Using the OS module there is a function to clear the terminal, however this is seemingly limited to the viewport size of the terminal itself and therefore with larger amounts of content that would exceed the terminal height, the function would not fully clear all content. Eventually a solution was found thanks to Helena, a fellow student on slack.
+A recurring issue once the application had been deployed to Heroku was related to clearing the terminal. Using the OS module there is a function to clear the terminal, however this is seemingly limited to the viewport size of the terminal itself and therefore with larger amounts of content that would exceed the terminal height, the function would not fully clear all content. Eventually a solution was found thanks to Helena, a fellow student on slack.
 
 <img  src="assets/readme-images/slack-solution.png" width="60%">
 
@@ -296,7 +296,7 @@ A persistent problem faced throughout the application development was the favico
 
 **First Insights Bar Chart**
 
-The largest unresolved bug in the application is an error with one of the bar charts in the insights area of the application. Upon loading, the chart does not plot data and instead prints a colorless square with no discernible information on it - this seemingly occurred on every instance that the insights page was loaded for the first time. However, by exiting the insights page and loading it once again, the bar chart would print as expected. Whilst not totally resolved, adding a timer between the calling of the two bar chart functions has managed to prevent the issue happening as regularly as before, but sometimes it still occurs. In this case, the user is instructed to reload the insights page.
+The largest unresolved bug in the application is an error with one of the bar charts in the insights area failing to load properly. Upon loading, the chart does not plot data and instead prints a colorless square with no discernible information on it - this seemingly occurred on every instance that the insights page was loaded for the first time. However, by exiting the insights page and loading it once again, the bar chart would print as expected. Whilst not totally resolved, adding a timer between the calling of the two bar chart functions has managed to prevent the issue happening as regularly as before, but sometimes it still occurs. In this case, the user is instructed to reload the insights page.
 
 **Double Barrel Names**
 
@@ -327,11 +327,11 @@ The following steps detail how to deploy a project of your own on Heroku:
 
 <p align="center"><img  src="assets/readme-images/heroku-4.png" width="60%"></p>
 
-5. Once in Config Vars enter the key of "PORT", and the value of "8000". (If working with google sheets API you would also enter the credentials into the Config Vars)
+5. Once in Config Vars enter the key of "PORT", and the value of "8000". (If working with Google Sheets API you would also enter the credentials into the Config Vars)
 
 <p align="center"><img  src="assets/readme-images/heroku-5.png" width="60%"></p>
 
-6. In the Buildpack area just below click the "Add Buildpack" button, select Python, and save. Repeat the process and add Node.js and ensure that in the buildpack order Python is above Node.js - the order of buildpacks can be easily adjusted by clicking and dragging one above or below the other.
+6. In the Buildpack area below click the "Add Buildpack" button, select Python, and save. Repeat the process and add Node.js, also ensuring that in the buildpack order Python is above Node.js - the order of buildpacks can be easily adjusted by clicking and dragging one above or below the other.
 
 <p align="center"><img  src="assets/readme-images/heroku-6.png" width="60%"></p>
 
@@ -355,6 +355,6 @@ I would like to thank my mentor Precious Ijege for all of the support and advice
 
 Also to my fellow students on slack, who on countless occasions helped me solve issues that I was having.
 
-Without all of guidance and support I would not have got very far.
+Without all of this guidance and support I would not have got very far.
 
 [Back to contents](#contents)
